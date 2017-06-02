@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
-require "spotify/version"
-
 module Spotify
-  module SDK
+  class Auth < OAuth2::Client
   end
 end
