@@ -28,4 +28,3 @@ end
 
 task default: :spec
 task ci: [:spec, "coveralls:push", :rubocop]
-

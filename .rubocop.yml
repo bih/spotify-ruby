@@ -1,6 +1,8 @@
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:
   Max: 120
+  Exclude:
+    - 'spec/**/*.rb'
 
 # Too short methods lead to extraction of single-use methods, which can make
 # the code easier to read (by naming things), but can also clutter the class
@@ -10,6 +12,17 @@ Metrics/MethodLength:
 # The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
 Metrics/ClassLength:
   Max: 1500
+  Exclude:
+    - 'spec/**/*.rb'
+
+# The size of a block for a method.
+Metrics/BlockLength:
+  CountComments: false
+  Max: 25
+  ExcludedMethods: []
+  Exclude:
+    - '*.gemspec'
+    - 'spec/**/*.rb'
 
 # No space makes the method definition shorter and differentiates
 # from a regular assignment.
