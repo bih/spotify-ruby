@@ -11,10 +11,10 @@ module Spotify
       ugc-image-upload user-follow-modify user-follow-read
       user-library-read user-library-modify user-read-private
       user-read-birthdate user-read-email user-top-read
-      user-read-playback-state user-modify-playback-state 
+      user-read-playback-state user-modify-playback-state
       user-read-currently-playing user-read-recently-played
       streaming
-    ]
+    ].freeze
 
     def initialize(config)
       opts = {
@@ -26,12 +26,12 @@ module Spotify
       super(config[:client_id], config[:client_secret], opts)
     end
 
-    def authorize_url(opts = {})
+    def authorize_url(opts={})
       super({
-        client_id: id,
-        redirect_uri: @redirect_uri,
+        client_id:     id,
+        redirect_uri:  redirect_uri,
         response_type: "code",
-        scope: ALL_SCOPES.join(" ")
+        scope:         ALL_SCOPES.join(" ")
       }.merge(opts))
     end
 
