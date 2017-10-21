@@ -31,7 +31,7 @@ module Spotify
         client_id:     id,
         redirect_uri:  redirect_uri,
         response_type: "code",
-        scope:         ALL_SCOPES.join(" ")
+        scope:         SCOPES.join(" ")
       }.merge(opts))
     end
 
