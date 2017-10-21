@@ -4,6 +4,18 @@ require "oauth2"
 
 module Spotify
   class Auth < OAuth2::Client
+    # Updated 21 October 2017
+    SCOPES = %i[
+      playlist-read-private playlist-read-collaborative
+      playlist-modify-public playlist-modify-private
+      ugc-image-upload user-follow-modify user-follow-read
+      user-library-read user-library-modify user-read-private
+      user-read-birthdate user-read-email user-top-read
+      user-read-playback-state user-modify-playback-state 
+      user-read-currently-playing user-read-recently-played
+      streaming
+    ]
+
     def initialize(config)
       opts = {
         site:          "https://api.spotify.com",
@@ -14,8 +26,13 @@ module Spotify
       super(config[:client_id], config[:client_secret], opts)
     end
 
-    def authorize_url
-      super(redirect_uri: @redirect_uri)
+    def authorize_url(opts = {})
+      super({
+        client_id: id,
+        redirect_uri: @redirect_uri,
+        response_type: "code",
+        scope: ALL_SCOPES.join(" ")
+      }.merge(opts))
     end
 
     private
