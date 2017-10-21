@@ -4,8 +4,13 @@ require "oauth2"
 
 module Spotify
   class Auth < OAuth2::Client
-    def new(client_id, client_secret)
-      super(client_id, client_secret, site: "https://api.spotify.com")
+    def initialize(client_id, client_secret)
+      opts = {
+        site: "https://api.spotify.com",
+        authorize_url: "https://accounts.spotify.com/oauth/authorize"
+      }
+
+      super(client_id, client_secret, opts)
     end
   end
 end
