@@ -1,0 +1,1 @@
+var search_data = {"index":{"searchIndex":["readme"],"longSearchIndex":[""],"info":[["README","","README_md.html","","<p>bih/spotify-ruby\n<p>A modern, opinionated and <em>unofficial</em> Ruby SDK for the Spotify Web\nAPI to help developers …\n"]]}}
