@@ -6,9 +6,7 @@ RSpec.describe Spotify::Auth do
   it "inherits from OAuth2::Client" do
     expect(Spotify::Auth < OAuth2::Client).to be_truthy
   end
-end
 
-RSpec.describe Spotify::Auth do
   context "during initialization" do
     subject {
       Spotify::Auth.new(client_id:     "client id",
@@ -28,9 +26,7 @@ RSpec.describe Spotify::Auth do
       expect(subject.options[:token_url]).to eq "/oauth/token"
     end
   end
-end
 
-RSpec.describe Spotify::Auth do
   context "bad initialization" do
     it "should raise error without a client_id" do
       expect {
@@ -53,9 +49,7 @@ RSpec.describe Spotify::Auth do
       }.to raise_error Spotify::Errors::AuthClientCredentialsError
     end
   end
-end
 
-RSpec.describe Spotify::Auth do
   context "contains error handlers" do
     it "when auth credentials invalid" do
       expect(Spotify::Errors::AuthClientCredentialsError < StandardError).to be_truthy
