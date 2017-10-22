@@ -8,9 +8,9 @@ Gem::Specification.new do |spec|
   spec.name          = "spotify-ruby"
   spec.version       = Spotify::VERSION
   spec.authors       = ["Bilawal Hameed"]
-  spec.email         = ["me@bilaw.al"]
+  spec.email         = ["bil@spotify.com"]
 
-  spec.summary       = "A modern Ruby wrapper for the Spotify API."
+  spec.summary       = "A modern, opinionated and unofficial Ruby SDK for the Spotify API."
   spec.description   = [
     "Build integrations with the different Spotify APIs",
     "inside of your application.",
@@ -33,6 +33,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rdoc", "~> 5.1"
   spec.add_development_dependency "rspec", "~> 3.7"
   spec.add_development_dependency "rubocop", "~> 0.51.0"
+  spec.add_development_dependency "webmock", "~> 3.1"
   spec.add_runtime_dependency "activesupport", "~> 5.0"
   spec.add_runtime_dependency "httparty", "~> 0.15.6"
   spec.add_runtime_dependency "oauth2", "~> 1.4"
