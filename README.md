@@ -48,7 +48,7 @@ With our `@auth` instance, we have access to multiple forms of authentication. B
 **Recommended.** Generate the URL for the user to grant permissions for your application:
 
 ```ruby
-puts @auth.authorize_url(response_type: "code")
+@auth.authorize_url(response_type: "code")
 ```
 
 Once they return back to your application with a `code`:
@@ -57,10 +57,31 @@ Once they return back to your application with a `code`:
 @access_token = @auth.auth_code.get_token(params[:code])
 ```
 
+You can save their information in the database under `access_token`, `expires_at` and `refresh_token`
+```ruby
+{ access_token: @auth.token,
+  expires_at: @auth.expires_at,
+  refresh_token: @auth.expires_token }
+```
+
+And re-instantiate it back up later:
+```ruby
+@access_token = OAuth2::AccessToken.new(@auth, "[insert access_token]", {
+  expires_at: "[insert expires_at]",
+  refresh_token: "[insert refresh_token]"
+})
+```
+
+And hen their access token expires, you can just run `refresh!`:
+
+```ruby
+@access_token = @auth.auth_code.refresh!
+```
+
 ### Implicit Grant
 
 ```ruby
-puts @auth.authorize_url(response_type: "token")
+@auth.authorize_url(response_type: "token")
 ```
 
 Once they return back to your application with a `token`:
