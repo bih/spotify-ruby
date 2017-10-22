@@ -75,7 +75,7 @@ And re-instantiate it back up later:
 And hen their access token expires, you can just run `refresh!`:
 
 ```ruby
-@access_token = @auth.auth_code.refresh!
+@access_token = @access_token.refresh!
 ```
 
 ### Implicit Grant
