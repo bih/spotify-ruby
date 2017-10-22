@@ -4,6 +4,5 @@ require "spec_helper"
 
 RSpec.describe Spotify::SDK::Connect do
   describe "#devices" do
-    
   end
 end
