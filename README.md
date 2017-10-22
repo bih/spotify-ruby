@@ -41,10 +41,40 @@ require "spotify"
 
 ## Authentication
 
-With our `@auth` instance, we can initiate an authentication URL for `https://accounts.spotify.com`. By default, this will have all the values needed to get a user setup.
+With our `@auth` instance, we have access to multiple forms of authentication. Below are our ones that we make available through the Spotify Platform: Authorization Code, Implicit Grant and Client Credentials. [Learn more here][spotify-authorization-guide].
+
+### Authorization Code
+
+**Recommended.** Generate the URL for the user to grant permissions for your application:
 
 ```ruby
-@auth.authorize_url # => https://accounts.spotify.com/oauth/authorize?client_id=...&redirect_uri=...
+puts @auth.authorize_url(response_type: "code")
+```
+
+Once they return back to your application with a `code`:
+
+```ruby
+@access_token = @auth.auth_code.get_token(params[:code])
+```
+
+### Implicit Grant
+
+```ruby
+puts @auth.authorize_url(response_type: "token")
+```
+
+Once they return back to your application with a `token`:
+
+```ruby
+@access_token = OAuth2::AccessToken.from_kvform(@auth, params)
+```
+
+### Client Credentials
+
+Generate an access token based from your client credentials. Note this has limited access.
+
+```ruby
+@access_token = @auth.client_credentials.get_token
 ```
 
 ## Usage
@@ -70,6 +100,7 @@ The gem is available as open source under the terms of the [MIT License](http://
 Everyone interacting in the `spotify-ruby` project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/bih/spotify-ruby/blob/master/CODE_OF_CONDUCT.md).
 
 [spotify]: https://spotify.com
+[spotify-authorization-guide]: https://developer.spotify.com/web-api/authorization-guide/
 [spotify-web-api]: https://developer.spotify.com/documentation/web-api/reference/
 [spotify-developer-dashboard]: https://developer.spotify.com/my-applications/
 [rubyinfo-docs]: http://www.rubydoc.info/github/bih/spotify-ruby
