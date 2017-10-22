@@ -24,9 +24,11 @@ Or install it yourself as:
 
 ## Setup
 
-You'll need to create a `Spotify::Auth` instance with your credentials.
+Configure with your client credentials and redirect URL. Get it [for free here][spotify-developer-dashboard].
 
 ```ruby
+require "spotify"
+
 @auth = Spotify::Auth.new({
   client_id: ENV["SPOTIFY_CLIENT_ID"],
   client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
@@ -43,21 +45,6 @@ With our `@auth` instance, we can initiate an authentication URL for `https://ac
 ```
 
 ## Usage
-
-Configure with your client credentials and redirect URL. Get it [for free here][spotify-developer-dashboard].
-
-```ruby
-@auth = Spotify::Auth.new({
-  client_id: ENV["SPOTIFY_CLIENT_ID"],
-  client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
-  redirect_uri: ENV["SPOTIFY_REDIRECT_URI"]
-})
-```
-
-You'll need to redirect your users to Spotify for authentication. This might help:
-```ruby
-puts @auth.authorize_url # => https://accounts.spotify.com/oauth/authorize?client_id=...
-```
 
 TODO: Write more detailed usage instructions here
 
