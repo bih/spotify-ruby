@@ -31,7 +31,7 @@ RSpec.describe Spotify::Auth do
     end
 
     it "should not set token_url" do
-      expect(subject.options[:token_url]).to eq "/oauth/token"
+      expect(subject.options[:token_url]).to eq "https://accounts.spotify.com/api/token"
     end
 
     context "authorize_url is valid" do
@@ -111,13 +111,6 @@ RSpec.describe Spotify::Auth do
       expect {
         Spotify::Auth.new(client_id:    "client id",
                           redirect_uri: "https://localhost")
-      }.to raise_error Spotify::Errors::AuthClientCredentialsError
-    end
-
-    it "should raise error without a redirect_uri" do
-      expect {
-        Spotify::Auth.new(client_id:     "client id",
-                          client_secret: "client secret")
       }.to raise_error Spotify::Errors::AuthClientCredentialsError
     end
   end
