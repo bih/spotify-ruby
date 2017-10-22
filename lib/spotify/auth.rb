@@ -75,6 +75,7 @@ module Spotify
     #
     # @param [Hash] override_params Optional hash containing any overriding values for parameters.
     # Parameters used are client_id, redirect_uri, response_type and scope.
+    # @return [String] A fully qualified Spotify authorization URL to send the user to.
     #
     # @see https://developer.spotify.com/web-api/authorization-guide/
     #
@@ -92,6 +93,7 @@ module Spotify
     # Validate initialization configuration and raise errors.
     #
     # @param [Hash] config OAuth configuration containing the Client ID, secret and redirect URL.
+    # @return [nil]
     #
     def validate_initialized_input(config)
       raise Errors::AuthClientCredentialsError.new(OAUTH_I18N[:must_be_hash]) unless config.is_a?(Hash)

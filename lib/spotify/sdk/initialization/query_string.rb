@@ -11,12 +11,12 @@ module Spotify
         end
 
         def should_perform?
-          subject.is_a?(String) && params.has_key?(:access_token)
+          subject.is_a?(String) && params.has_key?(:token)
         end
 
         def perform
           {
-            access_token:  params[:access_token][0],
+            access_token:  params[:token][0].presence,
             expires_at:    params[:expires_at][0],
             refresh_token: params[:refresh_token][0]
           }
