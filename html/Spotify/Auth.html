@@ -88,6 +88,9 @@
 
   <section class="description">
     
+<p><a href="Auth.html">Spotify::Auth</a> inherits from OAuth2::Client based on
+the “oauth-2” gem.</p>
+
   </section>
 
   
@@ -107,12 +110,18 @@
       
         <dt id="OAUTH_I18N">OAUTH_I18N
         
-        <dd>
+        <dd><p>Error-related translations we&#39;re using.</p>
         
       
         <dt id="SCOPES">SCOPES
         
-        <dd><p>Updated 21 October 2017</p>
+        <dd><p>An entire list of Spotify&#39;s OAuth scopes. Stored in the form of a
+symbolized array. Example: `[:scope1, :scope2]`</p>
+
+<p>@see <a
+href="https://developer.spotify.com/web-api/using-scopes">developer.spotify.com/web-api/using-scopes</a>/</p>
+
+<p>Last updated: 21 October 2017</p>
         
       
       </dl>
@@ -141,7 +150,23 @@
 
         <div class="method-description">
           
-          
+          <p>Initialize the <a href="../Spotify.html">Spotify</a> <a
+href="Auth.html">Auth</a> object.</p>
+
+<p>@example</p>
+
+<pre class="ruby"><span class="ruby-ivar">@auth</span> = <span class="ruby-constant">Spotify</span><span class="ruby-operator">::</span><span class="ruby-constant">Auth</span>.<span class="ruby-identifier">new</span>({
+  <span class="ruby-identifier">client_id</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;[client id goes here]&quot;</span>,
+  <span class="ruby-identifier">client_secret</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;[client secret goes here]&quot;</span>,
+  <span class="ruby-identifier">redirect_uri</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;http://localhost&quot;</span>
+})
+</pre>
+
+<p>@param [Hash] config OAuth configuration containing the Client ID, secret
+and redirect URL. The redirect URL can be overriden later.</p>
+
+<p>@see <a
+href="https://developer.spotify.com/my-applications">developer.spotify.com/my-applications</a>/</p>
           
           
             <div class="method-calls-super">
@@ -152,7 +177,7 @@
 
           
           <div class="method-source-code" id="new-source">
-            <pre><span class="ruby-comment"># File lib/spotify/auth.rb, line 18</span>
+            <pre><span class="ruby-comment"># File lib/spotify/auth.rb, line 53</span>
 <span class="ruby-keyword">def</span> <span class="ruby-identifier">initialize</span>(<span class="ruby-identifier">config</span>)
   <span class="ruby-identifier">opts</span> = {
     <span class="ruby-identifier">site</span><span class="ruby-operator">:</span>          <span class="ruby-string">&quot;https://api.spotify.com&quot;</span>,
@@ -184,7 +209,7 @@
         
         <div class="method-heading">
           <span class="method-name">authorize_url</span><span
-            class="method-args">(opts={})</span>
+            class="method-args">(override_params={})</span>
           
           <span class="method-click-advice">click to toggle source</span>
           
@@ -193,7 +218,26 @@
 
         <div class="method-description">
           
-          
+          <p>Get a HTTP URL to send user for authorizing with <a
+href="../Spotify.html">Spotify</a>.</p>
+
+<p>@example</p>
+
+<pre class="ruby"><span class="ruby-ivar">@auth</span> = <span class="ruby-constant">Spotify</span><span class="ruby-operator">::</span><span class="ruby-constant">Auth</span>.<span class="ruby-identifier">new</span>({
+  <span class="ruby-identifier">client_id</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;[client id goes here]&quot;</span>,
+  <span class="ruby-identifier">client_secret</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;[client secret goes here]&quot;</span>,
+  <span class="ruby-identifier">redirect_uri</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;http://localhost&quot;</span>
+})
+
+<span class="ruby-ivar">@auth</span>.<span class="ruby-identifier">authorize_url</span>
+</pre>
+
+<p>@param [Hash] override_params Optional hash containing any overriding
+values for parameters. Parameters used are client_id, redirect_uri,
+response_type and scope.</p>
+
+<p>@see <a
+href="https://developer.spotify.com/web-api/authorization-guide">developer.spotify.com/web-api/authorization-guide</a>/</p>
           
           
             <div class="method-calls-super">
@@ -204,14 +248,14 @@
 
           
           <div class="method-source-code" id="authorize_url-source">
-            <pre><span class="ruby-comment"># File lib/spotify/auth.rb, line 28</span>
-<span class="ruby-keyword">def</span> <span class="ruby-identifier">authorize_url</span>(<span class="ruby-identifier">opts</span>={})
+            <pre><span class="ruby-comment"># File lib/spotify/auth.rb, line 81</span>
+<span class="ruby-keyword">def</span> <span class="ruby-identifier">authorize_url</span>(<span class="ruby-identifier">override_params</span>={})
   <span class="ruby-keyword">super</span>({
     <span class="ruby-identifier">client_id</span><span class="ruby-operator">:</span>     <span class="ruby-identifier">id</span>,
     <span class="ruby-identifier">redirect_uri</span><span class="ruby-operator">:</span>  <span class="ruby-identifier">redirect_uri</span>,
     <span class="ruby-identifier">response_type</span><span class="ruby-operator">:</span> <span class="ruby-string">&quot;code&quot;</span>,
     <span class="ruby-identifier">scope</span><span class="ruby-operator">:</span>         <span class="ruby-constant">SCOPES</span>.<span class="ruby-identifier">join</span>(<span class="ruby-string">&quot; &quot;</span>)
-  }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">opts</span>))
+  }.<span class="ruby-identifier">merge</span>(<span class="ruby-identifier">override_params</span>))
 <span class="ruby-keyword">end</span></pre>
           </div>
           
