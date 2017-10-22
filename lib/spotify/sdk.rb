@@ -9,6 +9,7 @@ require "spotify/sdk/initialization/query_string"
 require "spotify/sdk/initialization/url_string"
 require "spotify/sdk/base"
 require "spotify/sdk/connect"
+require "spotify/sdk/connect/device"
 
 module Spotify
   ##

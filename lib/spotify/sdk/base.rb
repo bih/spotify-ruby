@@ -30,6 +30,20 @@ module Spotify
         }
       end
 
+      ##
+      # Handle HTTParty responses.
+      #
+      # @example
+      #   handle_response self.class.get("/v1/me/player/devices", @options)
+      #
+      # @param [HTTParty::Response] response_obj The response object when a HTTParty request is made.
+      # @return
+      #
+      def handle_response(response_obj, &_block)
+        response = block_given? ? yield : response_obj
+        response.parsed_response.deep_symbolize_keys
+      end
+
       attr_reader :sdk
     end
   end
