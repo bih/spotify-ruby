@@ -23,6 +23,11 @@ module Spotify
       #
       def initialize(sdk)
         @sdk = sdk
+        @options = {
+          headers: {
+            Authorization: "Bearer %s" % sdk.access_token
+          }
+        }
       end
 
       attr_reader :sdk

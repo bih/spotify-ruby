@@ -16,6 +16,18 @@ RSpec.describe Spotify::SDK::Base do
     end
   end
 
+  describe "@options" do
+    let(:options) { subject.instance_variable_get(:@options) }
+
+    context "Headers" do
+      describe "Authorization" do
+        it "should contain the correct value" do
+          expect(options[:headers][:Authorization]).to eq "Bearer access_token"
+        end
+      end
+    end
+  end
+
   describe "#sdk=" do
     it "should not be defined" do
       expect(subject).not_to respond_to(:sdk=)
