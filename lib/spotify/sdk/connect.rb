@@ -16,6 +16,8 @@ module Spotify
       # @return
       #
       def devices(override_opts={})
+        puts self.class.get("/v1/me/player/devices", @options.merge(override_opts)).inspect
+
         devices = handle_response(self.class.get("/v1/me/player/devices", @options.merge(override_opts)))[:devices]
         devices.map do |device|
           Spotify::SDK::Connect::Device.new(device)

@@ -13,3 +13,4 @@
 # rspec failure tracking
 .rspec_status
 .coveralls.yml
+.DS_Store
