@@ -5,6 +5,9 @@ A modern, opinionated and *unofficial* Ruby SDK for the [Spotify Web API][spotif
 This is a work in progress. **Currently in pre-alpha.**
 
 [![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)](https://travis-ci.org/bih/spotify-ruby)
+[![Coverage Status](https://coveralls.io/repos/github/bih/spotify-ruby/badge.svg)](https://coveralls.io/github/bih/spotify-ruby)
+[![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)](https://badge.fury.io/rb/spotify-ruby)
+[![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)](https://www.codetriage.com/bih/spotify-ruby)
 
 ## Installation
 
