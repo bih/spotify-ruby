@@ -1,6 +1,6 @@
 # bih/spotify-ruby
 
-A modern, opinionated and *unofficial* Ruby SDK for the [Spotify Web API][spotify-web-api] to help developers all over the world build amazing music things with Spotify.
+A modern, opinionated and *unofficial* Ruby SDK for the [Spotify Web API][spotify-web-api] to help developers all over the world build amazing music things with Spotify. [Check out the full docs here][rubyinfo-docs].
 
 This is a work in progress. **Currently in pre-alpha.**
 
@@ -69,3 +69,4 @@ Everyone interacting in the `spotify-ruby` project’s codebases, issue trackers
 [spotify]: https://spotify.com
 [spotify-web-api]: https://developer.spotify.com/documentation/web-api/reference/
 [spotify-developer-dashboard]: https://developer.spotify.com/my-applications/
+[rubyinfo-docs]: http://www.rubydoc.info/github/bih/spotify-ruby
