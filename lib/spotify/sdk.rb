@@ -1,6 +1,15 @@
 # frozen_string_literal: true
 
 require "spotify/sdk/initialization"
+require "spotify/sdk/initialization/base"
+require "spotify/sdk/initialization/oauth_access_token"
+require "spotify/sdk/initialization/plain_string"
+require "spotify/sdk/initialization/query_hash"
+require "spotify/sdk/initialization/query_string"
+require "spotify/sdk/initialization/url_string"
+require "spotify/sdk/base"
+require "spotify/sdk/connect"
+require "spotify/sdk/connect/device"
 
 module Spotify
   ##
@@ -35,6 +44,8 @@ module Spotify
       @access_token  = @payload[:access_token]
       @expires_at    = @payload[:expires_at]
       @refresh_token = @payload[:refresh_token]
+
+      mount_sdk_components
     end
 
     ##
@@ -78,5 +89,20 @@ module Spotify
     end
 
     attr_reader :access_token, :expires_at, :refresh_token
+    attr_reader :connect
+
+    private
+
+    ##
+    # This is where we mount all SDK components to the SDK object.
+    # When mounting a new component, you'll need to do the following:
+    # - Be sure to add a `attr_reader` for it. Developers can't access it otherwise.
+    # - Add a test for it in spec/lib/spotify/sdk_spec.rb (see how we did it for others)
+    #
+    # @return [nil]
+    #
+    def mount_sdk_components
+      @connect = Spotify::SDK::Connect.new(self)
+    end
   end
 end

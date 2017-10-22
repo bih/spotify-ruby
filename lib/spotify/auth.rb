@@ -1,7 +1,5 @@
 # frozen_string_literal: true
 
-require "oauth2"
-
 module Spotify
   ##
   # Spotify::Auth inherits from OAuth2::Client based on the "oauth-2" gem.

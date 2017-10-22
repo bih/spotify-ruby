@@ -31,3 +31,11 @@ SDK: # For building amazing things.
   sdk = Spotify::SDK.new(access_token)
   sdk.connect.devices
   ```
+
+Connect:
+
+  ```
+  sdk.connect.devices do |devices|
+    devices[0].play
+  end
+  ```

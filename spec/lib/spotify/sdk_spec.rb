@@ -85,4 +85,13 @@ RSpec.describe Spotify::SDK do
                                     refresh_token: "insert_refresh_token")
     end
   end
+
+  context "Mounted SDK Components" do
+    describe "#connect" do
+      it "should return an instance of Spotify::SDK:Connect" do
+        expect(subject.connect).to be_kind_of(Spotify::SDK::Connect)
+        expect(subject.connect.sdk).to eq subject
+      end
+    end
+  end
 end
