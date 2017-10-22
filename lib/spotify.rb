@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "httparty"
 require "oauth2"
 
 require "active_support"
