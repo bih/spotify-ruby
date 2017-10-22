@@ -26,7 +26,7 @@ Or install it yourself as:
 
 You'll need to create a `Spotify::Auth` instance with your credentials.
 
-```
+```ruby
 @auth = Spotify::Auth.new({
   client_id: ENV["SPOTIFY_CLIENT_ID"],
   client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
