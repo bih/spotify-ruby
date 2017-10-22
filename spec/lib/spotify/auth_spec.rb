@@ -93,7 +93,7 @@ RSpec.describe Spotify::Auth do
         let(:authorize_url) { subject.authorize_url(scope: "scope1 scope2") }
 
         it "should have new value as an array with symbolized values" do
-          expect(scope).to eq [:scope1, :scope2]
+          expect(scope).to eq %i[scope1 scope2]
         end
       end
     end
