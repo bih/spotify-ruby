@@ -39,7 +39,6 @@ module Spotify
     # Initialize the Spotify Auth object.
     #
     # @example
-    #
     #   @auth = Spotify::Auth.new({
     #     client_id: "[client id goes here]",
     #     client_secret: "[client secret goes here]",
@@ -66,7 +65,6 @@ module Spotify
     # Get a HTTP URL to send user for authorizing with Spotify.
     #
     # @example
-    #
     #   @auth = Spotify::Auth.new({
     #     client_id: "[client id goes here]",
     #     client_secret: "[client secret goes here]",
