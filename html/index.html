@@ -68,6 +68,14 @@
 
   <ul class="link-list">
   
+    <li><a href="./Spotify.html">Spotify</a>
+  
+    <li><a href="./Spotify/Auth.html">Spotify::Auth</a>
+  
+    <li><a href="./Spotify/Errors.html">Spotify::Errors</a>
+  
+    <li><a href="./Spotify/Errors/AuthClientCredentialsError.html">Spotify::Errors::AuthClientCredentialsError</a>
+  
   </ul>
 </div>
 
@@ -82,7 +90,7 @@
 <p>A modern, opinionated and <em>unofficial</em> Ruby SDK for the <a
 href="https://developer.spotify.com/documentation/web-api/reference/">Spotify
 Web API</a> to help developers all over the world build amazing music
-things with Spotify.</p>
+things with <a href="Spotify.html">Spotify</a>.</p>
 
 <p>This is a work in progress. <strong>Currently in pre-alpha.</strong></p>
 
@@ -103,6 +111,27 @@ src="https://travis-ci.org/bih/spotify-ruby.svg?branch=master"></a></p>
 <p>Or install it yourself as:</p>
 
 <pre>$ gem install spotify-ruby</pre>
+
+<h2 id="label-Setup">Setup<span><a href="#label-Setup">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>You&#39;ll need to create a <code>Spotify::Auth</code> instance with your
+credentials.</p>
+
+<pre class="ruby"><span class="ruby-ivar">@auth</span> = <span class="ruby-constant">Spotify</span><span class="ruby-operator">::</span><span class="ruby-constant">Auth</span>.<span class="ruby-identifier">new</span>({
+  <span class="ruby-identifier">client_id</span><span class="ruby-operator">:</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;SPOTIFY_CLIENT_ID&quot;</span>],
+  <span class="ruby-identifier">client_secret</span><span class="ruby-operator">:</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;SPOTIFY_CLIENT_SECRET&quot;</span>],
+  <span class="ruby-identifier">redirect_uri</span><span class="ruby-operator">:</span> <span class="ruby-constant">ENV</span>[<span class="ruby-string">&quot;SPOTIFY_REDIRECT_URI&quot;</span>]
+})
+</pre>
+
+<h2 id="label-Authentication">Authentication<span><a href="#label-Authentication">&para;</a> <a href="#top">&uarr;</a></span></h2>
+
+<p>With our <code>@auth</code> instance, we can initiate an authentication URL
+for <code>https://accounts.spotify.com</code>. By default, this will have
+all the values needed to get a user setup.</p>
+
+<pre class="ruby"><span class="ruby-ivar">@auth</span>.<span class="ruby-identifier">authorize_url</span> <span class="ruby-comment"># =&gt; https://accounts.spotify.com/oauth/authorize?client_id=...&amp;redirect_uri=...</span>
+</pre>
 
 <h2 id="label-Usage">Usage<span><a href="#label-Usage">&para;</a> <a href="#top">&uarr;</a></span></h2>
 

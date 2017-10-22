@@ -22,6 +22,26 @@ Or install it yourself as:
 
     $ gem install spotify-ruby
 
+## Setup
+
+You'll need to create a `Spotify::Auth` instance with your credentials.
+
+```
+@auth = Spotify::Auth.new({
+  client_id: ENV["SPOTIFY_CLIENT_ID"],
+  client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
+  redirect_uri: ENV["SPOTIFY_REDIRECT_URI"]
+})
+```
+
+## Authentication
+
+With our `@auth` instance, we can initiate an authentication URL for `https://accounts.spotify.com`. By default, this will have all the values needed to get a user setup.
+
+```
+@auth.authorize_url # => https://accounts.spotify.com/oauth/authorize?client_id=...&redirect_uri=...
+```
+
 ## Usage
 
 ```
