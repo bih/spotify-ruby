@@ -21,12 +21,10 @@ module Spotify
       class << self
         def detect(subject)
           klasses = CLASSES.map do |klass_name|
-            ("Spotify::SDK::Initialization::%s" % klass_name).constantize
+            ("Spotify::SDK::Initialization::%s" % klass_name).constantize.new(subject)
           end
 
-          matches = klasses.map do |klass|
-            klass.new(subject)
-          end.select(&:should_perform?)
+          matches = klasses.select(&:should_perform?)
 
           case matches.size
           when 1

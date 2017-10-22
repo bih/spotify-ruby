@@ -4,11 +4,9 @@ require "spec_helper"
 
 RSpec.describe Spotify::SDK do
   subject do
-    Spotify::SDK.new({
-      access_token:  "insert_access_token",
-      expires_at:    3000000,
-      refresh_token: "insert_refresh_token"
-    })
+    Spotify::SDK.new(access_token:  "insert_access_token",
+                     expires_at:    3_000_000,
+                     refresh_token: "insert_refresh_token")
   end
 
   describe "#access_token" do
@@ -19,7 +17,7 @@ RSpec.describe Spotify::SDK do
 
   describe "#expires_at" do
     it "should return the correct value" do
-      expect(subject.expires_at).to eq 3000000
+      expect(subject.expires_at).to eq 3_000_000
     end
   end
 

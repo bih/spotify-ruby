@@ -6,7 +6,11 @@ module Spotify
       class URLString < Base
         def query_fragment_string
           @query_fragment_string ||= begin
-            @uri = URI.parse(subject) rescue URI.parse("")
+            @uri = begin
+                     URI.parse(subject)
+                   rescue URI::InvalidURIError
+                     URI.parse("")
+                   end
             [@uri.query, @uri.fragment].compact.join("&")
           end
         end

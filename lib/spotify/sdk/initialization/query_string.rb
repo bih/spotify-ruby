@@ -5,7 +5,9 @@ module Spotify
     class Initialization
       class QueryString < Base
         def params
-          CGI.parse(subject).with_indifferent_access rescue {}
+          CGI.parse(subject).with_indifferent_access
+        rescue NoMethodError
+          {}
         end
 
         def should_perform?
