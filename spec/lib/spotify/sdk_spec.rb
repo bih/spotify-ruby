@@ -44,4 +44,37 @@ RSpec.describe Spotify::SDK do
       expect(subject).not_to respond_to(:refresh_token=)
     end
   end
+
+  describe "#oauth2_access_token" do
+    let(:oauth2_client) do
+      Spotify::Auth.new(client_id:     "client id",
+                        client_secret: "client secret",
+                        redirect_uri:  "redirect uri")
+    end
+    let(:oauth2_access_token) { subject.oauth2_access_token(oauth2_client) }
+
+    it "should return an instance of OAuth2::AccessToken" do
+      expect(oauth2_access_token).to be_kind_of(OAuth2::AccessToken)
+    end
+
+    context "OAuth2::AccessToken" do
+      describe "#token" do
+        it "should contain the correct value" do
+          expect(oauth2_access_token.token).to eq "insert_access_token"
+        end
+      end
+
+      describe "#expires_at" do
+        it "should contain the correct value" do
+          expect(oauth2_access_token.expires_at).to eq 3_000_000
+        end
+      end
+
+      describe "#refresh_token" do
+        it "should contain the correct value" do
+          expect(oauth2_access_token.refresh_token).to eq "insert_refresh_token"
+        end
+      end
+    end
+  end
 end
