@@ -24,14 +24,22 @@ Or install it yourself as:
 
 ## Usage
 
-```
-spotify = Spotify::SDK.new
-spotify.access_token = "[access token]"
+Configure with your client credentials and redirect URL. Get it [for free here][spotify-developer-dashboard].
 
-puts spotify.connect.devices
+```ruby
+@auth = Spotify::Auth.new({
+  client_id: ENV["SPOTIFY_CLIENT_ID"],
+  client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
+  redirect_uri: ENV["SPOTIFY_REDIRECT_URI"]
+})
 ```
 
-TODO: Write usage instructions here
+You'll need to redirect your users to Spotify for authentication. This might help:
+```ruby
+puts @auth.authorize_url # => https://accounts.spotify.com/oauth/authorize?client_id=...
+```
+
+TODO: Write more detailed usage instructions here
 
 ## Development
 
@@ -53,3 +61,4 @@ Everyone interacting in the `spotify-ruby` project’s codebases, issue trackers
 
 [spotify]: https://spotify.com
 [spotify-web-api]: https://developer.spotify.com/documentation/web-api/reference/
+[spotify-developer-dashboard]: https://developer.spotify.com/my-applications/
