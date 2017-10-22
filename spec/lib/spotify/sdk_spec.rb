@@ -59,22 +59,30 @@ RSpec.describe Spotify::SDK do
 
     context "OAuth2::AccessToken" do
       describe "#token" do
-        it "should contain the correct value" do
+        it "should return the correct value" do
           expect(oauth2_access_token.token).to eq "insert_access_token"
         end
       end
 
       describe "#expires_at" do
-        it "should contain the correct value" do
+        it "should return the correct value" do
           expect(oauth2_access_token.expires_at).to eq 3_000_000
         end
       end
 
       describe "#refresh_token" do
-        it "should contain the correct value" do
+        it "should return the correct value" do
           expect(oauth2_access_token.refresh_token).to eq "insert_refresh_token"
         end
       end
+    end
+  end
+
+  describe "#to_hash" do
+    it "should return the correct value" do
+      expect(subject.to_hash).to eq(access_token:  "insert_access_token",
+                                    expires_at:    3_000_000,
+                                    refresh_token: "insert_refresh_token")
     end
   end
 end
