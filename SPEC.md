@@ -16,3 +16,18 @@ Authorization: # For integrating OAuth.
       redirect_uri: ""
     })
   ```
+
+SDK: # For building amazing things.
+
+  Initialization accepts:
+    - OAuth2::AccessToken instance
+    - Plain Access Token
+    - Query Hash containing access_token
+    - Query String containing access_token
+    - URL String containing a query or fragment containing access_token
+
+  Code sample:
+  ```
+  sdk = Spotify::SDK.new(access_token)
+  sdk.connect.devices
+  ```
