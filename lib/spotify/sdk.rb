@@ -28,7 +28,7 @@ module Spotify
     #   @sdk = Spotify::SDK.new("https://localhost:8080/#token=...&expires_at=...")
     #   @sdk = Spotify::SDK.new("token=...&expires_at=...")
     #
-    # @param [String, Hash, OAuth2::AccessToken] obj Any supported object which contains at least an access token. See examples.
+    # @param [String, Hash, OAuth2::AccessToken] obj Any supported object which contains an access token. See examples.
     #
     def initialize(obj)
       @payload = Spotify::SDK::Initialization.detect(obj)
@@ -46,7 +46,7 @@ module Spotify
     #     client_secret: "[client secret goes here]",
     #     redirect_uri: "http://localhost"
     #   })
-    #  
+    #
     #   @sdk = Spotify::SDK.new("access_token_here")
     #   @sdk.oauth2_access_token(@auth) # => #<OAuth2::AccessToken:...>
     #
@@ -67,14 +67,14 @@ module Spotify
     #     client_secret: "[client secret goes here]",
     #     redirect_uri: "http://localhost"
     #   })
-    #  
+    #
     #   @sdk = Spotify::SDK.new("access_token_here")
     #   @sdk.to_hash # => { access_token: ..., expires_at: ... }
     #
     # @return [Hash] Containing access_token, expires_at and refresh_token
     #
     def to_hash
-      @payload.with_indifferent_access
+      @payload.with_indifferent_access.symbolize_keys
     end
 
     attr_reader :access_token, :expires_at, :refresh_token
