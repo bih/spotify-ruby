@@ -3,6 +3,7 @@
 require "bundler/setup"
 require "spotify"
 require "coveralls"
+require "webmock/rspec"
 
 Coveralls.wear!
 
