@@ -31,7 +31,7 @@ RSpec.describe Spotify::Auth do
     end
 
     it "should not set token_url" do
-      expect(subject.options[:token_url]).to eq "/oauth/token"
+      expect(subject.options[:token_url]).to eq "https://accounts.spotify.com/api/token"
     end
 
     context "authorize_url is valid" do
@@ -73,14 +73,6 @@ RSpec.describe Spotify::Auth do
         end
       end
 
-      context "overriding redirect_uri" do
-        let(:authorize_url) { subject.authorize_url(redirect_uri: "http://127.0.0.1") }
-
-        it "should have new value" do
-          expect(redirect_uri).to eq "http://127.0.0.1"
-        end
-      end
-
       context "overriding response_type" do
         let(:authorize_url) { subject.authorize_url(response_type: "override response type") }
 
@@ -96,10 +88,39 @@ RSpec.describe Spotify::Auth do
           expect(scope).to eq %i[scope1 scope2]
         end
       end
+
+      context "overriding redirect_uri" do
+        let(:authorize_url) { subject.authorize_url(redirect_uri: "http://127.0.0.1") }
+
+        it "should not have new value" do
+          expect(redirect_uri).to eq "https://localhost"
+        end
+      end
+    end
+  end
+
+  context "good initialization" do
+    it "should not raise error without a redirect_uri" do
+      expect {
+        Spotify::Auth.new(client_id:     "client id",
+                          client_secret: "client secret")
+      }.not_to raise_error
     end
   end
 
   context "bad initialization" do
+    it "should raise error with no parameters" do
+      expect {
+        Spotify::Auth.new
+      }.to raise_error ArgumentError
+    end
+
+    it "should raise error with empty credentials" do
+      expect {
+        Spotify::Auth.new({})
+      }.to raise_error Spotify::Errors::AuthClientCredentialsError
+    end
+
     it "should raise error without a client_id" do
       expect {
         Spotify::Auth.new(client_secret: "client secret",
@@ -111,13 +132,6 @@ RSpec.describe Spotify::Auth do
       expect {
         Spotify::Auth.new(client_id:    "client id",
                           redirect_uri: "https://localhost")
-      }.to raise_error Spotify::Errors::AuthClientCredentialsError
-    end
-
-    it "should raise error without a redirect_uri" do
-      expect {
-        Spotify::Auth.new(client_id:     "client id",
-                          client_secret: "client secret")
       }.to raise_error Spotify::Errors::AuthClientCredentialsError
     end
   end

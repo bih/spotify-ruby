@@ -47,18 +47,19 @@ module Spotify
     #   })
     #
     # @param [Hash] config OAuth configuration containing the Client ID, secret and redirect URL.
-    # The redirect URL can be overriden later.
     #
     # @see https://developer.spotify.com/my-applications/
     #
     def initialize(config)
+      validate_initialized_input(config)
+      client_id = config.delete(:client_id)
+      client_secret = config.delete(:client_secret)
       opts = {
         site:          "https://api.spotify.com",
-        authorize_url: "https://accounts.spotify.com/oauth/authorize"
-      }
-      validate_initialized_input(config)
-      @redirect_uri = config[:redirect_uri]
-      super(config[:client_id], config[:client_secret], opts)
+        authorize_url: "https://accounts.spotify.com/oauth/authorize",
+        token_url:     "https://accounts.spotify.com/api/token"
+      }.merge(config)
+      super(client_id, client_secret, opts)
     end
 
     ##
@@ -82,19 +83,12 @@ module Spotify
     def authorize_url(override_params={})
       super({
         client_id:     id,
-        redirect_uri:  redirect_uri,
         response_type: "code",
         scope:         SCOPES.join(" ")
       }.merge(override_params))
     end
 
     private
-
-    ##
-    # OAuth2::Client does not support redirect_uri at initialization, so we store
-    # it in the instance and call it later. We think it makes things clearer.
-    #
-    attr_accessor :redirect_uri
 
     ##
     # Validate initialization configuration and raise errors.
@@ -104,7 +98,7 @@ module Spotify
     def validate_initialized_input(config)
       raise Errors::AuthClientCredentialsError.new(OAUTH_I18N[:must_be_hash]) unless config.is_a?(Hash)
 
-      %i[client_id client_secret redirect_uri].each do |key|
+      %i[client_id client_secret].each do |key|
         raise Errors::AuthClientCredentialsError.new(OAUTH_I18N[:require_attr] % key) unless config.has_key?(key)
       end
     end
