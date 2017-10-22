@@ -40,7 +40,7 @@ require "spotify"
 
 With our `@auth` instance, we can initiate an authentication URL for `https://accounts.spotify.com`. By default, this will have all the values needed to get a user setup.
 
-```
+```ruby
 @auth.authorize_url # => https://accounts.spotify.com/oauth/authorize?client_id=...&redirect_uri=...
 ```
 
