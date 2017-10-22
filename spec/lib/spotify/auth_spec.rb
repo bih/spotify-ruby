@@ -99,7 +99,28 @@ RSpec.describe Spotify::Auth do
     end
   end
 
+  context "good initialization" do
+    it "should not raise error without a redirect_uri" do
+      expect {
+        Spotify::Auth.new(client_id:     "client id",
+                          client_secret: "client secret")
+      }.not_to raise_error
+    end
+  end
+
   context "bad initialization" do
+    it "should raise error with no parameters" do
+      expect {
+        Spotify::Auth.new
+      }.to raise_error ArgumentError
+    end
+
+    it "should raise error with empty credentials" do
+      expect {
+        Spotify::Auth.new({})
+      }.to raise_error Spotify::Errors::AuthClientCredentialsError
+    end
+
     it "should raise error without a client_id" do
       expect {
         Spotify::Auth.new(client_secret: "client secret",
