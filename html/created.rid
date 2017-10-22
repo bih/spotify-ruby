@@ -1,2 +1,5 @@
-Sat, 21 Oct 2017 22:07:01 +0200
-README.md	Sat, 21 Oct 2017 21:06:23 +0200
+Sun, 22 Oct 2017 03:09:05 +0200
+README.md	Sun, 22 Oct 2017 02:44:46 +0200
+lib/spotify.rb	Sun, 22 Oct 2017 02:59:56 +0200
+lib/spotify/auth.rb	Sun, 22 Oct 2017 03:09:03 +0200
+lib/spotify/version.rb	Sun, 22 Oct 2017 03:00:39 +0200
