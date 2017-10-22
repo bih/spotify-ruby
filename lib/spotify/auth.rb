@@ -54,7 +54,8 @@ module Spotify
     def initialize(config)
       opts = {
         site:          "https://api.spotify.com",
-        authorize_url: "https://accounts.spotify.com/oauth/authorize"
+        authorize_url: "https://accounts.spotify.com/oauth/authorize",
+        token_url:     "https://accounts.spotify.com/api/token"
       }
       validate_initialized_input(config)
       @redirect_uri = config[:redirect_uri]
@@ -104,7 +105,7 @@ module Spotify
     def validate_initialized_input(config)
       raise Errors::AuthClientCredentialsError.new(OAUTH_I18N[:must_be_hash]) unless config.is_a?(Hash)
 
-      %i[client_id client_secret redirect_uri].each do |key|
+      %i[client_id client_secret].each do |key|
         raise Errors::AuthClientCredentialsError.new(OAUTH_I18N[:require_attr] % key) unless config.has_key?(key)
       end
     end
