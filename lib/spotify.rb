@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require "oauth2"
+
 require "active_support"
 require "active_support/core_ext"
 

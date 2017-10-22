@@ -1,6 +1,13 @@
 # frozen_string_literal: true
 
 require "spotify/sdk/initialization"
+require "spotify/sdk/initialization/base"
+require "spotify/sdk/initialization/oauth_access_token"
+require "spotify/sdk/initialization/plain_string"
+require "spotify/sdk/initialization/query_hash"
+require "spotify/sdk/initialization/query_string"
+require "spotify/sdk/initialization/url_string"
+require "spotify/sdk/base"
 
 module Spotify
   ##
