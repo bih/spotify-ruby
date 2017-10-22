@@ -73,14 +73,6 @@ RSpec.describe Spotify::Auth do
         end
       end
 
-      context "overriding redirect_uri" do
-        let(:authorize_url) { subject.authorize_url(redirect_uri: "http://127.0.0.1") }
-
-        it "should have new value" do
-          expect(redirect_uri).to eq "http://127.0.0.1"
-        end
-      end
-
       context "overriding response_type" do
         let(:authorize_url) { subject.authorize_url(response_type: "override response type") }
 
@@ -94,6 +86,14 @@ RSpec.describe Spotify::Auth do
 
         it "should have new value as an array with symbolized values" do
           expect(scope).to eq %i[scope1 scope2]
+        end
+      end
+
+      context "overriding redirect_uri" do
+        let(:authorize_url) { subject.authorize_url(redirect_uri: "http://127.0.0.1") }
+
+        it "should not have new value" do
+          expect(redirect_uri).to eq "https://localhost"
         end
       end
     end
