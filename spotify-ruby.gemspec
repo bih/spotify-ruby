@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "spotify/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "spotify"
+  spec.name          = "spotify-ruby"
   spec.version       = Spotify::VERSION
   spec.authors       = ["Bilawal Hameed"]
   spec.email         = ["me@bilaw.al"]
