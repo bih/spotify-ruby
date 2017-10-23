@@ -7,7 +7,7 @@ module Spotify
     #
     class Base
       include HTTParty
-      base_uri "api.spotify.com"
+      base_uri "api.spotify.com:443"
 
       ##
       # Initiate a Spotify SDK Base component.
