@@ -15,7 +15,7 @@ RSpec.describe Spotify::SDK::Connect::Device do
   end
   subject { Spotify::SDK::Connect::Device.new(raw_data) }
 
-  describe "#raw_data" do
+  describe "#to_h" do
     it "returns the correct value" do
       expect(subject.to_h).to eq raw_data
     end

@@ -44,8 +44,11 @@ module Spotify
       # @return
       #
       def send_http_request(method, endpoint, opts={}, &_block)
-        response = self.class.send(method, endpoint, opts)
-        opts[:raw] == true ? response : response.parsed_response.deep_symbolize_keys
+        opts_sdk = {raw: false, expect_nil: false}.merge(opts[:sdk].presence || {})
+        response = self.class.send(method, endpoint, @options.merge(opts))
+        response = response.parsed_response.try(:deep_symbolize_keys) if opts_sdk[:raw] == false
+        response = true if opts_sdk[:expect_nil] == true && response == nil
+        response
       end
 
       attr_reader :sdk

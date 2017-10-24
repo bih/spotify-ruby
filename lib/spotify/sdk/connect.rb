@@ -16,9 +16,11 @@ module Spotify
       # @return
       #
       def devices(override_opts={})
-        response = send_http_request(:get, "/v1/me/player/devices", @options.merge(override_opts))
+        response = send_http_request(:get, "/v1/me/player/devices", override_opts)
         response[:devices].map do |device|
-          Spotify::SDK::Connect::Device.new(device)
+          device = Spotify::SDK::Connect::Device.new(device)
+          device.parent = self
+          device
         end
       end
     end
