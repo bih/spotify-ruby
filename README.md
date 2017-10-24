@@ -57,17 +57,17 @@ Once they return back to your application with a `code`:
 @access_token = @auth.auth_code.get_token(params[:code])
 ```
 
-You can save their information in the database under `access_token`, `expires_at` and `refresh_token`
+You can save their information in the database under `access_token`, `expires_in` and `refresh_token`
 ```ruby
 @sdk = Spotify::SDK.new(@access_token)
-@sdk.to_hash # => { access_token: "...", expires_at: 1234567890, refresh_token: "..." }
+@sdk.to_hash # => { access_token: "...", expires_in: 1234567890, refresh_token: "..." }
 ```
 
 And you can also re-instantiate a SDK instance again later:
 ```ruby
 @sdk = Spotify::SDK.new({
   access_token: "[insert access_token]",
-  expires_at: "[insert expires_at]",
+  expires_in: "[insert expires_in]",
   refresh_token: "[insert refresh_token]"
 })
 ```

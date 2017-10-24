@@ -22,6 +22,27 @@ module Spotify
         def perform
           QueryString.new(query_fragment_string).perform
         end
+
+        # TODO: Delete this when tests are written.
+        # rubocop:disable Metrics/LineLength
+        # def sample_inputs
+        #   [
+        #     "http://dev.localhost.com:443/?token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/?token=#{SAMPLE_TOKEN}&expires_in=1234567890",
+        #     "http://dev.localhost.com:443/?token=#{SAMPLE_TOKEN}&expires_in=1234567890&refresh_token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/#token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/#token=#{SAMPLE_TOKEN}&expires_in=1234567890",
+        #     "http://dev.localhost.com:443/#token=#{SAMPLE_TOKEN}&expires_in=1234567890&refresh_token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/?access_token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/?access_token=#{SAMPLE_TOKEN}&expires_in=1234567890",
+        #     "http://dev.localhost.com:443/?access_token=#{SAMPLE_TOKEN}&expires_in=1234567890&refresh_token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/#access_token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/#access_token=#{SAMPLE_TOKEN}&expires_in=1234567890",
+        #     "http://dev.localhost.com:443/#access_token=#{SAMPLE_TOKEN}&expires_in=1234567890&refresh_token=#{SAMPLE_TOKEN}",
+        #     "http://dev.localhost.com:443/?access_token=#{SAMPLE_TOKEN}&expires_in=1234567890#refresh_token=#{SAMPLE_TOKEN}"
+        #   ]
+        # end
+        # rubocop:enable Metrics/LineLength
       end
     end
   end

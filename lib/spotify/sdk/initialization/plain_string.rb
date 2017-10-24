@@ -11,10 +11,15 @@ module Spotify
         def perform
           {
             access_token:  subject,
-            expires_at:    nil,
+            expires_in:    nil,
             refresh_token: nil
           }
         end
+
+        # TODO: Delete this when tests are written.
+        # def sample_inputs
+        #   [ SAMPLE_TOKEN ]
+        # end
       end
     end
   end
