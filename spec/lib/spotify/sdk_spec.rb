@@ -5,7 +5,7 @@ require "spec_helper"
 RSpec.describe Spotify::SDK do
   subject do
     Spotify::SDK.new(access_token:  "insert_access_token",
-                     expires_at:    3_000_000,
+                     expires_in:    3_000_000,
                      refresh_token: "insert_refresh_token")
   end
 
@@ -15,9 +15,9 @@ RSpec.describe Spotify::SDK do
     end
   end
 
-  describe "#expires_at" do
+  describe "#expires_in" do
     it "should return the correct value" do
-      expect(subject.expires_at).to eq 3_000_000
+      expect(subject.expires_in).to eq 3_000_000
     end
   end
 
@@ -33,9 +33,9 @@ RSpec.describe Spotify::SDK do
     end
   end
 
-  describe "#expires_at=" do
+  describe "#expires_in=" do
     it "should not be defined" do
-      expect(subject).not_to respond_to(:expires_at=)
+      expect(subject).not_to respond_to(:expires_in=)
     end
   end
 
@@ -64,9 +64,9 @@ RSpec.describe Spotify::SDK do
         end
       end
 
-      describe "#expires_at" do
+      describe "#expires_in" do
         it "should return the correct value" do
-          expect(oauth2_access_token.expires_at).to eq 3_000_000
+          expect(oauth2_access_token.expires_in).to eq 3_000_000
         end
       end
 
@@ -81,7 +81,7 @@ RSpec.describe Spotify::SDK do
   describe "#to_hash" do
     it "should return the correct value" do
       expect(subject.to_hash).to eq(access_token:  "insert_access_token",
-                                    expires_at:    3_000_000,
+                                    expires_in:    3_000_000,
                                     refresh_token: "insert_refresh_token")
     end
   end

@@ -26,7 +26,7 @@ module Spotify
     #   # Example 2: Load it in with values from your database.
     #   @sdk = Spotify::SDK.new({
     #     access_token: "access_token_here",
-    #     expires_at: 3_000_000,
+    #     expires_in: 3_000_000,
     #     refresh_token: "refresh_token_here"
     #   })
     #
@@ -34,15 +34,15 @@ module Spotify
     #   @sdk = Spotify::SDK.new(@auth.auth_code.get_token("auth code"))
     #
     #   # Example 5: Load it from a query string or a fully qualified URL.
-    #   @sdk = Spotify::SDK.new("https://localhost:8080/#token=...&expires_at=...")
-    #   @sdk = Spotify::SDK.new("token=...&expires_at=...")
+    #   @sdk = Spotify::SDK.new("https://localhost:8080/#token=...&expires_in=...")
+    #   @sdk = Spotify::SDK.new("token=...&expires_in=...")
     #
     # @param [String, Hash, OAuth2::AccessToken] obj Any supported object which contains an access token. See examples.
     #
     def initialize(obj)
       @payload = Spotify::SDK::Initialization.detect(obj)
       @access_token  = @payload[:access_token]
-      @expires_at    = @payload[:expires_at]
+      @expires_in    = @payload[:expires_in]
       @refresh_token = @payload[:refresh_token]
 
       mount_sdk_components
@@ -65,7 +65,7 @@ module Spotify
     # @return [OAuth2::AccessToken] An fully qualified instance of OAuth2::AccessToken.
     #
     def oauth2_access_token(client)
-      OAuth2::AccessToken.new(client, @access_token, expires_at:    @expires_at,
+      OAuth2::AccessToken.new(client, @access_token, expires_in:    @expires_in,
                                                      refresh_token: @refresh_token)
     end
 
@@ -80,15 +80,15 @@ module Spotify
     #   })
     #
     #   @sdk = Spotify::SDK.new("access_token_here")
-    #   @sdk.to_hash # => { access_token: ..., expires_at: ... }
+    #   @sdk.to_hash # => { access_token: ..., expires_in: ... }
     #
-    # @return [Hash] Containing access_token, expires_at and refresh_token
+    # @return [Hash] Containing access_token, expires_in and refresh_token
     #
     def to_hash
       @payload.with_indifferent_access.symbolize_keys
     end
 
-    attr_reader :access_token, :expires_at, :refresh_token
+    attr_reader :access_token, :expires_in, :refresh_token
     attr_reader :connect
 
     private
