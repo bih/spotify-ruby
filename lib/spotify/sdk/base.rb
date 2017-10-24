@@ -22,7 +22,7 @@ module Spotify
       # @param [Spotify::SDK] sdk An instance of Spotify::SDK as a reference point.
       #
       def initialize(sdk)
-        @sdk = sdk
+        @instance = sdk
         @options = {
           headers: {
             Authorization: "Bearer %s" % sdk.access_token
@@ -34,17 +34,17 @@ module Spotify
       # Handle HTTParty responses.
       #
       # @example
-      #   handle_response self.class.get("/v1/me/player/devices", @options)
+      #   send_request(:get, "/v1/me/player/devices", @options)
       #
       # @param [HTTParty::Response] response_obj The response object when a HTTParty request is made.
       # @return
       #
-      def handle_response(response_obj, &_block)
-        response = block_given? ? yield : response_obj
-        response.parsed_response.deep_symbolize_keys
+      def send_request(method, endpoint, opts={}, &_block)
+        response = self.class.send(method, endpoint, opts)
+        opts[:raw] == true ? response : response.parsed_response.deep_symbolize_keys
       end
 
-      attr_reader :sdk
+      attr_reader :instance
     end
   end
 end
