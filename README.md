@@ -59,14 +59,14 @@ Once they return back to your application with a `code`:
 
 You can save their information in the database under `access_token`, `expires_at` and `refresh_token`
 ```ruby
-{ access_token: @auth.token,
-  expires_at: @auth.expires_at,
-  refresh_token: @auth.expires_token }
+@sdk = Spotify::SDK.new(@access_token)
+@sdk.to_hash # => { access_token: "...", expires_at: 1234567890, refresh_token: "..." }
 ```
 
-And re-instantiate it back up later:
+And you can also re-instantiate a SDK instance again later:
 ```ruby
-@access_token = OAuth2::AccessToken.new(@auth, "[insert access_token]", {
+@sdk = Spotify::SDK.new({
+  access_token: "[insert access_token]",
   expires_at: "[insert expires_at]",
   refresh_token: "[insert refresh_token]"
 })
@@ -87,7 +87,7 @@ And hen their access token expires, you can just run `refresh!`:
 Once they return back to your application with a `token`:
 
 ```ruby
-@access_token = OAuth2::AccessToken.from_kvform(@auth, params)
+@sdk = Spotify::SDK.new(params[:token])
 ```
 
 ### Client Credentials
