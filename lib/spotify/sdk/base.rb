@@ -17,12 +17,12 @@ module Spotify
       #   @auth = Spotify::SDK::Base.new(@sdk)
       #
       #   @sdk = Spotify::SDK.new("access_token_here")
-      #   @sdk.to_hash # => { access_token: ..., expires_in: ... }
+      #   @sdk.to_hash # => { access_token: ..., expires_at: ... }
       #
       # @param [Spotify::SDK] sdk An instance of Spotify::SDK as a reference point.
       #
       def initialize(sdk)
-        @instance = sdk
+        @sdk = sdk
         @options = {
           headers: {
             Authorization: "Bearer %s" % sdk.access_token
@@ -34,17 +34,21 @@ module Spotify
       # Handle HTTParty responses.
       #
       # @example
-      #   send_request(:get, "/v1/me/player/devices", @options)
+      #   # Return the Hash from the JSON response.
+      #   send_http_request(:get, "/v1/me/player/devices", @options)
       #
-      # @param [HTTParty::Response] response_obj The response object when a HTTParty request is made.
+      #   # Return the raw HTTParty::Response object.
+      #   send_http_request(:get, "/v1/me/player/devices", @options.merge(raw: true))
+      #
+      # @param [Hash,HTTParty::Response] response The response from the HTTP request.
       # @return
       #
-      def send_request(method, endpoint, opts={}, &_block)
+      def send_http_request(method, endpoint, opts={}, &_block)
         response = self.class.send(method, endpoint, opts)
         opts[:raw] == true ? response : response.parsed_response.deep_symbolize_keys
       end
 
-      attr_reader :instance
+      attr_reader :sdk
     end
   end
 end
