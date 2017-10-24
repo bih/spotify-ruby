@@ -16,7 +16,7 @@ module Spotify
           subject_hash[:access_token] = subject_hash[:token] if subject_hash.has_key?(:token)
           subject_hash.slice(:access_token, :expires_in, :refresh_token).symbolize_keys
         end
-        
+
         # TODO: Delete this when tests are written.
         # def sample_inputs
         #   [{

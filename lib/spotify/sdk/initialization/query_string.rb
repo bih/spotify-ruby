@@ -11,18 +11,27 @@ module Spotify
         end
 
         def should_perform?
-          should_be_string = subject.is_a?(String)
-          should_have_keys = params.has_key?(:token) && params.has_key?(:access_token)
+          subject.is_a?(String) && (
+            params.has_key?(:token) && params.has_key?(:access_token)
+          )
         end
 
         def perform
-          access_token_key = params.has_key?(:token) ? :token : :access_token
-
           {
-            access_token:  (params[access_token_key][0] rescue nil),
-            expires_in:    (params[:expires_in][0] rescue nil),
-            refresh_token: (params[:refresh_token][0] rescue nil)
+            access_token:  params[access_token_key].to_a[0],
+            expires_in:    params[:expires_in].to_a[0],
+            refresh_token: params[:refresh_token].to_a[0]
           }
+        end
+
+        private
+
+        def access_token_key
+          if params.has_key?(:token)
+            :token
+          elsif params.has_key?(:access_token)
+            :access_token
+          end
         end
 
         # TODO: Delete this when tests are written.

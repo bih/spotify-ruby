@@ -4,16 +4,16 @@ require "spec_helper"
 
 RSpec.describe Spotify::SDK::Initialization do
   let(:sample_access_token) do
-    "AQBjjlIYyEuyK2HuzqfA2ldj0B88d63KX2pgdOC0N4Pg4Iuw232M7gEgXjQS0Zdt3Y1r2J3G" +
-    "rCOf4fs1JndDbyGY_uaPWj5hpYE_dMS0G5ouJKLaapDT50EysfV3XdW6aQlbw51dYjgZU-Ce" +
-    "NCnj7bPsq4nXhZzbUkr0aTuR8MKEOXuW7-xaz1h8et-ZFYQDa788LTS08pLu--1waspBsmqh" +
-    "SxbOl0xG5QBQ0NnTbCn1SWi-T1B7J_6twmv7GWXsR9RqeBg_U5KcT6ciz85YFrkRQ6n47PpP" +
+    "AQBjjlIYyEuyK2HuzqfA2ldj0B88d63KX2pgdOC0N4Pg4Iuw232M7gEgXjQS0Zdt3Y1r2J3G" \
+    "rCOf4fs1JndDbyGY_uaPWj5hpYE_dMS0G5ouJKLaapDT50EysfV3XdW6aQlbw51dYjgZU-Ce" \
+    "NCnj7bPsq4nXhZzbUkr0aTuR8MKEOXuW7-xaz1h8et-ZFYQDa788LTS08pLu--1waspBsmqh" \
+    "SxbOl0xG5QBQ0NnTbCn1SWi-T1B7J_6twmv7GWXsR9RqeBg_U5KcT6ciz85YFrkRQ6n47PpP" \
     "HBfTFjmJxB91plroOOIZAE3fQ37-RDqdK7YzSw6gAm0"
   end
   let(:klass) { subject.class }
   let(:children) { klass::CLASSES }
   let(:children_klasses) do
-    children.map { |child_klass_name| "Spotify::SDK::Initialization::%s" % child_klass_name }
+    children.map {|child_klass_name| "Spotify::SDK::Initialization::%s" % child_klass_name }
   end
 
   describe "::CLASSES" do
@@ -29,11 +29,9 @@ RSpec.describe Spotify::SDK::Initialization do
   describe ".detect" do
     context "good input" do
       it "should accept a plain string access token" do
-        expect(klass.detect(sample_access_token)).to eq({
-          access_token: sample_access_token,
-          expires_in: nil,
-          refresh_token: nil
-        })
+        expect(klass.detect(sample_access_token)).to eq(access_token:  sample_access_token,
+                                                        expires_in:    nil,
+                                                        refresh_token: nil)
       end
     end
 
