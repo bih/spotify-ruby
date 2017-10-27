@@ -34,6 +34,8 @@ module Helpers
                   .to_return(status: 200, body: File.read(fixture_path), headers: RESPONSE_HEADERS)
     end
 
+    private
+
     def fixture_filename
       "%s%s.json" % [@method.to_s, @endpoint.tr("/", "-")]
     end
