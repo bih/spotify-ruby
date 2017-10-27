@@ -40,8 +40,8 @@ module Spotify
 
         def transfer_playback_method(playing:)
           override_opts = {
-            sdk:  {expect_nil: true},
-            body: {
+            _sdk_opts: {expect_nil: true},
+            body:      {
               device_ids: [id],
               play:       playing
             }.to_json

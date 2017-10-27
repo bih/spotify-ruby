@@ -44,7 +44,8 @@ module Spotify
       # @return
       #
       def send_http_request(method, endpoint, opts={}, &_block)
-        opts_sdk = {raw: false, expect_nil: false}.merge(opts[:sdk].presence || {})
+        sdk_opts = opts[:_sdk_opts].presence || {}
+        opts_sdk = {raw: false, expect_nil: false}.merge(sdk_opts)
         response = self.class.send(method, endpoint, @options.merge(opts))
         response = response.parsed_response.try(:deep_symbolize_keys) if opts_sdk[:raw] == false
         response = true if opts_sdk[:expect_nil] == true && response.nil?
