@@ -13,7 +13,9 @@ RSpec.describe Spotify::SDK::Connect::Device do
       volume_percent: 100
     }
   end
-  subject { Spotify::SDK::Connect::Device.new(raw_data) }
+  let(:sdk) { Spotify::SDK.new("access_token") }
+  let(:connect_sdk) { Spotify::SDK::Connect.new(sdk) }
+  subject { Spotify::SDK::Connect::Device.new(raw_data, connect_sdk) }
 
   describe "#to_h" do
     it "returns the correct value" do

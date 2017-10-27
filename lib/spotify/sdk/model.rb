@@ -14,9 +14,9 @@ module Spotify
       #
       def initialize(payload, parent)
         @payload = payload
-        @parent = parent
-
         validate_payload
+
+        @parent = parent
         validate_parent
 
         super(payload)
