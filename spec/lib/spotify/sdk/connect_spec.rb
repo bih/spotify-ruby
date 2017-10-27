@@ -6,9 +6,7 @@ RSpec.describe Spotify::SDK::Connect do
   let(:connect_sdk) { Spotify::SDK.new("access_token").connect }
 
   describe "#devices" do
-    before(:each) do
-      stub_spotify_api_request(:get, "/v1/me/player/devices")
-    end
+    before(:each) { stub_spotify_api_request(:get, "/v1/me/player/devices") }
     let(:devices) { connect_sdk.devices }
 
     it "should return an list of devices" do
