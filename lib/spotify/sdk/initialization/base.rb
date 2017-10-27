@@ -3,15 +3,46 @@
 module Spotify
   class SDK
     class Initialization
+      ##
+      # For each SDK Initialization type, we have a base class to inherit from.
+      #
       class Base
+        ##
+        # Initiate a Spotify SDK Initialization Base class.
+        # Note: You would not ever initiate this class, but rather inherit from it.
+        # See /lib/spotify/sdk/initialization/query_string.rb as an example.
+        #
+        # @example
+        #   Spotify::SDK::Initialization::Base.new("access_token")
+        #
+        # @param [Object] subject Any object that can be used to identify an access token.
+        #
         def initialize(subject)
           @subject = subject
         end
 
+        ##
+        # Determine whether this initialization type is valid, and should be performed.
+        #
+        # @example
+        #   instance = Spotify::SDK::Initialization::Base.new("access_token")
+        #   instance.should_perform?
+        #
+        # @return [Boolean] A true or false answer as to whether to perform this initialization type.
+        #
         def should_perform?
           false
         end
 
+        ##
+        # Perform the class to extract the authentication details needed for the SDK class to run.
+        #
+        # @example
+        #   instance = Spotify::SDK::Initialization::Base.new("access_token")
+        #   instance.perform if instance.should_perform?
+        #
+        # @return [Hash] A hash containing only access_token, expires_in and refresh_token.
+        #
         def perform
           {
             access_token:  nil,
@@ -20,7 +51,10 @@ module Spotify
           }
         end
 
-        attr_accessor :subject
+        ##
+        # The subject of the class. Usually what has been sent to Spotify::SDK.new() is the subject.
+        #
+        attr_reader :subject
 
         # TODO: Delete this when tests are written.
         # def sample_inputs
