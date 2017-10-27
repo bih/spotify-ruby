@@ -23,6 +23,28 @@ RSpec.describe Spotify::SDK::Connect::Device do
     end
   end
 
+  describe "#transfer_playback!" do
+    it "should make an api call" do
+      stub = stub_request(:put, "https://api.spotify.com/v1/me/player")
+             .with(body:    {device_ids: [raw_data[:id]], play: true}.to_json,
+                   headers: {Authorization: "Bearer access_token"})
+
+      subject.transfer_playback!
+      expect(stub).to have_been_requested
+    end
+  end
+
+  describe "#transfer_state!" do
+    it "should make an api call" do
+      stub = stub_request(:put, "https://api.spotify.com/v1/me/player")
+             .with(body:    {device_ids: [raw_data[:id]], play: false}.to_json,
+                   headers: {Authorization: "Bearer access_token"})
+
+      subject.transfer_state!
+      expect(stub).to have_been_requested
+    end
+  end
+
   context "Method Missing" do
     it "connects method calls to raw_data" do
       raw_data.each do |key, value|
