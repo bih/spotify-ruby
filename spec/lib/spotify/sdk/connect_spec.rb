@@ -26,19 +26,4 @@ RSpec.describe Spotify::SDK::Connect do
       expect(device.volume_percent).to eq 100
     end
   end
-
-  private
-
-  def stub_spotify_api_request(method, endpoint)
-    fixture_filename = "%s%s.json" % [method.to_s, endpoint.tr("/", "-")]
-    spec_path = File.expand_path("../../../../", __FILE__)
-    fixture_path = spec_path + "/support/fixtures/%s" % fixture_filename
-
-    request_headers = {Authorization: "Bearer access_token"}
-    response_headers = {"Content-Type": "application/json; charset=utf-8"}
-
-    stub_request(method, "https://api.spotify.com%s" % endpoint)
-      .with(headers: request_headers)
-      .to_return(status: 200, body: File.read(fixture_path), headers: response_headers)
-  end
 end
