@@ -47,7 +47,7 @@ module Spotify
         opts_sdk = {raw: false, expect_nil: false}.merge(opts[:sdk].presence || {})
         response = self.class.send(method, endpoint, @options.merge(opts))
         response = response.parsed_response.try(:deep_symbolize_keys) if opts_sdk[:raw] == false
-        response = true if opts_sdk[:expect_nil] == true && response == nil
+        response = true if opts_sdk[:expect_nil] == true && response.nil?
         response
       end
 
