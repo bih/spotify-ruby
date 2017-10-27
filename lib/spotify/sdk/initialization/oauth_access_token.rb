@@ -3,11 +3,24 @@
 module Spotify
   class SDK
     class Initialization
+      ##
+      # This class implements accepting OAuth2::AccessToken as an initializer.
+      #
       class OAuthAccessToken < Base
+        ##
+        # This implements the #should_perform? method from the Base class.
+        #
+        # @see /lib/spotify/sdk/authorization/base.rb
+        #
         def should_perform?
-          subject.is_a?(OAuth2::AccessToken)
+          subject.instance_of? OAuth2::AccessToken
         end
 
+        ##
+        # This implements the #perform method from the Base class.
+        #
+        # @see /lib/spotify/sdk/authorization/base.rb
+        #
         def perform
           {
             access_token:  subject.token,
@@ -15,21 +28,6 @@ module Spotify
             refresh_token: subject.refresh_token
           }
         end
-
-        # TODO: Delete this when tests are written.
-        # def sample_inputs
-        #   client = OAuth2::Client.new({
-        #     client_id:     "client id",
-        #     client_secret: "client secret",
-        #     redirect_uri:  "http://localhost"
-        #   })
-
-        #   [
-        #     OAuth2::AccessToken.new(client, SAMPLE_TOKEN, {}),
-        #     OAuth2::AccessToken.new(client, SAMPLE_TOKEN, { expires_in: 1234567890 }),
-        #     OAuth2::AccessToken.new(client, SAMPLE_TOKEN, { expires_in: 1234567890, refresh_token: SAMPLE_TOKEN })
-        #   ]
-        # end
       end
     end
   end
