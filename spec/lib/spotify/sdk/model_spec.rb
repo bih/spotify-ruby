@@ -41,7 +41,7 @@ RSpec.describe Spotify::SDK::Model do
       it "should raise an error if not a hash" do
         expect {
           Spotify::SDK::Model.new(payload, "Hi world")
-        }.to raise_error Spotify::Errors::ModelParentInvalidSDKObjectError
+        }.to raise_error Spotify::Errors::ModelParentInvalidSDKBaseObjectError
       end
     end
   end

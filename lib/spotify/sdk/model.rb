@@ -34,7 +34,7 @@ module Spotify
       end
 
       def validate_parent
-        raise Spotify::Errors::ModelParentInvalidSDKObjectError.new unless @parent.instance_of? Spotify::SDK
+        raise Spotify::Errors::ModelParentInvalidSDKBaseObjectError.new unless @parent.is_a? Spotify::SDK::Base
       end
     end
   end
@@ -46,8 +46,8 @@ module Spotify
     class ModelPayloadExpectedToBeHashError < StandardError; end
 
     ##
-    # A Error class for when the parent is not a Spotify::SDK instance.
+    # A Error class for when the parent is not a Spotify::SDK::Base instance.
     #
-    class ModelParentInvalidSDKObjectError < StandardError; end
+    class ModelParentInvalidSDKBaseObjectError < StandardError; end
   end
 end
