@@ -8,6 +8,7 @@ require "spotify/sdk/initialization/query_hash"
 require "spotify/sdk/initialization/query_string"
 require "spotify/sdk/initialization/url_string"
 require "spotify/sdk/base"
+require "spotify/sdk/model"
 require "spotify/sdk/connect"
 require "spotify/sdk/connect/device"
 

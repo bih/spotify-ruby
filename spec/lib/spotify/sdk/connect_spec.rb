@@ -6,9 +6,7 @@ RSpec.describe Spotify::SDK::Connect do
   let(:connect_sdk) { Spotify::SDK.new("access_token").connect }
 
   describe "#devices" do
-    before(:each) do
-      stub_spotify_api_request(:get, "/v1/me/player/devices")
-    end
+    before(:each) { stub_spotify_api_request(:get, "/v1/me/player/devices") }
     let(:devices) { connect_sdk.devices }
 
     it "should return an list of devices" do
@@ -25,20 +23,5 @@ RSpec.describe Spotify::SDK::Connect do
       expect(device.type).to eq "Computer"
       expect(device.volume_percent).to eq 100
     end
-  end
-
-  private
-
-  def stub_spotify_api_request(method, endpoint)
-    fixture_filename = "%s%s.json" % [method.to_s, endpoint.tr("/", "-")]
-    spec_path = File.expand_path("../../../../", __FILE__)
-    fixture_path = spec_path + "/support/fixtures/%s" % fixture_filename
-
-    request_headers = {Authorization: "Bearer access_token"}
-    response_headers = {"Content-Type": "application/json; charset=utf-8"}
-
-    stub_request(method, "https://api.spotify.com%s" % endpoint)
-      .with(headers: request_headers)
-      .to_return(status: 200, body: File.read(fixture_path), headers: response_headers)
   end
 end

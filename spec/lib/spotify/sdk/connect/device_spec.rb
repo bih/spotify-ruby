@@ -13,11 +13,35 @@ RSpec.describe Spotify::SDK::Connect::Device do
       volume_percent: 100
     }
   end
-  subject { Spotify::SDK::Connect::Device.new(raw_data) }
+  let(:sdk) { Spotify::SDK.new("access_token") }
+  let(:connect_sdk) { Spotify::SDK::Connect.new(sdk) }
+  subject { Spotify::SDK::Connect::Device.new(raw_data, connect_sdk) }
 
-  describe "#raw_data" do
+  describe "#to_h" do
     it "returns the correct value" do
       expect(subject.to_h).to eq raw_data
+    end
+  end
+
+  describe "#transfer_playback!" do
+    it "should make an api call" do
+      stub = stub_request(:put, "https://api.spotify.com/v1/me/player")
+             .with(body:    {device_ids: [raw_data[:id]], play: true}.to_json,
+                   headers: {Authorization: "Bearer access_token"})
+
+      subject.transfer_playback!
+      expect(stub).to have_been_requested
+    end
+  end
+
+  describe "#transfer_state!" do
+    it "should make an api call" do
+      stub = stub_request(:put, "https://api.spotify.com/v1/me/player")
+             .with(body:    {device_ids: [raw_data[:id]], play: false}.to_json,
+                   headers: {Authorization: "Bearer access_token"})
+
+      subject.transfer_state!
+      expect(stub).to have_been_requested
     end
   end
 

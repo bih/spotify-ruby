@@ -52,9 +52,9 @@ module Spotify
           when 1
             matches.first.perform
           when 0
-            raise Spotify::Errors::InitializationObjectInvalidError
+            raise Spotify::Errors::InitializationObjectInvalidError.new
           else
-            raise Spotify::Errors::InitializationObjectDuplicationError
+            raise Spotify::Errors::InitializationObjectDuplicationError.new
           end
         end
       end
@@ -63,12 +63,12 @@ module Spotify
 
   class Errors
     ##
-    # A Error class for when the initialization subjectect is not valid (see `initialize(subject)` for more info).
+    # A Error class for when the initialization subject is not valid (see `initialize(subject)` for more info).
     #
     class InitializationObjectInvalidError < StandardError; end
 
     ##
-    # A Error class for when the initialization subjectect matches against multiple selectors.
+    # A Error class for when the initialization subject matches against multiple selectors.
     # When this Error occurs, this becomes an internal bug. It should be filed on the GitHub issue tracker.
     #
     class InitializationObjectDuplicationError < StandardError; end
