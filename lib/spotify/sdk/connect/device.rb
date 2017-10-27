@@ -3,7 +3,7 @@
 module Spotify
   class SDK
     class Connect
-      class Device < OpenStruct
+      class Device < Model
         ##
         # Transfer a user's playback to another device, and continue playing.
         # PUT /v1/me/player
@@ -35,11 +35,6 @@ module Spotify
           transfer_playback_method(playing: false)
           self
         end
-
-        ##
-        # A reference to Spotify::SDK::Connect, so we can also do stuff.
-        #
-        attr_accessor :parent
 
         private
 
