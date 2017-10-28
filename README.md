@@ -33,9 +33,9 @@ Configure with your client credentials and redirect URL. Get it [for free here][
 require "spotify"
 
 @auth = Spotify::Auth.new({
-  client_id: ENV["SPOTIFY_CLIENT_ID"],
+  client_id:     ENV["SPOTIFY_CLIENT_ID"],
   client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
-  redirect_uri: ENV["SPOTIFY_REDIRECT_URI"]
+  redirect_uri:  ENV["SPOTIFY_REDIRECT_URI"]
 })
 ```
 
@@ -66,13 +66,13 @@ You can save their information in the database under `access_token`, `expires_in
 And you can also re-instantiate a SDK instance again later:
 ```ruby
 @sdk = Spotify::SDK.new({
-  access_token: "[insert access_token]",
-  expires_in: "[insert expires_in]",
+  access_token:  "[insert access_token]",
+  expires_in:    "[insert expires_in]",
   refresh_token: "[insert refresh_token]"
 })
 ```
 
-And hen their access token expires, you can just run `refresh!`:
+And when their access token expires, you can just run `refresh!`:
 
 ```ruby
 @access_token = @access_token.refresh!
@@ -100,7 +100,7 @@ Generate an access token based from your client credentials. Note this has limit
 
 ## Usage
 
-TODO: Write more detailed usage instructions here
+TODO: Write more detailed usage instructions here. [Spotify API endpoint coverage can be found in COVERAGE.md](COVERAGE.md)
 
 ## Development
 
