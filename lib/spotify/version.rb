@@ -9,5 +9,5 @@ module Spotify
   # if there is no breaking changes or new features. Anything
   # else should constitute a major version bump (0.1.0 -> 1.0.0)
   #
-  VERSION = "0.1.0"
+  VERSION = "0.1.1"
 end
