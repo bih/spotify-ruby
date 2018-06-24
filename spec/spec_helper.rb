@@ -2,6 +2,7 @@
 
 require "bundler/setup"
 require "spotify"
+require "factory_bot"
 require "coveralls"
 require "webmock/rspec"
 
@@ -15,15 +16,16 @@ module Helpers
   ##
   # Mock Spotify API requests.
   #
-  def stub_spotify_api_request(method, endpoint)
-    StubSpotifyAPIRequestHelper.new(method, endpoint).perform
+  def stub_spotify_api_request(fixture:, method:, endpoint:)
+    StubSpotifyAPIRequestHelper.new(fixture, method, endpoint).perform
   end
 
   class StubSpotifyAPIRequestHelper < OpenStruct
     REQUEST_HEADERS = {Authorization: "Bearer access_token"}.freeze
     RESPONSE_HEADERS = {"Content-Type": "application/json; charset=utf-8"}.freeze
 
-    def initialize(method, endpoint)
+    def initialize(fixture, method, endpoint)
+      @fixture  = fixture
       @method   = method
       @endpoint = endpoint
     end
@@ -37,7 +39,7 @@ module Helpers
     private
 
     def fixture_filename
-      "%s%s.json" % [@method.to_s, @endpoint.tr("/", "-")]
+      "%s.json" % @fixture
     end
 
     def fixture_path
@@ -55,6 +57,12 @@ RSpec.configure do |config|
 
   # Include custom helper methods.
   config.include Helpers
+
+  # Include Factory Bot for mocking objects.
+  config.include FactoryBot::Syntax::Methods
+  config.before(:suite) do
+    FactoryBot.find_definitions
+  end
 
   # Use expect syntax.
   config.expect_with :rspec do |c|

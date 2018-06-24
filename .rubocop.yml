@@ -1,3 +1,8 @@
+AllCops:
+  Exclude:
+    - 'bin/console'
+    - 'bin/console_local'
+
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:
   Max: 120
@@ -6,7 +11,7 @@ Metrics/LineLength:
 
 # Too short methods lead to extraction of single-use methods, which can make
 # the code easier to read (by naming things), but can also clutter the class
-Metrics/MethodLength: 
+Metrics/MethodLength:
   Max: 20
 
 # The guiding principle of classes is SRP, SRP can't be accurately measured by LoC
@@ -72,7 +77,7 @@ Lint/AssignmentInCondition:
   AllowSafeAssignment: false
 
 # A specialized exception class will take one or more arguments and construct the message from it.
-# So both variants make sense. 
+# So both variants make sense.
 Style/RaiseArgs:
   Enabled: false
 
@@ -130,11 +135,11 @@ Lint/ShadowingOuterLocalVariable:
 
 # Check with yard instead.
 Style/Documentation:
-  Enabled: false 
+  Enabled: false
 
 # This is just silly. Calling the argument `other` in all cases makes no sense.
 Naming/BinaryOperatorParameterName:
-  Enabled: false 
+  Enabled: false
 
 # There are valid cases, for example debugging Cucumber steps,
 # also they'll fail CI anyway

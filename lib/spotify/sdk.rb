@@ -1,12 +1,5 @@
 # frozen_string_literal: true
 
-require "spotify/sdk/initialization"
-require "spotify/sdk/initialization/base"
-require "spotify/sdk/initialization/oauth_access_token"
-require "spotify/sdk/initialization/plain_string"
-require "spotify/sdk/initialization/query_hash"
-require "spotify/sdk/initialization/query_string"
-require "spotify/sdk/initialization/url_string"
 require "spotify/sdk/base"
 require "spotify/sdk/model"
 require "spotify/sdk/connect"
@@ -40,70 +33,47 @@ module Spotify
     #
     # @param [String, Hash, OAuth2::AccessToken] obj Any supported object which contains an access token. See examples.
     #
-    def initialize(obj)
-      @payload = Spotify::SDK::Initialization.detect(obj)
-      @access_token  = @payload[:access_token]
-      @expires_in    = @payload[:expires_in]
-      @refresh_token = @payload[:refresh_token]
-
+    def initialize(session)
+      raise "Invalid Spotify::Accounts::Session object" unless session.instance_of?(Spotify::Accounts::Session)
+      @session = session
       mount_sdk_components
     end
 
-    ##
-    # Helper method to a fully qualified OAuth2::AccessToken instance.
-    #
-    # @example
-    #   @auth = Spotify::Auth.new({
-    #     client_id: "[client id goes here]",
-    #     client_secret: "[client secret goes here]",
-    #     redirect_uri: "http://localhost"
-    #   })
-    #
-    #   @sdk = Spotify::SDK.new("access_token_here")
-    #   @sdk.oauth2_access_token(@auth) # => #<OAuth2::AccessToken:...>
-    #
-    # @param [Spotify::Auth] client An instance of Spotify::Auth. See example.
-    # @return [OAuth2::AccessToken] An fully qualified instance of OAuth2::AccessToken.
-    #
-    def oauth2_access_token(client)
-      OAuth2::AccessToken.new(client, @access_token, expires_in:    @expires_in,
-                                                     refresh_token: @refresh_token)
+    attr_reader :session
+
+    def inspect
+      "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
     end
 
     ##
-    # Obtain a hash containing all of the user's authorization details.
+    # This is where we mount new SDK components to the Spotify::SDK object.
+    # Simply add a key (this is your identifier) with the value being the object.
     #
-    # @example
-    #   @auth = Spotify::Auth.new({
-    #     client_id: "[client id goes here]",
-    #     client_secret: "[client secret goes here]",
-    #     redirect_uri: "http://localhost"
-    #   })
+    # Notes:
+    # - Make sure your SDK component is being loaded at the top of this page.
+    # - You can name your identifier whatever you want:
+    #   - This will be what people will use to call your code
+    #   - For example: it would be the `connect` in `Spotify::SDK.new(@session).connect`
+    # - We'll call .new on your class, providing one parameter being the instance of this SDK (aka self).
+    # - Make sure to a test for it in spec/lib/spotify/sdk_spec.rb (see how we did it for others)
     #
-    #   @sdk = Spotify::SDK.new("access_token_here")
-    #   @sdk.to_hash # => { access_token: ..., expires_in: ... }
-    #
-    # @return [Hash] Containing access_token, expires_in and refresh_token
-    #
-    def to_hash
-      @payload.with_indifferent_access.symbolize_keys
-    end
+    SDK_COMPONENTS = {
+      connect: Spotify::SDK::Connect
+    }.freeze
 
-    attr_reader :access_token, :expires_in, :refresh_token
-    attr_reader :connect
+    attr_reader(*SDK_COMPONENTS.keys)
 
     private
 
     ##
-    # This is where we mount all SDK components to the SDK object.
-    # When mounting a new component, you'll need to do the following:
-    # - Be sure to add a `attr_reader` for it. Developers can't access it otherwise.
-    # - Add a test for it in spec/lib/spotify/sdk_spec.rb (see how we did it for others)
+    # This is where we map the SDK component classes to the SDK component vairables.
     #
     # @return [nil]
     #
     def mount_sdk_components
-      @connect = Spotify::SDK::Connect.new(self)
+      SDK_COMPONENTS.map do |key, klass|
+        instance_variable_set "@#{key}".to_sym, klass.new(self)
+      end
     end
   end
 end

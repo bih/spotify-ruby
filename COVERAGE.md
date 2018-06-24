@@ -1,4 +1,4 @@
-potify API Coverage
+# Spotify API Coverage
 
 This covers all the Spotify API endpoints that are covered.
 
@@ -35,20 +35,20 @@ This covers all the Spotify API endpoints that are covered.
 
 | Endpoint | Description | Coverage Status |
 | -------- | ----------- | --------------- |
-| analysis | GET /v1/audio-analysis/{id} | Get Audio Analysis for a Track | × |
+| GET /v1/audio-analysis/{id} | Get Audio Analysis for a Track | × |
 
 ### Search Endpoints
 
 | Endpoint | Description | Coverage Status |
 | -------- | ----------- | --------------- |
-| search | GET /v1/search | Search for an Item | × |
+| GET /v1/search | Search for an Item | × |
 
 ### Users Endpoints
 
 | Endpoint | Description | Coverage Status |
 | -------- | ----------- | --------------- |
-| users | GET /v1/users/{user_id} | Get a User's Profile | × |
-| users | GET /v1/me | Get Current User's Profile | × |
+| GET /v1/users/{user_id} | Get a User's Profile | × |
+| GET /v1/me | Get Current User's Profile | × |
 
 ### Saved Content Endpoints
 
@@ -139,4 +139,3 @@ This covers all the Spotify API endpoints that are covered.
 | PUT /v1/me/player/repeat | Set Repeat Mode On User's Playback | × |
 | PUT /v1/me/player/volume | Set Volume For User's Playback | × |
 | PUT /v1/me/player/shuffle | Toggle Shuffle For User's Playback | × |
-

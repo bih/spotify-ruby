@@ -10,6 +10,9 @@
 /tmp/
 /.local/
 
+# local console
+/bin/console_local
+
 # rspec failure tracking
 .rspec_status
 .coveralls.yml

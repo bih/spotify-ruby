@@ -13,7 +13,8 @@ RSpec.describe Spotify::SDK::Connect::Device do
       volume_percent: 100
     }
   end
-  let(:sdk) { Spotify::SDK.new("access_token") }
+  let(:session) { build(:session, access_token: "access_token") }
+  let(:sdk) { Spotify::SDK.new(session) }
   let(:connect_sdk) { Spotify::SDK::Connect.new(sdk) }
   subject { Spotify::SDK::Connect::Device.new(raw_data, connect_sdk) }
 

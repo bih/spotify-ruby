@@ -3,7 +3,8 @@
 require "spec_helper"
 
 RSpec.describe Spotify::SDK::Base do
-  let(:sdk) { Spotify::SDK.new("access_token") }
+  let(:session) { build(:session) }
+  let(:sdk) { Spotify::SDK.new(session) }
   subject { Spotify::SDK::Base.new(sdk) }
 
   it "inherits from HTTParty" do
@@ -12,7 +13,7 @@ RSpec.describe Spotify::SDK::Base do
 
   context "good initialization" do
     it "sets @sdk to initialized value" do
-      expect(subject.sdk).to eq sdk
+      expect(subject.parent).to eq sdk
     end
   end
 
@@ -22,7 +23,7 @@ RSpec.describe Spotify::SDK::Base do
     context "Headers" do
       describe "Authorization" do
         it "should contain the correct value" do
-          expect(options[:headers][:Authorization]).to eq "Bearer access_token"
+          expect(options[:headers][:Authorization]).to eq "Bearer %s" % session.access_token
         end
       end
     end

@@ -3,10 +3,15 @@
 require "spec_helper"
 
 RSpec.describe Spotify::SDK::Connect do
-  let(:connect_sdk) { Spotify::SDK.new("access_token").connect }
+  let(:session) { build(:session, access_token: "access_token") }
+  let(:connect_sdk) { Spotify::SDK.new(session).connect }
 
   describe "#devices" do
-    before(:each) { stub_spotify_api_request(:get, "/v1/me/player/devices") }
+    before(:each) do
+      stub_spotify_api_request(fixture:  "get-v1-me-player-devices",
+                               method:   :get,
+                               endpoint: "/v1/me/player/devices")
+    end
     let(:devices) { connect_sdk.devices }
 
     it "should return an list of devices" do
