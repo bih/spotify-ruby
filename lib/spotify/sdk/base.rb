@@ -13,19 +13,19 @@ module Spotify
       # Initiate a Spotify SDK Base component.
       #
       # @example
-      #   @sdk = Spotify::SDK.new("access_token")
+      #   @sdk = Spotify::SDK.new(@session)
       #   @auth = Spotify::SDK::Base.new(@sdk)
       #
-      #   @sdk = Spotify::SDK.new("access_token_here")
+      #   @sdk = Spotify::SDK.new(@session)
       #   @sdk.to_hash # => { access_token: ..., expires_at: ... }
       #
-      # @param [Spotify::SDK] sdk An instance of Spotify::SDK as a reference point.
+      # @param [Spotify::SDK] parent An instance of Spotify::SDK as a reference point.
       #
-      def initialize(sdk)
-        @sdk = sdk
+      def initialize(parent)
+        @parent = parent
         @options = {
           headers: {
-            Authorization: "Bearer %s" % sdk.access_token
+            Authorization: "Bearer %s" % @parent.session.access_token
           }
         }
       end
@@ -52,7 +52,11 @@ module Spotify
         response
       end
 
-      attr_reader :sdk
+      def inspect
+        "#<%s:0x00%x>" % [self.class.name, (self.object_id << 1)]
+      end
+
+      attr_reader :parent
     end
   end
 end

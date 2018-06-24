@@ -4,7 +4,8 @@ require "spec_helper"
 
 RSpec.describe Spotify::SDK::Model do
   let(:payload) { {id: 123_456, username: "example", country_code: "GB"} }
-  let(:sdk) { Spotify::SDK.new("access_token") }
+  let(:session) { build(:session) }
+  let(:sdk) { Spotify::SDK.new(session) }
   let(:connect_sdk) { Spotify::SDK::Connect.new(sdk) }
 
   context "good initialization" do
