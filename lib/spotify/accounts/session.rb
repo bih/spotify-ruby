@@ -12,18 +12,18 @@ module Spotify
         #
         # @param [Spotify::Accounts] accounts A valid instance of Spotify::Accounts.
         # @param [String] code The code provided in the Redirect URI from the Spotify Accounts API.
-        # @response [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session, to be used for authorizing requests.
+        # @response [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session
         # @see lib/spotify/accounts.rb
         #
         def from_authorization_code(accounts, code)
           params = {
-            client_id: @accounts.instance_variable_get(:@client_id),
+            client_id:     @accounts.instance_variable_get(:@client_id),
             client_secret: @accounts.instance_variable_get(:@client_secret),
-            redirect_uri: @accounts.instance_variable_get(:@redirect_uri),
-            grant_type: "authorization_code",
-            code: code
+            redirect_uri:  @accounts.instance_variable_get(:@redirect_uri),
+            grant_type:    "authorization_code",
+            code:          code
           }
-          request = HTTParty.post("https://accounts.spotify.com/api/token", { body: params })
+          request = HTTParty.post("https://accounts.spotify.com/api/token", body: params)
           response = request.parsed_response.with_indifferent_access
           raise response[:error_description] if response[:error]
           new(accounts, response[:access_token], response[:expires_in], response[:refresh_token], response[:scope])
@@ -38,7 +38,7 @@ module Spotify
         #
         # @param [Spotify::Accounts] accounts A valid instance of Spotify::Accounts.
         # @param [String] refresh_token A valid refresh token. You'll want to store the refresh_token in your database.
-        # @response [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session, to be used for authorizing requests.
+        # @response [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session
         #
         def from_refresh_token(accounts, refresh_token)
           new(accounts, nil, nil, refresh_token, nil)
@@ -46,19 +46,19 @@ module Spotify
       end
 
       def initialize(accounts, access_token, expires_in, refresh_token, scopes)
+        unless accounts.instance_of?(Spotify::Accounts)
+          raise "You need a valid Spotify::Accounts instance in order to use Spotify authentication."
+        end
+
         @accounts = accounts
         @access_token = access_token
         @expires_in = expires_in
         @expires_at = expires_in + Time.now.to_i unless expires_in.nil?
         @refresh_token = refresh_token
         @scopes = scopes
-
-        if !@accounts.instance_of?(Spotify::Accounts)
-          raise "You need a valid Spotify::Accounts instance in order to use Spotify authentication."
-        end
       end
 
-      attr_reader :accounts, :access_token, :expires_in, :expires_at, :refresh_token, :scopes
+      attr_reader :accounts, :access_token, :expires_in, :refresh_token
 
       ##
       # Converts the space-delimited scope list to a symbolized array.
@@ -84,7 +84,7 @@ module Spotify
       # @response [TrueClass,FalseClass] scope_included A true/false boolean if the scope is included.
       #
       def contains_scope?(scope)
-        self.scopes.include?(scope.downcase.to_sym)
+        scopes.include?(scope.downcase.to_sym)
       end
 
       ##
@@ -109,8 +109,8 @@ module Spotify
       # @response [TrueClass,FalseClass,NilClass] has_expired Has the access token expired?
       #
       def expired?
-        return nil if self.expires_at.nil?
-        Time.now > self.expires_at
+        return nil if expires_at.nil?
+        Time.now > expires_at
       end
 
       ##
@@ -121,16 +121,17 @@ module Spotify
       #
       # @response [TrueClass,FalseClass] success Have we been able to refresh the access token?
       #
+      # rubocop:disable AbcSize
       def refresh!
         raise "You cannot refresh without a valid refresh_token." if @refresh_token.nil?
 
         params = {
-          client_id: @accounts.instance_variable_get(:@client_id),
+          client_id:     @accounts.instance_variable_get(:@client_id),
           client_secret: @accounts.instance_variable_get(:@client_secret),
-          grant_type: "refresh_token",
+          grant_type:    "refresh_token",
           refresh_token: @refresh_token
         }
-        request = HTTParty.post("https://accounts.spotify.com/api/token", { body: params })
+        request = HTTParty.post("https://accounts.spotify.com/api/token", body: params)
         response = request.parsed_response.with_indifferent_access
 
         @access_token = response[:access_token]
@@ -139,9 +140,10 @@ module Spotify
         @scopes = response[:scope]
 
         true
-      rescue
+      rescue HTTParty::Error
         false
       end
+      # rubocop:enable AbcSize
 
       ##
       # Export to JSON. Designed mostly for iOS, Android, or external use cases.
@@ -153,15 +155,15 @@ module Spotify
       #
       def to_json
         {
-          access_token: @access_token.presence,
-          expires_at: @expires_at.presence,
+          access_token:  @access_token.presence,
+          expires_at:    @expires_at.presence,
           refresh_token: @refresh_token.presence,
-          scopes: self.scopes
+          scopes:        scopes
         }.to_json
       end
 
       def inspect
-        "#<%s:0x00%x>" % [self.class.name, (self.object_id << 1)]
+        "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
       end
     end
   end

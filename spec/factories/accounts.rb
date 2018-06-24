@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :accounts, class: Spotify::Accounts do
     client_id { Digest::SHA1.hexdigest([Time.now, rand].join) }
@@ -7,11 +9,9 @@ FactoryBot.define do
     skip_create
 
     initialize_with do
-      new({
-        client_id:     client_id,
-        client_secret: client_secret,
-        redirect_uri:  redirect_uri
-      })
+      new(client_id:     client_id,
+          client_secret: client_secret,
+          redirect_uri:  redirect_uri)
     end
   end
 end

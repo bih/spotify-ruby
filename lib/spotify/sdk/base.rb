@@ -53,7 +53,7 @@ module Spotify
       end
 
       def inspect
-        "#<%s:0x00%x>" % [self.class.name, (self.object_id << 1)]
+        "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
       end
 
       attr_reader :parent

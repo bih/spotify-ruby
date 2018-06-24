@@ -42,7 +42,7 @@ module Spotify
     attr_reader :session
 
     def inspect
-      "#<%s:0x00%x>" % [self.class.name, (self.object_id << 1)]
+      "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
     end
 
     ##
@@ -51,13 +51,15 @@ module Spotify
     #
     # Notes:
     # - Make sure your SDK component is being loaded at the top of this page.
-    # - You can name your identifier whatever you want. This will be what people will use to call your code (for example: it would be the "connect" in Spotify::SDK.new(@session).connect)
+    # - You can name your identifier whatever you want:
+    #   - This will be what people will use to call your code
+    #   - For example: it would be the `connect` in `Spotify::SDK.new(@session).connect`
     # - We'll call .new on your class, providing one parameter being the instance of this SDK (aka self).
     # - Make sure to a test for it in spec/lib/spotify/sdk_spec.rb (see how we did it for others)
     #
     SDK_COMPONENTS = {
       connect: Spotify::SDK::Connect
-    }
+    }.freeze
 
     attr_reader(*SDK_COMPONENTS.keys)
 

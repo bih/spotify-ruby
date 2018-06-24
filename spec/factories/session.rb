@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 FactoryBot.define do
   factory :session, class: Spotify::Accounts::Session do
     association :accounts, factory: :accounts

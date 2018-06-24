@@ -51,11 +51,11 @@ module Spotify
     #   @accounts.client_secret = "[client secret goes here]"
     #   @accounts.redirect_uri = "http://localhost"
     #
-    # @param [Hash] config The configuration containing your Client ID, Client Secret, and your Redirect URL. You can provide it as a hash initializer, or you can provide it as setters after.
+    # @param [Hash] config The configuration containing your Client ID, Client Secret, and your Redirect URL.
     #
     # @see https://developer.spotify.com/dashboard/
     #
-    def initialize(config = {})
+    def initialize(config={})
       @client_id = config.delete(:client_id)
       @client_secret = config.delete(:client_secret)
       @redirect_uri = config.delete(:redirect_uri)
@@ -85,12 +85,12 @@ module Spotify
     def authorize_url(override_params={})
       validate_credentials!
       params = {
-        client_id: @client_id,
-        redirect_uri: @redirect_uri,
+        client_id:     @client_id,
+        redirect_uri:  @redirect_uri,
         response_type: "code",
-        scope: SCOPES.join(" ")
+        scope:         SCOPES.join(" ")
       }.merge(override_params)
-      return "https://accounts.spotify.com/oauth/authorize?%s" % params.to_query
+      "https://accounts.spotify.com/oauth/authorize?%s" % params.to_query
     end
 
     ##
@@ -116,7 +116,7 @@ module Spotify
     end
 
     def inspect
-      "#<%s:0x00%x>" % [self.class.name, (self.object_id << 1)]
+      "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
     end
 
     private
