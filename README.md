@@ -32,70 +32,47 @@ Configure with your client credentials and redirect URL. Get it [for free here][
 ```ruby
 require "spotify"
 
-@auth = Spotify::Auth.new({
-  client_id:     ENV["SPOTIFY_CLIENT_ID"],
-  client_secret: ENV["SPOTIFY_CLIENT_SECRET"],
-  redirect_uri:  ENV["SPOTIFY_REDIRECT_URI"]
-})
+@accounts = Spotify::Accounts.new
+@accounts.client_id = ENV["SPOTIFY_CLIENT_ID"]
+@accounts.client_secret = ENV["SPOTIFY_CLIENT_SECRET"]
+@accounts.redirect_uri = ENV["SPOTIFY_REDIRECT_URI"]
 ```
 
 ## Authentication
 
-With our `@auth` instance, we have access to multiple forms of authentication. Below are our ones that we make available through the Spotify Platform: Authorization Code, Implicit Grant and Client Credentials. [Learn more here][spotify-authorization-guide].
+### Authorization URL
 
-### Authorization Code
-
-**Recommended.** Generate the URL for the user to grant permissions for your application:
+You'll need to generate an authorization URL to send your users to.
 
 ```ruby
-@auth.authorize_url(response_type: "code")
+@accounts.authorize_url
 ```
 
 Once they return back to your application with a `code`:
 
 ```ruby
-@access_token = @auth.auth_code.get_token(params[:code])
+@session = @accounts.exchange_for_session(params[:code])
 ```
+
+All you'll need to save to your database will be the `refresh_token` as follows.
 
 You can save their information in the database under `access_token`, `expires_in` and `refresh_token`
 ```ruby
-@sdk = Spotify::SDK.new(@access_token)
-@sdk.to_hash # => { access_token: "...", expires_in: 1234567890, refresh_token: "..." }
+refresh_token = @session.refresh_token
 ```
 
-And you can also re-instantiate a SDK instance again later:
+And you can also start a session from a saved `refresh_token`:
 ```ruby
-@sdk = Spotify::SDK.new({
-  access_token:  "[insert access_token]",
-  expires_in:    "[insert expires_in]",
-  refresh_token: "[insert refresh_token]"
-})
+@session = Spotify::Accounts::Session.from_refresh_token(refresh_token)
+@session.refresh!
 ```
 
 And when their access token expires, you can just run `refresh!`:
 
 ```ruby
-@access_token = @access_token.refresh!
-```
-
-### Implicit Grant
-
-```ruby
-@auth.authorize_url(response_type: "token")
-```
-
-Once they return back to your application with a `token`:
-
-```ruby
-@sdk = Spotify::SDK.new(params[:token])
-```
-
-### Client Credentials
-
-Generate an access token based from your client credentials. Note this has limited access.
-
-```ruby
-@access_token = @auth.client_credentials.get_token
+if @session.expired?
+  @session.refresh!
+end
 ```
 
 ## Usage
