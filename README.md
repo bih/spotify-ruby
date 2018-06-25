@@ -54,9 +54,7 @@ Once they return back to your application with a `code`:
 @session = @accounts.exchange_for_session(params[:code])
 ```
 
-All you'll need to save to your database will be the `refresh_token` as follows.
-
-You can save their information in the database under `access_token`, `expires_in` and `refresh_token`
+All you'll need to save to your database will be the `refresh_token` as follows:
 ```ruby
 refresh_token = @session.refresh_token
 ```
