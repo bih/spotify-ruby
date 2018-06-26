@@ -4,6 +4,8 @@ require "spotify/sdk/base"
 require "spotify/sdk/model"
 require "spotify/sdk/connect"
 require "spotify/sdk/connect/device"
+require "spotify/sdk/connect/playback_state"
+require "spotify/sdk/artist"
 
 module Spotify
   ##
@@ -41,7 +43,7 @@ module Spotify
 
     attr_reader :session
 
-    def inspect
+    def inspect # :nodoc:
       "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
     end
 
@@ -68,9 +70,7 @@ module Spotify
     ##
     # This is where we map the SDK component classes to the SDK component vairables.
     #
-    # @return [nil]
-    #
-    def mount_sdk_components
+    def mount_sdk_components # :nodoc:
       SDK_COMPONENTS.map do |key, klass|
         instance_variable_set "@#{key}".to_sym, klass.new(self)
       end

@@ -162,7 +162,7 @@ module Spotify
         }.to_json
       end
 
-      def inspect
+      def inspect # :nodoc:
         "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
       end
     end

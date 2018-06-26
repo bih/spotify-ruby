@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
-    f.match(%r{^(test|spec|features|coverage|html|examples)/})
+    f.match(%r{^(bin|coverage|doc|html|examples|test|spec|features)/})
   end
 
   spec.bindir        = "exe"
@@ -30,6 +30,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "bundler", "~> 1.15", ">= 1.15.4"
   spec.add_development_dependency "coveralls", "~> 0.8.21"
   spec.add_development_dependency "factory_bot", "~> 1.0.0.alpha"
+  spec.add_development_dependency "pry", "~> 0.10"
   spec.add_development_dependency "rake", "~> 12.1"
   spec.add_development_dependency "rdoc", "~> 5.1"
   spec.add_development_dependency "rspec", "~> 3.7"

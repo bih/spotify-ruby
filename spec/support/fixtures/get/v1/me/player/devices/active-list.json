@@ -1,0 +1,22 @@
+{
+  "devices": [
+    {
+      "id": "941223d904f006c4d998598272d43d94",
+      "is_active": true,
+      "is_private_session": true,
+      "is_restricted": false,
+      "name": "Bilawal’s MacBook Pro",
+      "type": "Computer",
+      "volume_percent": 100
+    },
+    {
+      "id": "ce7a3eaa07a38df186776d3c7e25ec62635e42c1",
+      "is_active": true,
+      "is_private_session": false,
+      "is_restricted": false,
+      "name": "Bilawal’s iPhone",
+      "type": "Smartphone",
+      "volume_percent": 100
+    }
+  ]
+}

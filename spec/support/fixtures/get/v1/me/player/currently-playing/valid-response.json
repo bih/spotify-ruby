@@ -1,0 +1,264 @@
+{
+  "device": {
+    "id": "f899139df5e1059396431415e770c6dd",
+    "is_active": true,
+    "is_private_session": false,
+    "is_restricted": false,
+    "name": "John’s MacBook Pro",
+    "type": "Computer",
+    "volume_percent": 100
+  },
+  "shuffle_state": false,
+  "repeat_state": "off",
+  "timestamp": 1530357768714,
+  "context": {
+    "external_urls": {
+      "spotify": "https://open.spotify.com/artist/5Pwc4xIPtQLFEnJriah9YJ"
+    },
+    "href": "https://api.spotify.com/v1/artists/5Pwc4xIPtQLFEnJriah9YJ",
+    "type": "artist",
+    "uri": "spotify:artist:5Pwc4xIPtQLFEnJriah9YJ"
+  },
+  "progress_ms": 152900,
+  "item": {
+    "album": {
+      "album_type": "album",
+      "artists": [
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/0C8ZW7ezQVs4URX5aX7Kqx"
+          },
+          "href": "https://api.spotify.com/v1/artists/0C8ZW7ezQVs4URX5aX7Kqx",
+          "id": "0C8ZW7ezQVs4URX5aX7Kqx",
+          "name": "Selena Gomez",
+          "type": "artist",
+          "uri": "spotify:artist:0C8ZW7ezQVs4URX5aX7Kqx"
+        },
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/5Pwc4xIPtQLFEnJriah9YJ"
+          },
+          "href": "https://api.spotify.com/v1/artists/5Pwc4xIPtQLFEnJriah9YJ",
+          "id": "5Pwc4xIPtQLFEnJriah9YJ",
+          "name": "OneRepublic",
+          "type": "artist",
+          "uri": "spotify:artist:5Pwc4xIPtQLFEnJriah9YJ"
+        },
+        {
+          "external_urls": {
+            "spotify": "https://open.spotify.com/artist/6Ad91Jof8Niiw0lGLLi3NW"
+          },
+          "href": "https://api.spotify.com/v1/artists/6Ad91Jof8Niiw0lGLLi3NW",
+          "id": "6Ad91Jof8Niiw0lGLLi3NW",
+          "name": "YUNGBLUD",
+          "type": "artist",
+          "uri": "spotify:artist:6Ad91Jof8Niiw0lGLLi3NW"
+        }
+      ],
+      "available_markets": [
+        "AD",
+        "AR",
+        "AT",
+        "AU",
+        "BE",
+        "BG",
+        "BO",
+        "BR",
+        "CA",
+        "CH",
+        "CL",
+        "CO",
+        "CR",
+        "CY",
+        "CZ",
+        "DE",
+        "DK",
+        "DO",
+        "EC",
+        "EE",
+        "ES",
+        "FI",
+        "FR",
+        "GB",
+        "GR",
+        "GT",
+        "HK",
+        "HN",
+        "HU",
+        "ID",
+        "IE",
+        "IL",
+        "IS",
+        "IT",
+        "JP",
+        "LI",
+        "LT",
+        "LU",
+        "LV",
+        "MC",
+        "MT",
+        "MX",
+        "MY",
+        "NI",
+        "NL",
+        "NO",
+        "NZ",
+        "PA",
+        "PE",
+        "PH",
+        "PL",
+        "PT",
+        "PY",
+        "RO",
+        "SE",
+        "SG",
+        "SK",
+        "SV",
+        "TH",
+        "TR",
+        "TW",
+        "US",
+        "UY",
+        "VN",
+        "ZA"
+      ],
+      "external_urls": {
+        "spotify": "https://open.spotify.com/album/4RpgjxgSxcRwGNuWnImneN"
+      },
+      "href": "https://api.spotify.com/v1/albums/4RpgjxgSxcRwGNuWnImneN",
+      "id": "4RpgjxgSxcRwGNuWnImneN",
+      "images": [
+        {
+          "height": 640,
+          "url":
+            "https://i.scdn.co/image/5b51ec7d93e47be2faf14e27728e06c74228c34a",
+          "width": 640
+        },
+        {
+          "height": 300,
+          "url":
+            "https://i.scdn.co/image/8032b5be825a0b6bd4c0e066be99ab6d1bf744f5",
+          "width": 300
+        },
+        {
+          "height": 64,
+          "url":
+            "https://i.scdn.co/image/e39c219ffa225024783546a8689b4a5a266b9205",
+          "width": 64
+        }
+      ],
+      "name": "13 Reasons Why (Season 2)",
+      "release_date": "2018-05-18",
+      "release_date_precision": "day",
+      "type": "album",
+      "uri": "spotify:album:4RpgjxgSxcRwGNuWnImneN"
+    },
+    "artists": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/5Pwc4xIPtQLFEnJriah9YJ"
+        },
+        "href": "https://api.spotify.com/v1/artists/5Pwc4xIPtQLFEnJriah9YJ",
+        "id": "5Pwc4xIPtQLFEnJriah9YJ",
+        "name": "OneRepublic",
+        "type": "artist",
+        "uri": "spotify:artist:5Pwc4xIPtQLFEnJriah9YJ"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/4xRYI6VqpkE3UwrDrAZL8L"
+        },
+        "href": "https://api.spotify.com/v1/artists/4xRYI6VqpkE3UwrDrAZL8L",
+        "id": "4xRYI6VqpkE3UwrDrAZL8L",
+        "name": "Logic",
+        "type": "artist",
+        "uri": "spotify:artist:4xRYI6VqpkE3UwrDrAZL8L"
+      }
+    ],
+    "available_markets": [
+      "AD",
+      "AR",
+      "AT",
+      "AU",
+      "BE",
+      "BG",
+      "BO",
+      "BR",
+      "CA",
+      "CH",
+      "CL",
+      "CO",
+      "CR",
+      "CY",
+      "CZ",
+      "DE",
+      "DK",
+      "DO",
+      "EC",
+      "EE",
+      "ES",
+      "FI",
+      "FR",
+      "GB",
+      "GR",
+      "GT",
+      "HK",
+      "HN",
+      "HU",
+      "ID",
+      "IE",
+      "IL",
+      "IS",
+      "IT",
+      "JP",
+      "LI",
+      "LT",
+      "LU",
+      "LV",
+      "MC",
+      "MT",
+      "MX",
+      "MY",
+      "NI",
+      "NL",
+      "NO",
+      "NZ",
+      "PA",
+      "PE",
+      "PH",
+      "PL",
+      "PT",
+      "PY",
+      "RO",
+      "SE",
+      "SG",
+      "SK",
+      "SV",
+      "TH",
+      "TR",
+      "TW",
+      "US",
+      "UY",
+      "VN",
+      "ZA"
+    ],
+    "disc_number": 1,
+    "duration_ms": 165626,
+    "explicit": false,
+    "external_ids": { "isrc": "USUM71805991" },
+    "external_urls": {
+      "spotify": "https://open.spotify.com/track/1Nj2oBISdFDSF8eDuXcALz"
+    },
+    "href": "https://api.spotify.com/v1/tracks/1Nj2oBISdFDSF8eDuXcALz",
+    "id": "1Nj2oBISdFDSF8eDuXcALz",
+    "is_local": false,
+    "name": "Start Again (feat. Logic)",
+    "popularity": 89,
+    "preview_url":
+      "https://p.scdn.co/mp3-preview/25b82601b5fb626cb2ca7757da65126fbed5cd0e?cid=116d31f87cef47aab5328ec29ecedab3",
+    "track_number": 3,
+    "type": "track",
+    "uri": "spotify:track:1Nj2oBISdFDSF8eDuXcALz"
+  },
+  "is_playing": true
+}
