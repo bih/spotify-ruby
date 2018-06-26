@@ -74,7 +74,7 @@ module Spotify
     #   })
     #
     #   @auth.authorize_url
-    #   @auth.authorize_url({ scope: %i[user-read-private] })
+    #   @auth.authorize_url({ scope: "user-read-private user-top-read" })
     #
     # @param [Hash] override_params Optional hash containing any overriding values for parameters.
     # Parameters used are client_id, redirect_uri, response_type and scope.
@@ -115,13 +115,13 @@ module Spotify
       Spotify::Accounts::Session.from_authorization_code(code)
     end
 
-    def inspect
+    def inspect # :nodoc:
       "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
     end
 
     private
 
-    def validate_credentials!
+    def validate_credentials! # :nodoc:
       raise "Missing client id" if @client_id.nil?
       raise "Missing client secret" if @client_secret.nil?
       raise "Missing redirect uri" if @redirect_uri.nil?

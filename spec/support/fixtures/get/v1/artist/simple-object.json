@@ -1,0 +1,10 @@
+{
+  "external_urls": {
+    "spotify": "https://open.spotify.com/artist/6olE6TJLqED3rqDCT0FyPh"
+  },
+  "href": "https://api.spotify.com/v1/artists/6olE6TJLqED3rqDCT0FyPh",
+  "id": "6olE6TJLqED3rqDCT0FyPh",
+  "name": "Nirvana",
+  "type": "artist",
+  "uri": "spotify:artist:6olE6TJLqED3rqDCT0FyPh"
+}

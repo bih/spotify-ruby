@@ -1,6 +1,10 @@
 #!/usr/bin/env ruby
 # frozen_string_literal: true
 
+require "pry" rescue nil
+require "irb"
+require "irb/completion"
+require "irb/ext/save-history"
 require "bundler/setup"
 require "spotify"
 
@@ -11,5 +15,10 @@ require "spotify"
 # require "pry"
 # Pry.start
 
-require "irb"
-IRB.start(__FILE__)
+begin
+  Pry.start
+rescue NameError
+  IRB.conf[:SAVE_HISTORY] = 200
+  IRB.conf[:HISTORY_FILE] = "~/.irb-history"
+  IRB.start(__FILE__)
+end
