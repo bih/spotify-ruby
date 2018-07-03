@@ -23,7 +23,7 @@ RSpec.describe Spotify::SDK::Artist do
     end
 
     describe "#retrieve_full_information!" do
-      let(:images) { read_fixture("get/v1/artist/long-response")[:images] }
+      let(:artist_response) { read_fixture("get/v1/artist/long-response") }
       before(:each) do
         stub_spotify_api_request(fixture:  "get/v1/artist/long-response",
                                  method:   :get,
@@ -37,13 +37,31 @@ RSpec.describe Spotify::SDK::Artist do
           subject.full_information?
         }.from(false).to(true)
       end
+    end
 
-      it "after calling, #images should not be nil" do
+    describe "#images" do
+      let(:images) { read_fixture("get/v1/artist/long-response")[:images] }
+      before(:each) do
+        stub_spotify_api_request(fixture:  "get/v1/artist/long-response",
+                                 method:   :get,
+                                 endpoint: "/v1/artists/%s" % raw_data[:id])
+      end
+
+      it "should invoke #retrieve_full_information" do
         expect {
-          subject.retrieve_full_information!
-        }.to change {
           subject.images
-        }.from(nil).to(images)
+        }.to change {
+          subject.full_information?
+        }.from(false).to(true)
+      end
+
+      it "should return an array containing Spotify::SDK::Image instances" do
+        expect(subject.images).to be_kind_of(Array)
+        expect(subject.images[0]).to be_kind_of(Spotify::SDK::Image)
+      end
+
+      it "should return the images" do
+        expect(subject.images.map(&:to_h)).to eq images
       end
     end
 
@@ -77,6 +95,37 @@ RSpec.describe Spotify::SDK::Artist do
       end
     end
 
+    describe "#retrieve_full_information!" do
+      it "should not change #full_information?" do
+        expect {
+          subject.retrieve_full_information!
+        }.not_to(change {
+          subject.full_information?
+        })
+      end
+    end
+
+    describe "#images" do
+      let(:images) { read_fixture("get/v1/artist/long-response")[:images] }
+
+      it "should not invoke #retrieve_full_information" do
+        expect {
+          subject.images
+        }.not_to(change {
+          subject.full_information?
+        })
+      end
+
+      it "should return an array containing Spotify::SDK::Image instances" do
+        expect(subject.images).to be_kind_of(Array)
+        expect(subject.images[0]).to be_kind_of(Spotify::SDK::Image)
+      end
+
+      it "should return the images" do
+        expect(subject.images.map(&:to_h)).to eq images
+      end
+    end
+
     describe "#spotify_url" do
       it "returns spotify from the external_urls column" do
         expect(subject.spotify_url).to eq raw_data[:external_urls][:spotify]
@@ -97,7 +146,7 @@ RSpec.describe Spotify::SDK::Artist do
 
     describe "#images" do
       it "returns the correct value" do
-        expect(subject.images).to eq raw_data[:images]
+        expect(subject.images.map(&:to_h)).to eq raw_data[:images]
       end
     end
   end
