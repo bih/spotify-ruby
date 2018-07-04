@@ -84,6 +84,16 @@ module Spotify
         def artist
           artists.first
         end
+
+        ##
+        # Get the item for the currently playing track.
+        #
+        # @example
+        #   @sdk.connect.playback.item
+        #
+        def item
+          Spotify::SDK::Item.new(super, parent)
+        end
       end
     end
   end

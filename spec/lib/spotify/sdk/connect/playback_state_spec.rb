@@ -54,4 +54,14 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
       expect(subject.artist).to eq subject.artists[0]
     end
   end
+
+  describe "#item" do
+    it "returns a Spotify::SDK::Item object" do
+      expect(subject.item).to be_kind_of(Spotify::SDK::Item)
+    end
+
+    it "sends the correct information" do
+      expect(subject.item.to_h).to eq raw_data[:item]
+    end
+  end
 end
