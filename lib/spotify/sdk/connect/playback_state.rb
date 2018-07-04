@@ -91,6 +91,8 @@ module Spotify
         # @example
         #   @sdk.connect.playback.item
         #
+        # @return [Spotify::SDK::Item] item The currently playing track, wrapped in Spotify::SDK::Item
+        #
         def item
           Spotify::SDK::Item.new(super, parent)
         end
