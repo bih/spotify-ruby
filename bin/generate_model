@@ -57,6 +57,7 @@ class StringManipulation < Struct.new(:name)
 
   def klass_name
     @klass_name = name.gsub(/[^a-zA-Z_]/i, "").downcase
+    raise "Name must exist" if @klass_name.length == 0
     raise "Name must only contain lowercase letters and/or underscores" if @klass_name != name
     @klass_name.split(/[_]/).reduce("") do |acc, word|
       acc + word[0].upcase + word[1..-1].downcase
