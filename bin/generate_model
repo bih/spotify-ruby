@@ -35,6 +35,8 @@ factory_contents = """
 
 FactoryBot.define do
   factory :%s, class: Spotify::SDK::%s do
+    association :parent, factory: :base
+
     # Insert columns here.
 
     skip_create
