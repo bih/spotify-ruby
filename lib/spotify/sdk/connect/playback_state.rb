@@ -38,7 +38,7 @@ module Spotify
         #
         # @example
         #   playback = @sdk.connect.playback
-        #   playback.repeat # => :off, :context, or :track
+        #   playback.repeat # :off, :context, or :track
         #
         # @return [Symbol] repeat_mode Either :off, :context, or :track
         #
@@ -51,7 +51,7 @@ module Spotify
         #
         # @example
         #   playback = @sdk.connect.playback
-        #   playback.repeat # => :off, :context, or :track
+        #   playback.time
         #
         # @return [Time] time The accuracy time of the playback state.
         #
@@ -61,6 +61,9 @@ module Spotify
 
         ##
         # Get the artists for the currently playing track.
+        #
+        # @example
+        #   @sdk.connect.playback.artists
         #
         # @return [Array] artists An array of artists wrapped in Spotify::SDK::Artist
         #
@@ -72,6 +75,9 @@ module Spotify
 
         ##
         # Get the main artist for the currently playing track.
+        #
+        # @example
+        #   @sdk.connect.playback.artist
         #
         # @return [Spotify::SDK::Artist] artist The main artist of the track.
         #
