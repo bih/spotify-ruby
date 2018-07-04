@@ -6,7 +6,7 @@ RSpec.describe Spotify::SDK::Artist do
   let(:session) { build(:session, access_token: "access_token") }
 
   context "Short Response" do
-    let(:raw_data) { read_fixture("get/v1/artist/short-response") }
+    let(:raw_data) { read_fixture("get/v1/artist/simple-object") }
     let(:connect_sdk) { Spotify::SDK::Connect.new(Spotify::SDK.new(session)) }
     subject { Spotify::SDK::Artist.new(raw_data, connect_sdk) }
 
@@ -23,9 +23,9 @@ RSpec.describe Spotify::SDK::Artist do
     end
 
     describe "#retrieve_full_information!" do
-      let(:artist_response) { read_fixture("get/v1/artist/long-response") }
+      let(:artist_response) { read_fixture("get/v1/artist/full-object") }
       before(:each) do
-        stub_spotify_api_request(fixture:  "get/v1/artist/long-response",
+        stub_spotify_api_request(fixture:  "get/v1/artist/full-object",
                                  method:   :get,
                                  endpoint: "/v1/artists/%s" % raw_data[:id])
       end
@@ -40,9 +40,9 @@ RSpec.describe Spotify::SDK::Artist do
     end
 
     describe "#images" do
-      let(:images) { read_fixture("get/v1/artist/long-response")[:images] }
+      let(:images) { read_fixture("get/v1/artist/full-object")[:images] }
       before(:each) do
-        stub_spotify_api_request(fixture:  "get/v1/artist/long-response",
+        stub_spotify_api_request(fixture:  "get/v1/artist/full-object",
                                  method:   :get,
                                  endpoint: "/v1/artists/%s" % raw_data[:id])
       end
@@ -79,7 +79,7 @@ RSpec.describe Spotify::SDK::Artist do
   end
 
   context "Long Response" do
-    let(:raw_data) { read_fixture("get/v1/artist/long-response") }
+    let(:raw_data) { read_fixture("get/v1/artist/full-object") }
     let(:connect_sdk) { Spotify::SDK::Connect.new(Spotify::SDK.new(session)) }
     subject { Spotify::SDK::Artist.new(raw_data, connect_sdk) }
 
@@ -106,7 +106,7 @@ RSpec.describe Spotify::SDK::Artist do
     end
 
     describe "#images" do
-      let(:images) { read_fixture("get/v1/artist/long-response")[:images] }
+      let(:images) { read_fixture("get/v1/artist/full-object")[:images] }
 
       it "should not invoke #retrieve_full_information" do
         expect {

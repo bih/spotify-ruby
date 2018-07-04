@@ -16,7 +16,7 @@ RSpec.describe Spotify::SDK::Connect::Device do
 
   describe "#playback" do
     before(:each) do
-      stub_spotify_api_request(fixture:  "get/v1/me/player/currently-playing/valid-response",
+      stub_spotify_api_request(fixture:  "get/v1/me/player/currently-playing/object",
                                method:   :get,
                                endpoint: "/v1/me/player?market=from_token")
     end

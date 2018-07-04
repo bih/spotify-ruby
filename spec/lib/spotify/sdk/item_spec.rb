@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Spotify::SDK::Item do
-  let(:raw_data) { read_fixture("get/v1/item/object") }
+  let(:raw_data) { read_fixture("get/v1/me/player/currently-playing/object")[:item] }
   subject { build(:item, raw_data) }
 
   describe "#to_h" do

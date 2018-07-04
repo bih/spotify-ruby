@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Spotify::SDK::Connect::PlaybackState do
-  let(:raw_data) { read_fixture("get/v1/me/player/currently-playing/valid-response") }
+  let(:raw_data) { read_fixture("get/v1/me/player/currently-playing/object") }
   let(:session) { build(:session, access_token: "access_token") }
   let(:connect_sdk) { Spotify::SDK::Connect.new(Spotify::SDK.new(session)) }
   subject { Spotify::SDK::Connect::PlaybackState.new(raw_data, connect_sdk) }
