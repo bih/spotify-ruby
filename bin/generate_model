@@ -1,0 +1,116 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+model_contents = """
+# frozen_string_literal: true
+
+module Spotify
+  class SDK
+    class %s < Model
+      # Write your logic here.
+    end
+  end
+end
+""".strip
+
+spec_contents = """
+# frozen_string_literal: true
+
+require \"spec_helper\"
+
+RSpec.describe Spotify::SDK::%s do
+  # let(:raw_data) { read_fixture(\"get/v1/%s/object\") }
+  # subject { build(:%s, raw_data) }
+
+  # describe \"#to_h\" do
+  #   it \"returns the correct value\" do
+  #     expect(subject.to_h).to eq raw_data
+  #   end
+  # end
+end
+""".strip
+
+factory_contents = """
+# frozen_string_literal: true
+
+FactoryBot.define do
+  factory :%s, class: Spotify::SDK::%s do
+    # Insert columns here.
+
+    skip_create
+    initialize_with { new(attributes, parent) }
+  end
+end
+""".strip
+
+class StringManipulation < Struct.new(:name)
+  def perform
+    [
+      name,
+      klass_name
+    ]
+  end
+
+  private
+
+  def klass_name
+    @klass_name = name.gsub(/[^a-zA-Z]/i, "").downcase
+    raise "Name must only contain lowercase letters" if @klass_name != name
+    first_letter = @klass_name[0].upcase
+    remaining_letters = @klass_name[1..-1].downcase
+    first_letter + remaining_letters
+  end
+end
+
+class FileGenerator < Struct.new(:type, :path, :contents)
+  def perform!
+    check_if_already_exists!
+    write_to_file!
+    puts "-> Generated #{type} in #{path}"
+  end
+
+  private
+
+  def full_path
+    @full_path ||= File.expand_path(path)
+  end
+
+  def check_if_already_exists!
+    raise "File #{file_path} already exists" if File.exists?(full_path)
+  end
+
+  def write_to_file!
+    file = File.open(full_path, "w+")
+    file.write(contents)
+    file.close
+  end
+end
+
+begin
+  name, klass_name = StringManipulation.new(ARGV[0]).perform
+
+  # Generate the actual model.
+  model = FileGenerator.new
+  model.type = :model
+  model.path = "lib/spotify/sdk/%s.rb" % name
+  model.contents = model_contents % klass_name
+  model.perform!
+
+  # Generate the spec file.
+  spec = FileGenerator.new
+  spec.type = :spec
+  spec.path = "spec/lib/spotify/sdk/%s_spec.rb" % name
+  spec.contents = spec_contents % [klass_name, name, name]
+  spec.perform!
+
+  # Generate the factory for testing.
+  factory = FileGenerator.new
+  factory.type = :factory
+  factory.path = "spec/factories/%s.rb" % name
+  factory.contents = factory_contents % [name, klass_name]
+  factory.perform!
+
+  puts "SUCCESS: You just need to include it in lib/spotify/sdk.rb"
+rescue StandardError => error
+  puts "ERROR: #{error}"
+end
