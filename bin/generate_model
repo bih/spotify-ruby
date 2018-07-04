@@ -76,7 +76,7 @@ class FileGenerator < Struct.new(:type, :path, :contents)
   end
 
   def check_if_already_exists!
-    raise "File #{file_path} already exists" if File.exists?(full_path)
+    raise "File #{file_path} already exists" if File.exist?(full_path)
   end
 
   def write_to_file!
