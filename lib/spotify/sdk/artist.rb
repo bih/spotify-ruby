@@ -50,6 +50,34 @@ module Spotify
       end
 
       ##
+      # Display the artist's popularity. If not obtained, request them from the API.
+      #
+      # @example
+      #   artist = @sdk.connect.playback.artist
+      #   artist.popularity # => 90
+      #
+      # @return [Integer] popularity The number of popularity, between 0-100.
+      #
+      def popularity
+        retrieve_full_information! unless full_information?
+        super
+      end
+
+      ##
+      # Display the artist's genres. If not obtained, request them from the API.
+      #
+      # @example
+      #   artist = @sdk.connect.playback.artist
+      #   artist.genres # => ["hip hop", "pop rap", "rap", ...]
+      #
+      # @return [Array] genres An array of genres, denoted in strings.
+      #
+      def genres
+        retrieve_full_information! unless full_information?
+        super
+      end
+
+      ##
       # Return the Spotify URL for this artist.
       #
       # @example
