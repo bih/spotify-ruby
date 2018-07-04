@@ -46,7 +46,7 @@ module Spotify
       #
       def images
         retrieve_full_information! unless full_information?
-        super.map { |image| Spotify::SDK::Image.new(image, parent) }
+        super.map {|image| Spotify::SDK::Image.new(image, parent) }
       end
 
       ##

@@ -9,6 +9,18 @@ module Spotify
       ##
       # Initialize a new Model instance.
       #
+      # @example
+      #   module Spotify
+      #     class SDK
+      #       class User < Model
+      #       end
+      #     end
+      #   end
+      #
+      #   @base = Spotify::SDK::Base.new(@sdk)
+      #   @user = Spotify::SDK::User.new({ username: "hi" }, @base)
+      #   @user.username # => "hi"
+      #
       # @param [Hash] hash The response payload.
       # @param [Spotify::SDK] parent The SDK object for context.
       #
@@ -20,6 +32,10 @@ module Spotify
         raise "Expected parent to be of Spotify::SDK::Base type" unless @parent.is_a?(Spotify::SDK::Base)
 
         super(payload)
+      end
+
+      def to_h # :nodoc:
+        super.to_h.except(:parent)
       end
 
       ##
