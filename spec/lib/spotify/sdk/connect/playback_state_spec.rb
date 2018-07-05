@@ -3,7 +3,7 @@
 require "spec_helper"
 
 RSpec.describe Spotify::SDK::Connect::PlaybackState do
-  let(:raw_data) { read_fixture("get/v1/me/player/currently-playing/valid-response") }
+  let(:raw_data) { read_fixture("get/v1/me/player/currently-playing/object") }
   let(:session) { build(:session, access_token: "access_token") }
   let(:connect_sdk) { Spotify::SDK::Connect.new(Spotify::SDK.new(session)) }
   subject { Spotify::SDK::Connect::PlaybackState.new(raw_data, connect_sdk) }
@@ -24,14 +24,23 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
     end
   end
 
+  describe "#playing?" do
+    it "is an alias for #is_playing" do
+      expect(subject.playing?).not_to be_nil
+      expect(subject.playing?).to eq subject.is_playing
+    end
+  end
+
   describe "#shuffling?" do
     it "is an alias for #shuffle_state" do
+      expect(subject.shuffling?).not_to be_nil
       expect(subject.shuffling?).to eq subject.shuffle_state
     end
   end
 
   describe "#repeat_mode" do
     it "is a symbolized alias for #shuffle_state" do
+      expect(subject.repeat_mode).not_to be_nil
       expect(subject.repeat_mode).to eq subject.repeat_state.to_sym
     end
   end
@@ -39,6 +48,23 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
   describe "#time" do
     it "returns a Time object based on #timestamp" do
       expect(subject.time).to eq Time.at(subject.timestamp / 1000)
+    end
+  end
+
+  describe "#position" do
+    it "is an alias for #progress_ms" do
+      expect(subject.position).not_to be_nil
+      expect(subject.position).to eq subject.progress_ms
+    end
+  end
+
+  describe "#position_percentage" do
+    it "calculates the percentage to 2 decimal places based on #position and #item.duration_ms" do
+      expect(subject.position_percentage).to eq 92.32
+    end
+
+    it "calculates the percentage to N decimal places based on #position and #item.duration_ms" do
+      expect(subject.position_percentage(3)).to eq 92.317
     end
   end
 
@@ -52,6 +78,16 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
   describe "#artist" do
     it "returns the first item from #artists" do
       expect(subject.artist).to eq subject.artists[0]
+    end
+  end
+
+  describe "#item" do
+    it "returns a Spotify::SDK::Item object" do
+      expect(subject.item).to be_kind_of(Spotify::SDK::Item)
+    end
+
+    it "sends the correct information" do
+      expect(subject.item.to_h).to eq raw_data[:item]
     end
   end
 end

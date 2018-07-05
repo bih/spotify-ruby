@@ -7,6 +7,7 @@ require "spotify/sdk/connect/device"
 require "spotify/sdk/connect/playback_state"
 require "spotify/sdk/artist"
 require "spotify/sdk/image"
+require "spotify/sdk/item"
 
 module Spotify
   ##

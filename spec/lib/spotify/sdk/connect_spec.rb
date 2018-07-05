@@ -8,7 +8,7 @@ RSpec.describe Spotify::SDK::Connect do
 
   describe "#playback" do
     before(:each) do
-      stub_spotify_api_request(fixture:  "get/v1/me/player/currently-playing/valid-response",
+      stub_spotify_api_request(fixture:  "get/v1/me/player/currently-playing/object",
                                method:   :get,
                                endpoint: "/v1/me/player?market=from_token")
     end
@@ -18,7 +18,7 @@ RSpec.describe Spotify::SDK::Connect do
     end
 
     it "should contain the correct values" do
-      expect(connect_sdk.playback.to_h).to eq read_fixture("get/v1/me/player/currently-playing/valid-response")
+      expect(connect_sdk.playback.to_h).to eq read_fixture("get/v1/me/player/currently-playing/object")
     end
   end
 

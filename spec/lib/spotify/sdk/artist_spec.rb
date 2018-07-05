@@ -6,7 +6,7 @@ RSpec.describe Spotify::SDK::Artist do
   let(:session) { build(:session, access_token: "access_token") }
 
   context "Short Response" do
-    let(:raw_data) { read_fixture("get/v1/artist/short-response") }
+    let(:raw_data) { read_fixture("get/v1/artist/simple-object") }
     let(:connect_sdk) { Spotify::SDK::Connect.new(Spotify::SDK.new(session)) }
     subject { Spotify::SDK::Artist.new(raw_data, connect_sdk) }
 
@@ -23,9 +23,9 @@ RSpec.describe Spotify::SDK::Artist do
     end
 
     describe "#retrieve_full_information!" do
-      let(:artist_response) { read_fixture("get/v1/artist/long-response") }
+      let(:artist_response) { read_fixture("get/v1/artist/full-object") }
       before(:each) do
-        stub_spotify_api_request(fixture:  "get/v1/artist/long-response",
+        stub_spotify_api_request(fixture:  "get/v1/artist/full-object",
                                  method:   :get,
                                  endpoint: "/v1/artists/%s" % raw_data[:id])
       end
@@ -40,9 +40,9 @@ RSpec.describe Spotify::SDK::Artist do
     end
 
     describe "#images" do
-      let(:images) { read_fixture("get/v1/artist/long-response")[:images] }
+      let(:images) { read_fixture("get/v1/artist/full-object")[:images] }
       before(:each) do
-        stub_spotify_api_request(fixture:  "get/v1/artist/long-response",
+        stub_spotify_api_request(fixture:  "get/v1/artist/full-object",
                                  method:   :get,
                                  endpoint: "/v1/artists/%s" % raw_data[:id])
       end
@@ -67,19 +67,21 @@ RSpec.describe Spotify::SDK::Artist do
 
     describe "#spotify_url" do
       it "returns spotify from the external_urls column" do
+        expect(subject.spotify_url).not_to be_nil
         expect(subject.spotify_url).to eq subject.external_urls[:spotify]
       end
     end
 
     describe "#spotify_uri" do
       it "is an alias for #uri" do
+        expect(subject.spotify_uri).not_to be_nil
         expect(subject.spotify_uri).to eq subject.uri
       end
     end
   end
 
   context "Long Response" do
-    let(:raw_data) { read_fixture("get/v1/artist/long-response") }
+    let(:raw_data) { read_fixture("get/v1/artist/full-object") }
     let(:connect_sdk) { Spotify::SDK::Connect.new(Spotify::SDK.new(session)) }
     subject { Spotify::SDK::Artist.new(raw_data, connect_sdk) }
 
@@ -106,7 +108,7 @@ RSpec.describe Spotify::SDK::Artist do
     end
 
     describe "#images" do
-      let(:images) { read_fixture("get/v1/artist/long-response")[:images] }
+      let(:images) { read_fixture("get/v1/artist/full-object")[:images] }
 
       it "should not invoke #retrieve_full_information" do
         expect {
@@ -128,24 +130,28 @@ RSpec.describe Spotify::SDK::Artist do
 
     describe "#spotify_url" do
       it "returns spotify from the external_urls column" do
+        expect(subject.spotify_url).not_to be_nil
         expect(subject.spotify_url).to eq raw_data[:external_urls][:spotify]
       end
     end
 
     describe "#spotify_uri" do
       it "is an alias for #uri" do
+        expect(subject.spotify_uri).not_to be_nil
         expect(subject.spotify_uri).to eq subject.uri
       end
     end
 
     describe "#followers" do
       it "is an alias for #followers[:total]" do
+        expect(subject.followers).not_to be_nil
         expect(subject.followers).to eq raw_data[:followers][:total]
       end
     end
 
     describe "#images" do
       it "returns the correct value" do
+        expect(subject.images).not_to be_nil
         expect(subject.images.map(&:to_h)).to eq raw_data[:images]
       end
     end

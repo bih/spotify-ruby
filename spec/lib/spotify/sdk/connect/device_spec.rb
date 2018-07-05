@@ -3,10 +3,10 @@
 require "spec_helper"
 
 RSpec.describe Spotify::SDK::Connect::Device do
-  let(:raw_data) { read_fixture("get/v1/me/player/devices/active-list") }
-  let(:session) { build(:session, access_token: "access_token") }
+  let(:raw_data)    { read_fixture("get/v1/me/player/devices/active-list")[:devices][0] }
+  let(:session)     { build(:session, access_token: "access_token") }
   let(:connect_sdk) { Spotify::SDK::Connect.new(Spotify::SDK.new(session)) }
-  subject { Spotify::SDK::Connect::Device.new(raw_data, connect_sdk) }
+  subject           { Spotify::SDK::Connect::Device.new(raw_data, connect_sdk) }
 
   describe "#to_h" do
     it "returns the correct value" do
@@ -16,7 +16,7 @@ RSpec.describe Spotify::SDK::Connect::Device do
 
   describe "#playback" do
     before(:each) do
-      stub_spotify_api_request(fixture:  "get/v1/me/player/currently-playing/valid-response",
+      stub_spotify_api_request(fixture:  "get/v1/me/player/currently-playing/object",
                                method:   :get,
                                endpoint: "/v1/me/player?market=from_token")
     end
@@ -28,24 +28,28 @@ RSpec.describe Spotify::SDK::Connect::Device do
 
   describe "#volume" do
     it "is an alias for volume_percent" do
+      expect(subject.volume).not_to be_nil
       expect(subject.volume).to be subject.volume_percent
     end
   end
 
   describe "#active?" do
     it "is an alias for is_active" do
+      expect(subject.active?).not_to be_nil
       expect(subject.active?).to be subject.is_active
     end
   end
 
   describe "#private_session?" do
     it "is an alias for is_private_session" do
+      expect(subject.private_session?).not_to be_nil
       expect(subject.private_session?).to be subject.is_private_session
     end
   end
 
   describe "#restricted?" do
     it "is an alias for is_restricted" do
+      expect(subject.restricted?).not_to be_nil
       expect(subject.restricted?).to be subject.is_restricted
     end
   end
