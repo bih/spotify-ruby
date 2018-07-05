@@ -4,7 +4,34 @@ module Spotify
   class SDK
     class Item < Model
       ##
+      # Get the artists/creators for this item.
+      #
+      # @example
+      #   @sdk.connect.playback.item.artists
+      #
+      # @return [Array] artists A list of artists, wrapped in Spotify::SDK::Artist
+      #
+      def artists
+        super.map do |artist|
+          Spotify::SDK::Artist.new(artist, parent)
+        end
+      end
+
+      ##
+      # Get the primary artist/creator for this item.
+      #
+      # @example
+      #   @sdk.connect.playback.item.artist
+      #
+      # @return [Spotify::SDK::Artist] artist The primary artist, wrapped in Spotify::SDK::Artist
+      #
+      def artist
+        artists.first
+      end
+
+      ##
       # Get the duration.
+      # Alias to self.duration_ms
       #
       # @example
       #   @sdk.connect.playback.item.duration # => 10331
@@ -15,6 +42,7 @@ module Spotify
 
       ##
       # Is this track explicit?
+      # Alias to self.explicit
       #
       # @example
       #   @sdk.connect.playback.item.explicit? # => true
@@ -25,9 +53,10 @@ module Spotify
 
       ##
       # Is this a local track, not a Spotify track?
+      # Alias to self.is_local
       #
       # @example
-      #   @sdk.connect.playback.item.local? # => false
+      #   @sdk.connect.playback.item.local? # => falsebi
       #
       # @return [TrueClass,FalseClass] is_local Returns true if item is local to the user.
       #
@@ -35,6 +64,7 @@ module Spotify
 
       ##
       # Is this a track?
+      # Alias to self.type == "track"
       #
       # @example
       #   @sdk.connect.playback.item.track? # => true
@@ -47,6 +77,7 @@ module Spotify
 
       ##
       # Get the Spotify URI for this item.
+      # Alias to self.uri
       #
       # @example
       #   @sdk.connect.playback.item.spotify_uri # => "spotify:track:..."
@@ -57,6 +88,7 @@ module Spotify
 
       ##
       # Get the Spotify HTTP URL for this item.
+      # Alias to self.external_urls[:spotify]
       #
       # @example
       #   @sdk.connect.playback.item.spotify_url # => "https://open.spotify.com/..."

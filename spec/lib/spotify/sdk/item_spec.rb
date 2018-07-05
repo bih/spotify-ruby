@@ -12,6 +12,19 @@ RSpec.describe Spotify::SDK::Item do
     end
   end
 
+  describe "#artists" do
+    it "should be an array of Spotify::SDK::Artist" do
+      expect(subject.artists).to be_kind_of(Array)
+      expect(subject.artists[0]).to be_kind_of(Spotify::SDK::Artist)
+    end
+  end
+
+  describe "#artist" do
+    it "should be the same as artists.first" do
+      expect(subject.artist).to eq subject.artists.first
+    end
+  end
+
   describe "#duration" do
     it "is an alias for #duration_ms" do
       expect(subject.duration).to eq subject.duration_ms
