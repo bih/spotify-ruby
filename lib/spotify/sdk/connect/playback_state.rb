@@ -18,6 +18,17 @@ module Spotify
         end
 
         ##
+        # Is the current user playing a track?
+        #
+        # @example
+        #   playback = @sdk.connect.playback
+        #   playback.playing?
+        #
+        # @return [FalseClass,TrueClass] is_playing True if user is currently performing playback.
+        #
+        alias_attribute :playing?, :is_playing
+
+        ##
         # Is the current playback set to shuffle?
         #
         # @example

@@ -24,6 +24,12 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
     end
   end
 
+  describe "#playing?" do
+    it "is an alias for #is_playing" do
+      expect(subject.playing?).to eq subject.is_playing
+    end
+  end
+
   describe "#shuffling?" do
     it "is an alias for #shuffle_state" do
       expect(subject.shuffling?).to eq subject.shuffle_state

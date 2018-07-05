@@ -96,6 +96,16 @@ module Spotify
       # @return [String] spotify_url The direct HTTP URL to this Spotify resource.
       #
       alias_attribute :spotify_url, "external_urls.spotify"
+
+      ##
+      # Get the ISRC for this track.
+      #
+      # @example
+      #   @sdk.connect.playback.item.isrc # => "USUM00000000"
+      #
+      # @return [String] isrc The ISRC string for this track.
+      #
+      alias_attribute :isrc, "external_ids.isrc"
     end
   end
 end

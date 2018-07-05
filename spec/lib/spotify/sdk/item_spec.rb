@@ -72,4 +72,10 @@ RSpec.describe Spotify::SDK::Item do
       expect(subject.spotify_url).to eq subject.external_urls[:spotify]
     end
   end
+
+  describe "#isrc" do
+    it "is an alias for #external_ids.isrc" do
+      expect(subject.isrc).to eq subject.external_ids[:isrc]
+    end
+  end
 end
