@@ -4,6 +4,18 @@ module Spotify
   class SDK
     class Item < Model
       ##
+      # Get the album for this item.
+      #
+      # @example
+      #   @sdk.connect.playback.item.album
+      #
+      # @return [Spotify::SDK::Album] album The album object, wrapped in Spotify::SDK::Album
+      #
+      def album
+        Spotify::SDK::Album.new(super, parent)
+      end
+
+      ##
       # Get the artists/creators for this item.
       #
       # @example

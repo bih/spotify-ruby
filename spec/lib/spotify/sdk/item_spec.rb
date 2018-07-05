@@ -12,6 +12,16 @@ RSpec.describe Spotify::SDK::Item do
     end
   end
 
+  describe "#album" do
+    it "should be wrapped in Spotify::SDK::Artist" do
+      expect(subject.album).to be_kind_of(Spotify::SDK::Album)
+    end
+
+    it "should contain the correct information" do
+      expect(subject.album.to_h).to eq raw_data[:album]
+    end
+  end
+
   describe "#artists" do
     it "should be an array of Spotify::SDK::Artist" do
       expect(subject.artists).not_to be_nil
