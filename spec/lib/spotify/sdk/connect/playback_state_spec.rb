@@ -48,6 +48,22 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
     end
   end
 
+  describe "#position" do
+    it "is an alias for #progress_ms" do
+      expect(subject.position).to eq subject.progress_ms
+    end
+  end
+
+  describe "#position_percentage" do
+    it "calculates the percentage to 2 decimal places based on #position and #item.duration_ms" do
+      expect(subject.position_percentage).to eq 92.32
+    end
+
+    it "calculates the percentage to N decimal places based on #position and #item.duration_ms" do
+      expect(subject.position_percentage(3)).to eq 92.317
+    end
+  end
+
   describe "#artists" do
     it "returns an Array of Spotify::SDK::Artist instances" do
       expect(subject.artists).to be_kind_of(Array)

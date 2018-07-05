@@ -71,6 +71,32 @@ module Spotify
         end
 
         ##
+        # What is the current position of the track?
+        #
+        # @example
+        #   playback = @sdk.connect.playback
+        #   playback.position
+        #
+        # @return [Integer] position_ms In milliseconds, the position of the track.
+        #
+        alias_attribute :position, :progress_ms
+
+        ##
+        # How much percentage of the track is the position currently in?
+        #
+        # @example
+        #   playback = @sdk.connect.playback
+        #   playback.position_percentage # => 7.30
+        #   playback.position_percentage(4) # => 7.3039
+        #
+        # @param [Integer] decimal_points How many decimal points to return
+        # @return [Float] percentage Completion percentage. Rounded to 2 decimal places.
+        #
+        def position_percentage(decimal_points = 2)
+          ((position.to_f / item.duration.to_f) * 100).ceil(decimal_points)
+        end
+
+        ##
         # Get the artists for the currently playing track.
         #
         # @example
