@@ -92,7 +92,7 @@ module Spotify
         # @param [Integer] decimal_points How many decimal points to return
         # @return [Float] percentage Completion percentage. Rounded to 2 decimal places.
         #
-        def position_percentage(decimal_points = 2)
+        def position_percentage(decimal_points=2)
           ((position.to_f / item.duration.to_f) * 100).ceil(decimal_points)
         end
 
