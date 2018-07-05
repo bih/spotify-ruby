@@ -26,6 +26,7 @@ RSpec.describe Spotify::SDK::Image do
 
   describe "#spotify_url" do
     it "is an alias for #url" do
+      expect(subject.spotify_uri).not_to be_nil
       expect(subject.spotify_url).to eq subject.url
     end
   end

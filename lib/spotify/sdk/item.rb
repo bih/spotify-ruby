@@ -56,11 +56,22 @@ module Spotify
       # Alias to self.is_local
       #
       # @example
-      #   @sdk.connect.playback.item.local? # => falsebi
+      #   @sdk.connect.playback.item.local? # => false
       #
       # @return [TrueClass,FalseClass] is_local Returns true if item is local to the user.
       #
       alias_attribute :local?, :is_local
+
+      ##
+      # Is this a playable track?
+      # Alias to self.is_playable
+      #
+      # @example
+      #   @sdk.connect.playback.item.playable? # => false
+      #
+      # @return [TrueClass,FalseClass] is_playable Returns true if item is playable.
+      #
+      alias_attribute :playable?, :is_playable
 
       ##
       # Is this a track?

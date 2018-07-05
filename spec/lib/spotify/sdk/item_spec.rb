@@ -14,6 +14,7 @@ RSpec.describe Spotify::SDK::Item do
 
   describe "#artists" do
     it "should be an array of Spotify::SDK::Artist" do
+      expect(subject.artists).not_to be_nil
       expect(subject.artists).to be_kind_of(Array)
       expect(subject.artists[0]).to be_kind_of(Spotify::SDK::Artist)
     end
@@ -21,31 +22,36 @@ RSpec.describe Spotify::SDK::Item do
 
   describe "#artist" do
     it "should be the same as artists.first" do
+      expect(subject.artist).not_to be_nil
       expect(subject.artist).to eq subject.artists.first
     end
   end
 
   describe "#duration" do
     it "is an alias for #duration_ms" do
+      expect(subject.duration).not_to be_nil
       expect(subject.duration).to eq subject.duration_ms
     end
   end
 
   describe "#explicit?" do
     it "is an alias for #explicit" do
+      expect(subject.explicit?).not_to be_nil
       expect(subject.explicit?).to eq subject.explicit
     end
   end
 
   describe "#local?" do
     it "is an alias for #is_local" do
+      expect(subject.local?).not_to be_nil
       expect(subject.local?).to eq subject.is_local
     end
   end
 
-  describe "#playback?" do
-    it "is an alias for #is_playback" do
-      expect(subject.playback?).to eq subject.is_playback
+  describe "#playable?" do
+    it "is an alias for #is_playable" do
+      expect(subject.playable?).not_to be_nil
+      expect(subject.playable?).to eq subject.is_playable
     end
   end
 
@@ -63,18 +69,21 @@ RSpec.describe Spotify::SDK::Item do
 
   describe "#spotify_uri" do
     it "is an alias for #uri" do
+      expect(subject.spotify_uri).not_to be_nil
       expect(subject.spotify_uri).to eq subject.uri
     end
   end
 
   describe "#spotify_url" do
     it "is an alias for #external_urls.spotify" do
+      expect(subject.spotify_url).not_to be_nil
       expect(subject.spotify_url).to eq subject.external_urls[:spotify]
     end
   end
 
   describe "#isrc" do
     it "is an alias for #external_ids.isrc" do
+      expect(subject.isrc).not_to be_nil
       expect(subject.isrc).to eq subject.external_ids[:isrc]
     end
   end

@@ -26,18 +26,21 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
 
   describe "#playing?" do
     it "is an alias for #is_playing" do
+      expect(subject.playing?).not_to be_nil
       expect(subject.playing?).to eq subject.is_playing
     end
   end
 
   describe "#shuffling?" do
     it "is an alias for #shuffle_state" do
+      expect(subject.shuffling?).not_to be_nil
       expect(subject.shuffling?).to eq subject.shuffle_state
     end
   end
 
   describe "#repeat_mode" do
     it "is a symbolized alias for #shuffle_state" do
+      expect(subject.repeat_mode).not_to be_nil
       expect(subject.repeat_mode).to eq subject.repeat_state.to_sym
     end
   end
@@ -50,6 +53,7 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
 
   describe "#position" do
     it "is an alias for #progress_ms" do
+      expect(subject.position).not_to be_nil
       expect(subject.position).to eq subject.progress_ms
     end
   end

@@ -252,6 +252,7 @@
     "href": "https://api.spotify.com/v1/tracks/1Nj2oBISdFDSF8eDuXcALz",
     "id": "1Nj2oBISdFDSF8eDuXcALz",
     "is_local": false,
+    "is_playable": true,
     "name": "Start Again (feat. Logic)",
     "popularity": 89,
     "preview_url":
