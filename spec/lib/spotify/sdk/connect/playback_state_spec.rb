@@ -60,11 +60,11 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
 
   describe "#position_percentage" do
     it "calculates the percentage to 2 decimal places based on #position and #item.duration_ms" do
-      expect(subject.position_percentage).to eq 92.32
+      expect(subject.position_percentage).to eq 53.63
     end
 
     it "calculates the percentage to N decimal places based on #position and #item.duration_ms" do
-      expect(subject.position_percentage(3)).to eq 92.317
+      expect(subject.position_percentage(3)).to eq 53.621
     end
   end
 

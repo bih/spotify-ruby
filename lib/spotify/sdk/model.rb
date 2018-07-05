@@ -38,6 +38,10 @@ module Spotify
         super.to_h.except(:parent)
       end
 
+      def to_json # :nodoc:
+        to_h.to_json
+      end
+
       ##
       # A reference to Spotify::SDK::Connect.
       #

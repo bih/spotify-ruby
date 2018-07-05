@@ -77,7 +77,7 @@ RSpec.describe Spotify::SDK::Connect do
       expect(device.id).to eq "941223d904f006c4d998598272d43d94"
       expect(device.is_active).to eq true
       expect(device.is_restricted).to eq false
-      expect(device.name).to eq "Bilawal’s MacBook Pro"
+      expect(device.name).to eq "John's MacBook Pro"
       expect(device.type).to eq "Computer"
       expect(device.volume_percent).to eq 100
     end

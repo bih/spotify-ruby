@@ -5,7 +5,7 @@
       "is_active": true,
       "is_private_session": true,
       "is_restricted": false,
-      "name": "Bilawal’s MacBook Pro",
+      "name": "John's MacBook Pro",
       "type": "Computer",
       "volume_percent": 100
     },
@@ -14,7 +14,7 @@
       "is_active": true,
       "is_private_session": false,
       "is_restricted": false,
-      "name": "Bilawal’s iPhone",
+      "name": "John's iPhone",
       "type": "Smartphone",
       "volume_percent": 100
     }
