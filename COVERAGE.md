@@ -120,22 +120,26 @@ This covers all the Spotify API endpoints that are covered.
 
 ### Connect Endpoints
 
-| Endpoint                  | Description                                       | Coverage Status                         |
-| ------------------------- | ------------------------------------------------- | --------------------------------------- |
-| GET /v1/me/player         | Get Information About The User's Current Playback | ×                                       |
-| GET /v1/me/player/devices | Get a User's Available Devices                    | [✔](/lib/spotify/sdk/connect.rb)        |
-| PUT /v1/me/player         | Transfer a User's Playback                        | [✔](/lib/spotify/sdk/connect/device.rb) |
+| Endpoint                  | Description                                       | Coverage Status                |
+| ------------------------- | ------------------------------------------------- | ------------------------------ |
+| GET /v1/me/player         | Get Information About The User's Current Playback | [✔][connect/playback_state.rb] |
+| GET /v1/me/player/devices | Get a User's Available Devices                    | [✔][connect.rb]                |
+| PUT /v1/me/player         | Transfer a User's Playback                        | [✔][connect/device.rb]         |
 
 ### Player Endpoints
 
-| Endpoint                            | Description                                 | Coverage Status                         |
-| ----------------------------------- | ------------------------------------------- | --------------------------------------- |
-| GET /v1/me/player/currently-playing | Get the User's Currently Playing Track      | ×                                       |
-| PUT /v1/me/player/play              | Start/Resume a User's Playback              | [✔](/lib/spotify/sdk/connect/device.rb) |
-| PUT /v1/me/player/pause             | Pause a User's Playback                     | [✔](/lib/spotify/sdk/connect/device.rb) |
-| POST /v1/me/player/next             | Skip User's Playback To Next Track          | [✔](/lib/spotify/sdk/connect/device.rb) |
-| POST /v1/me/player/previous         | Skip User's Playback To Previous Track      | [✔](/lib/spotify/sdk/connect/device.rb) |
-| PUT /v1/me/player/seek              | Seek To Position In Currently Playing Track | [✔](/lib/spotify/sdk/connect/device.rb) |
-| PUT /v1/me/player/repeat            | Set Repeat Mode On User's Playback          | [✔](/lib/spotify/sdk/connect/device.rb) |
-| PUT /v1/me/player/volume            | Set Volume For User's Playback              | [✔](/lib/spotify/sdk/connect/device.rb) |
-| PUT /v1/me/player/shuffle           | Toggle Shuffle For User's Playback          | [✔](/lib/spotify/sdk/connect/device.rb) |
+| Endpoint                            | Description                                 | Coverage Status        |
+| ----------------------------------- | ------------------------------------------- | ---------------------- |
+| GET /v1/me/player/currently-playing | Get the User's Currently Playing Track      | Unused                 |
+| PUT /v1/me/player/play              | Start/Resume a User's Playback              | [✔][connect/device.rb] |
+| PUT /v1/me/player/pause             | Pause a User's Playback                     | [✔][connect/device.rb] |
+| POST /v1/me/player/next             | Skip User's Playback To Next Track          | [✔][connect/device.rb] |
+| POST /v1/me/player/previous         | Skip User's Playback To Previous Track      | [✔][connect/device.rb] |
+| PUT /v1/me/player/seek              | Seek To Position In Currently Playing Track | [✔][connect/device.rb] |
+| PUT /v1/me/player/repeat            | Set Repeat Mode On User's Playback          | [✔][connect/device.rb] |
+| PUT /v1/me/player/volume            | Set Volume For User's Playback              | [✔][connect/device.rb] |
+| PUT /v1/me/player/shuffle           | Toggle Shuffle For User's Playback          | [✔][connect/device.rb] |
+
+[connect.rb]: /lib/spotify/sdk/connect.rb
+[connect/playback_state.rb]: /lib/spotify/sdk/connect/playback_state.rb
+[connect/device.rb]: /lib/spotify/sdk/connect/device.rb
