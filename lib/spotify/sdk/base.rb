@@ -38,21 +38,34 @@ module Spotify
       #   send_http_request(:get, "/v1/me/player/devices", @options)
       #
       #   # Return the raw HTTParty::Response object.
-      #   send_http_request(:get, "/v1/me/player/devices", @options.merge(raw: true))
+      #   send_http_request(:get, "/v1/me/player/devices", @options.merge({http_options: { raw: true }}))
       #
-      # @param [Hash,HTTParty::Response] response The response from the HTTP request.
-      # @return
+      #   # Return true for HTTP requests that return a 200 OK with an empty response.
+      #   send_http_request(:put, "/v1/me/player/pause", @options.merge({http_options: { expect_nil: true }}))
       #
-      def send_http_request(method, endpoint, opts={}, &_block)
-        sdk_opts = opts[:_sdk_opts].presence || {}
-        opts_sdk = {raw: false, expect_nil: false}.merge(sdk_opts)
-        response = self.class.send(method, endpoint, @options.merge(opts))
-        response = response.parsed_response.try(:deep_symbolize_keys) if opts_sdk[:raw] == false
-        response = true if opts_sdk[:expect_nil] == true && response.nil?
+      # @param [Symbol] method The HTTP method you want to perform. Examples are :get, :post, :put, :delete
+      # @param [String] endpoint The HTTP endpoint you'd like to call. Example: /v1/me
+      # @param [Hash] opts Any headers, HTTParty config or application-specific config (see `http_options`)
+      # @return [Hash,HTTParty::Response,TrueClass] response The response from the HTTP request.
+      #
+      # TODO: Address and fix cyclomatic & code complexity issues by Rubocop.
+      # rubocop:disable CyclomaticComplexity, AbcSize
+      def send_http_request(method, endpoint, opts={})
+        custom_opts = {
+          raw:        false,
+          expect_nil: false
+        }.merge(opts[:http_options].presence || {})
+
+        httparty = self.class.send(method, endpoint, @options.merge(opts))
+        response = httparty.parsed_response.try(:deep_symbolize_keys)
+        raise response[:error][:message] if response && response[:error].present?
+        return httparty if custom_opts[:raw] == true
+        response = custom_opts[:expect_nil] ? true : raise("No response returned") if response.nil?
         response
       end
+      # rubocop:enable CyclomaticComplexity, AbcSize
 
-      def inspect
+      def inspect # :nodoc:
         "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
       end
 

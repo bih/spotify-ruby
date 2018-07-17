@@ -14,6 +14,16 @@ WebMock.disable_net_connect!(allow_localhost: true)
 
 module Helpers
   ##
+  # Read fixture.
+  #
+  def read_fixture(fixture_filename)
+    dir = File.expand_path("../", __FILE__)
+    path = "/support/fixtures/%s.json"
+    raw_contents = File.read(dir + path % fixture_filename)
+    JSON.parse(raw_contents).deep_symbolize_keys
+  end
+
+  ##
   # Mock Spotify API requests.
   #
   def stub_spotify_api_request(fixture:, method:, endpoint:)

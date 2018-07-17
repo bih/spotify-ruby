@@ -2,6 +2,7 @@ AllCops:
   Exclude:
     - 'bin/console'
     - 'bin/console_local'
+    - 'bin/generate_model'
 
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:
@@ -91,6 +92,10 @@ Layout/MultilineOperationIndentation:
 # there's Kernel#abort for that.
 Style/SignalException:
   EnforcedStyle: only_raise
+
+# Use of alias_method in a class body context.
+Style/Alias:
+  Enabled: false
 
 # Suppressing exceptions can be perfectly fine, and be it to avoid to
 # explicitly type nil into the rescue since that's what you want to return,
