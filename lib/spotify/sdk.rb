@@ -11,6 +11,7 @@ require "spotify/sdk/me"
 # Models
 require "spotify/sdk/connect/device"
 require "spotify/sdk/connect/playback_state"
+require "spotify/sdk/me/info"
 require "spotify/sdk/artist"
 require "spotify/sdk/album"
 require "spotify/sdk/image"
@@ -70,7 +71,7 @@ module Spotify
     #
     SDK_COMPONENTS = {
       connect: Spotify::SDK::Connect,
-      me: Spotify::SDK::Me
+      me:      Spotify::SDK::Me
     }.freeze
 
     attr_reader(*SDK_COMPONENTS.keys)
