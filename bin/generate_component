@@ -10,7 +10,7 @@ module Spotify
     end
   end
 end
-""".strip
+""".strip + "\n"
 
 spec_contents = """
 # frozen_string_literal: true
@@ -21,7 +21,7 @@ RSpec.describe Spotify::SDK::%s do
   # let(:session) { build(:session, access_token: \"access_token\") }
   # subject { Spotify::SDK.new(session).%s }
 end
-""".strip
+""".strip + "\n"
 
 class StringManipulation < Struct.new(:name)
   def perform

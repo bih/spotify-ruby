@@ -11,7 +11,7 @@ module Spotify
     end
   end
 end
-""".strip
+""".strip + "\n"
 
 spec_contents = """
 # frozen_string_literal: true
@@ -28,7 +28,7 @@ RSpec.describe Spotify::SDK::%s do
   #   end
   # end
 end
-""".strip
+""".strip + "\n"
 
 factory_contents = """
 # frozen_string_literal: true
