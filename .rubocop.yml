@@ -3,6 +3,7 @@ AllCops:
     - 'bin/console'
     - 'bin/console_local'
     - 'bin/generate_model'
+    - 'bin/generate_component'
 
 # Commonly used screens these days easily fit more than 80 characters.
 Metrics/LineLength:
