@@ -69,7 +69,8 @@ module Spotify
     # - Make sure to a test for it in spec/lib/spotify/sdk_spec.rb (see how we did it for others)
     #
     SDK_COMPONENTS = {
-      connect: Spotify::SDK::Connect
+      connect: Spotify::SDK::Connect,
+      me: Spotify::SDK::Me
     }.freeze
 
     attr_reader(*SDK_COMPONENTS.keys)
