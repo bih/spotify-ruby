@@ -32,15 +32,15 @@ The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
 
 ## Introduction
 
-Hey! I'm a Developer Advocate at [Spotify], and I wrote this Ruby SDK to explore how to build a SDK that is:
+Hey! I'm a Developer Advocate at [Spotify], and I wrote this Ruby SDK to explore how to build a SDK that is TADA:
 
-- **🧒 Thoughtfully inclusive for beginners.** Everything we do should make it easy for beginners. Everything. That means documentation, tooling, and the feedback we give. We believe there is no such idea as bad code.
+- **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the beginning. Everything. That includes documentation, tooling, and the feedback we give. Designing for beginners is designing for longevity.
 
-- **✨ A maintained production-level.** We should write software for tomorrow, not today. Great tests help us & others understand and trust what we intended. We firmly believe beginners, with the right guidance, can ship a meaningful production-level change in less than 24 hours.
+- **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with major changes. We only depend on critical data, such as IDs.
 
-- **☁️ Agnostic to minor changes.** APIs and SDKs should be able to make minor changes without breaking the software we're writing. We only make our opinions on major changes and we only depend on critical data, such as IDs.
+- **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
 
-- **🌈 Delightful for developers.** Writing and using this SDK should be an equally delightful experience. This is an challenging goal, but we believe with solid information architecture, well-crafted assumptions, clear and helpful error messages, and software that doesn't get in your way will create magical software.
+- **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software expecting it to be used in the next 5 years. Great tests help us & others understand and trust what we intended.
 
 *Disclaimer: This SDK is NOT owned or supported by Spotify. It remains a personal project of mine. If you are a commercial partner of Spotify and wish to use this SDK, be aware you are using it at your own risk.*
 
