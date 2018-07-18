@@ -1,8 +1,14 @@
 # frozen_string_literal: true
 
+# Scaffolding
 require "spotify/sdk/base"
 require "spotify/sdk/model"
+
+# Components
 require "spotify/sdk/connect"
+require "spotify/sdk/me"
+
+# Models
 require "spotify/sdk/connect/device"
 require "spotify/sdk/connect/playback_state"
 require "spotify/sdk/artist"
