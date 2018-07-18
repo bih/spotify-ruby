@@ -1,0 +1,90 @@
+#!/usr/bin/env ruby
+# frozen_string_literal: true
+
+component_contents = """
+# frozen_string_literal: true
+
+module Spotify
+  class SDK
+    class %s < Base
+    end
+  end
+end
+""".strip
+
+spec_contents = """
+# frozen_string_literal: true
+
+require \"spec_helper\"
+
+RSpec.describe Spotify::SDK::%s do
+  # let(:session) { build(:session, access_token: \"access_token\") }
+  # subject { Spotify::SDK.new(session).%s }
+end
+""".strip
+
+class StringManipulation < Struct.new(:name)
+  def perform
+    [
+      name,
+      klass_name
+    ]
+  end
+
+  private
+
+  def klass_name
+    @klass_name = name.gsub(/[^a-zA-Z_]/i, "").downcase
+    raise "Name must exist" if @klass_name.length == 0
+    raise "Name must only contain lowercase letters and/or underscores" if @klass_name != name
+    @klass_name.split(/[_]/).reduce("") do |acc, word|
+      acc + word[0].upcase + word[1..-1].downcase
+    end
+  end
+end
+
+class FileGenerator < Struct.new(:type, :path, :contents)
+  def perform!
+    check_if_already_exists!
+    write_to_file!
+    puts "-> Generated #{type} in #{path}"
+  end
+
+  private
+
+  def full_path
+    @full_path ||= File.expand_path(path)
+  end
+
+  def check_if_already_exists!
+    raise "File #{file_path} already exists" if File.exist?(full_path)
+  end
+
+  def write_to_file!
+    file = File.open(full_path, "w+")
+    file.write(contents)
+    file.close
+  end
+end
+
+begin
+  name, klass_name = StringManipulation.new(ARGV[0]).perform
+
+  # Generate the actual model.
+  component = FileGenerator.new
+  component.type = :component
+  component.path = "lib/spotify/sdk/%s.rb" % name
+  component.contents = component_contents % klass_name
+  component.perform!
+
+  # Generate the spec file.
+  spec = FileGenerator.new
+  spec.type = :spec
+  spec.path = "spec/lib/spotify/sdk/%s_spec.rb" % name
+  spec.contents = spec_contents % [klass_name, name]
+  spec.perform!
+
+  puts "SUCCESS: You just need to include it in lib/spotify/sdk.rb"
+rescue StandardError => error
+  puts "ERROR: #{error}"
+end
