@@ -1,0 +1,25 @@
+{
+  "birthdate": "1980-02-01",
+  "country": "SE",
+  "display_name": null,
+  "email": "testuser@bih.github.io",
+  "external_urls": {
+    "spotify": "https://open.spotify.com/user/testuserbihgithub"
+  },
+  "followers": {
+    "href": null,
+    "total": 12345
+  },
+  "href": "https://api.spotify.com/v1/users/testuserbihgithub",
+  "id": "testuserbihgithub",
+  "images": [
+    {
+      "height": null,
+      "url": "https://0.gravatar.com/avatar/ce6a1733121f504ac02a350fcaec1a1c",
+      "width": null
+    }
+  ],
+  "product": "premium",
+  "type": "user",
+  "uri": "spotify:user:testuserbihgithub"
+}
