@@ -28,6 +28,28 @@ module Spotify
         def display_name?
           !display_name.to_s.empty?
         end
+
+        ##
+        # Get the Spotify URI for this user.
+        # Alias to self.uri
+        #
+        # @example
+        #   @sdk.me.info.spotify_uri # => "spotify:user:..."
+        #
+        # @return [String] spotify_uri The direct URI to this Spotify resource.
+        #
+        alias_attribute :spotify_uri, :uri
+
+        ##
+        # Get the Spotify HTTP URL for this user.
+        # Alias to self.external_urls[:spotify]
+        #
+        # @example
+        #   @sdk.me.info.spotify_url # => "https://open.spotify.com/..."
+        #
+        # @return [String] spotify_url The direct HTTP URL to this Spotify resource.
+        #
+        alias_attribute :spotify_url, "external_urls.spotify"
       end
     end
   end

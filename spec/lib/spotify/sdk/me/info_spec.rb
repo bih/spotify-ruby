@@ -37,4 +37,18 @@ RSpec.describe Spotify::SDK::Me::Info do
       expect(subject.display_name?).to be false
     end
   end
+
+  describe "#spotify_uri" do
+    it "is an alias for #uri" do
+      expect(subject.spotify_uri).not_to be_nil
+      expect(subject.spotify_uri).to eq subject.uri
+    end
+  end
+
+  describe "#spotify_url" do
+    it "is an alias for #external_urls[:spotify]" do
+      expect(subject.spotify_url).not_to be_nil
+      expect(subject.spotify_url).to eq subject.external_urls[:spotify]
+    end
+  end
 end
