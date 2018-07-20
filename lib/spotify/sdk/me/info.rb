@@ -30,6 +30,21 @@ module Spotify
         end
 
         ##
+        # Get the images for the user.
+        #
+        # @example
+        #   @sdk.me.info.images[0].spotify_uri # => "spotify:image:..."
+        #   @sdk.me.info.images[0].spotify_url # => "https://profile-images.scdn.co/..."
+        #
+        # @return [Array] images A list of all user photos wrapped in Spotify::SDK::Image
+        #
+        def images
+          super.map do |image|
+            Spotify::SDK::Image.new(image, parent)
+          end
+        end
+
+        ##
         # Get the Spotify URI for this user.
         # Alias to self.uri
         #

@@ -38,6 +38,14 @@ RSpec.describe Spotify::SDK::Me::Info do
     end
   end
 
+  describe "#images" do
+    it "returns an array of Spotify::SDK::Image" do
+      expect(subject.images).to be_kind_of(Array)
+      expect(subject.images[0]).to be_kind_of(Spotify::SDK::Image)
+      expect(subject.images[0].to_h).to eq raw_data[:images][0]
+    end
+  end
+
   describe "#spotify_uri" do
     it "is an alias for #uri" do
       expect(subject.spotify_uri).not_to be_nil
