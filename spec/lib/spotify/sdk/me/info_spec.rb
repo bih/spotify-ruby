@@ -13,4 +13,16 @@ RSpec.describe Spotify::SDK::Me::Info do
       expect(subject.to_h).to eq raw_data
     end
   end
+
+  describe "#birthdate" do
+    it "returns a Date object with the correct value" do
+      expect(subject.birthdate).to be_kind_of(Date)
+      expect(subject.birthdate.to_s).to eq raw_data[:birthdate]
+    end
+
+    it "returns nil if the value is nil" do
+      subject.birthdate = nil
+      expect(subject.birthdate).to be_nil
+    end
+  end
 end
