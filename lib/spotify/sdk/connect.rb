@@ -15,7 +15,7 @@ module Spotify
       #
       # @param [String] market The market you'd like to request.
       # @param [Hash] override_opts Custom options for HTTParty.
-      # @return [Spotify::SDK::Connect::PlaybackState] self Return the playback state object.
+      # @return [Spotify::SDK::Connect::PlaybackState] playback_state Return the playback state object.
       #
       def playback(market="from_token", override_opts={})
         playback_state = send_http_request(:get, "/v1/me/player?market=%s" % market, override_opts)
@@ -53,7 +53,7 @@ module Spotify
       # @return [Array] devices A list of all devices that are marked as `is_active`.
       #
       def active_devices(override_opts={})
-        devices(override_opts).select {|device| device.is_active == true }
+        devices(override_opts).select(&:active?)
       end
 
       ##
@@ -68,7 +68,7 @@ module Spotify
       # @return [Array,NilClass] device The first device with `is_active`. If no device found, returns `nil`.
       #
       def active_device(override_opts={})
-        devices(override_opts).find {|device| device.is_active == true }
+        devices(override_opts).find(&:active?)
       end
     end
   end
