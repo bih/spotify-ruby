@@ -46,6 +46,13 @@ RSpec.describe Spotify::SDK::Me::Info do
     end
   end
 
+  describe "#followers" do
+    it "is an alias for #to_h[:followers][:total]" do
+      expect(subject.followers).not_to be_nil
+      expect(subject.followers).to eq subject.to_h[:followers][:total]
+    end
+  end
+
   describe "#spotify_uri" do
     it "is an alias for #uri" do
       expect(subject.spotify_uri).not_to be_nil

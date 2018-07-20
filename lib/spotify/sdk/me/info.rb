@@ -45,6 +45,19 @@ module Spotify
         end
 
         ##
+        # Return the followers on Spotify for this user.
+        #
+        # @example
+        #   me = @sdk.me.info
+        #   me.followers # => 13913
+        #
+        # @return [Integer] followers The number of users following this user.
+        #
+        def followers
+          super[:total]
+        end
+
+        ##
         # Get the Spotify URI for this user.
         # Alias to self.uri
         #
