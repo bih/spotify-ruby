@@ -25,4 +25,16 @@ RSpec.describe Spotify::SDK::Me::Info do
       expect(subject.birthdate).to be_nil
     end
   end
+
+  describe "#display_name?" do
+    it "returns true if #display_name is not empty" do
+      subject.display_name = "Sample Display Name"
+      expect(subject.display_name?).to be true
+    end
+
+    it "returns false if #display_name is empty" do
+      subject.display_name = nil
+      expect(subject.display_name?).to be false
+    end
+  end
 end
