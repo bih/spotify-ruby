@@ -5,6 +5,30 @@ module Spotify
     class Me
       class Info < Model
         ##
+        # Is the user currently on Spotify Free?
+        #
+        # @example
+        #   @sdk.me.info.free?
+        #
+        # @return [TrueClass,FalseClass] is_free Return true if user is on Spotify Free.
+        #
+        def free?
+          product == "free"
+        end
+
+        ##
+        # Is the user currently on Spotify Premium?
+        #
+        # @example
+        #   @sdk.me.info.premium?
+        #
+        # @return [TrueClass,FalseClass] is_premium Return true if user is on Spotify Premium.
+        #
+        def premium?
+          product == "premium"
+        end
+
+        ##
         # Get the user's birthdate.
         # Requires the `user-read-birthdate` scope, otherwise it will return nil.
         #

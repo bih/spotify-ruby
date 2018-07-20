@@ -14,6 +14,34 @@ RSpec.describe Spotify::SDK::Me::Info do
     end
   end
 
+  describe "#free?" do
+    it "returns true if product equals free" do
+      subject.product = "free"
+      expect(subject.product).to eq "free"
+      expect(subject.free?).to be true
+    end
+
+    it "returns false if product does not equal free" do
+      subject.product = "premium"
+      expect(subject.product).to eq "premium"
+      expect(subject.free?).to be false
+    end
+  end
+
+  describe "#premium?" do
+    it "returns true if product equals premium" do
+      subject.product = "premium"
+      expect(subject.product).to eq "premium"
+      expect(subject.premium?).to be true
+    end
+
+    it "returns false if product does not equal premium" do
+      subject.product = "free"
+      expect(subject.product).to eq "free"
+      expect(subject.premium?).to be false
+    end
+  end
+
   describe "#birthdate" do
     it "returns a Date object with the correct value" do
       expect(subject.birthdate).to be_kind_of(Date)
