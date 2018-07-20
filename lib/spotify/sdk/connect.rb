@@ -53,7 +53,7 @@ module Spotify
       # @return [Array] devices A list of all devices that are marked as `is_active`.
       #
       def active_devices(override_opts={})
-        devices(override_opts).select {|device| device.is_active == true }
+        devices(override_opts).select(&:active?)
       end
 
       ##
@@ -68,7 +68,7 @@ module Spotify
       # @return [Array,NilClass] device The first device with `is_active`. If no device found, returns `nil`.
       #
       def active_device(override_opts={})
-        devices(override_opts).find {|device| device.is_active == true }
+        devices(override_opts).find(&:active?)
       end
     end
   end
