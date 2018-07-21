@@ -1,10 +1,17 @@
 # frozen_string_literal: true
 
+# Scaffolding
 require "spotify/sdk/base"
 require "spotify/sdk/model"
+
+# Components
 require "spotify/sdk/connect"
+require "spotify/sdk/me"
+
+# Models
 require "spotify/sdk/connect/device"
 require "spotify/sdk/connect/playback_state"
+require "spotify/sdk/me/info"
 require "spotify/sdk/artist"
 require "spotify/sdk/album"
 require "spotify/sdk/image"
@@ -63,7 +70,8 @@ module Spotify
     # - Make sure to a test for it in spec/lib/spotify/sdk_spec.rb (see how we did it for others)
     #
     SDK_COMPONENTS = {
-      connect: Spotify::SDK::Connect
+      connect: Spotify::SDK::Connect,
+      me:      Spotify::SDK::Me
     }.freeze
 
     attr_reader(*SDK_COMPONENTS.keys)

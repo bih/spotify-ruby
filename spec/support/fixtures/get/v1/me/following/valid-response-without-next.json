@@ -1,0 +1,358 @@
+{
+  "artists": {
+    "items": [
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0CjWKoS55T7DOt0HJuwF1H"
+        },
+        "followers": {
+          "href": null,
+          "total": 56972
+        },
+        "genres": ["gauze pop"],
+        "href": "https://api.spotify.com/v1/artists/0CjWKoS55T7DOt0HJuwF1H",
+        "id": "0CjWKoS55T7DOt0HJuwF1H",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/e32ebad0599b9973566641d6b6cd40fbe2fac49f",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/a2472ba8cea1a66dbf9ef321c8c434d58d014c62",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/7771dbf4976e72649a90021e91a3ed39cd43d36e",
+            "width": 160
+          }
+        ],
+        "name": "Bipolar Sunshine",
+        "popularity": 63,
+        "type": "artist",
+        "uri": "spotify:artist:0CjWKoS55T7DOt0HJuwF1H"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0c173mlxpT3dSFRgMO8XPh"
+        },
+        "followers": {
+          "href": null,
+          "total": 4540516
+        },
+        "genres": [
+          "detroit hip hop",
+          "hip hop",
+          "pop",
+          "pop rap",
+          "rap",
+          "southern hip hop",
+          "trap music"
+        ],
+        "href": "https://api.spotify.com/v1/artists/0c173mlxpT3dSFRgMO8XPh",
+        "id": "0c173mlxpT3dSFRgMO8XPh",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/7af4c101861c482e6fdd9f33f73d037f136afe36",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/3e078572245ba8875cc2f04fa9ac817d1aaccaff",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/75050184de713540aab408913f2b2d53cb45974f",
+            "width": 160
+          }
+        ],
+        "name": "Big Sean",
+        "popularity": 82,
+        "type": "artist",
+        "uri": "spotify:artist:0c173mlxpT3dSFRgMO8XPh"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0hCNtLu0JehylgoiP8L4Gh"
+        },
+        "followers": {
+          "href": null,
+          "total": 11688242
+        },
+        "genres": ["dance pop", "hip pop", "pop", "pop rap"],
+        "href": "https://api.spotify.com/v1/artists/0hCNtLu0JehylgoiP8L4Gh",
+        "id": "0hCNtLu0JehylgoiP8L4Gh",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/0a1b363175056a5a21b24b57f1a959d63fd162b1",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/3f0d8976b4771834103b63aa1b60e98d9e95309f",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/36ea258428727a6c9f8b5a6dbe990d5f4957f48a",
+            "width": 160
+          }
+        ],
+        "name": "Nicki Minaj",
+        "popularity": 88,
+        "type": "artist",
+        "uri": "spotify:artist:0hCNtLu0JehylgoiP8L4Gh"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/0jnsk9HBra6NMjO2oANoPY"
+        },
+        "followers": {
+          "href": null,
+          "total": 6119137
+        },
+        "genres": ["dance pop", "edm", "pop", "pop rap"],
+        "href": "https://api.spotify.com/v1/artists/0jnsk9HBra6NMjO2oANoPY",
+        "id": "0jnsk9HBra6NMjO2oANoPY",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/2d0b5f483c7ed95b7c3c63147c3d38f9366b2c21",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/98f6070f467c5b95e09505aeda1aa5b48d1a133d",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/d1a78628d48a855d51ab7d74b6d78c22ee8a2b63",
+            "width": 160
+          }
+        ],
+        "name": "Flo Rida",
+        "popularity": 76,
+        "type": "artist",
+        "uri": "spotify:artist:0jnsk9HBra6NMjO2oANoPY"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1Cs0zKBU1kc0i8ypK3B9ai"
+        },
+        "followers": {
+          "href": null,
+          "total": 15053701
+        },
+        "genres": ["dance pop", "edm", "pop"],
+        "href": "https://api.spotify.com/v1/artists/1Cs0zKBU1kc0i8ypK3B9ai",
+        "id": "1Cs0zKBU1kc0i8ypK3B9ai",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/86a387d8f8154a8c4956865c84283aade9dd3969",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/ae5e9e580b6aac48481362a44c7740131e18be54",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/c2714423228a8012ad37af0186447cbb7ff589f7",
+            "width": 160
+          }
+        ],
+        "name": "David Guetta",
+        "popularity": 86,
+        "type": "artist",
+        "uri": "spotify:artist:1Cs0zKBU1kc0i8ypK3B9ai"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1HOeqtP7tHkKNJNLzQ2tnr"
+        },
+        "followers": {
+          "href": null,
+          "total": 152220
+        },
+        "genres": [
+          "alt-indie rock",
+          "alternative dance",
+          "indie rock",
+          "indietronica",
+          "modern rock",
+          "new rave"
+        ],
+        "href": "https://api.spotify.com/v1/artists/1HOeqtP7tHkKNJNLzQ2tnr",
+        "id": "1HOeqtP7tHkKNJNLzQ2tnr",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/714c6fcc837d2326ee812a405bf68a1880c27ebf",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/45e2b2fada5b644057b503bc2dd17a73f4a0cff1",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/00d097f04df3c2b2a98d89a4a96a928943955c8e",
+            "width": 160
+          }
+        ],
+        "name": "Everything Everything",
+        "popularity": 52,
+        "type": "artist",
+        "uri": "spotify:artist:1HOeqtP7tHkKNJNLzQ2tnr"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1buzCmyYZE4kcdLRudsb8V"
+        },
+        "followers": {
+          "href": null,
+          "total": 105037
+        },
+        "genres": ["indietronica"],
+        "href": "https://api.spotify.com/v1/artists/1buzCmyYZE4kcdLRudsb8V",
+        "id": "1buzCmyYZE4kcdLRudsb8V",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/aa80693e1bfb69cbadcb1878d1a156d54e4f032a",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/909f8bb27dd078a42daf84e6a992b77811012025",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/fa78333915578f569027f18b152b45f969d1c339",
+            "width": 160
+          }
+        ],
+        "name": "Mikky Ekko",
+        "popularity": 62,
+        "type": "artist",
+        "uri": "spotify:artist:1buzCmyYZE4kcdLRudsb8V"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1sdnOXw9epamqw5ERPK8T5"
+        },
+        "followers": {
+          "href": null,
+          "total": 3022
+        },
+        "genres": [],
+        "href": "https://api.spotify.com/v1/artists/1sdnOXw9epamqw5ERPK8T5",
+        "id": "1sdnOXw9epamqw5ERPK8T5",
+        "images": [
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/a245905adea3e640b62d6afc69173e49b2913988",
+            "width": 640
+          },
+          {
+            "height": 320,
+            "url":
+              "https://i.scdn.co/image/6f6027b7ef5b1fbd0b22edb69c14ff83d04aa32d",
+            "width": 320
+          },
+          {
+            "height": 160,
+            "url":
+              "https://i.scdn.co/image/675aeed9d4d200aa78594a6b55a65bc00e213565",
+            "width": 160
+          }
+        ],
+        "name": "VALNTN",
+        "popularity": 41,
+        "type": "artist",
+        "uri": "spotify:artist:1sdnOXw9epamqw5ERPK8T5"
+      },
+      {
+        "external_urls": {
+          "spotify": "https://open.spotify.com/artist/1uNFoZAHBGtllmzznpCI3s"
+        },
+        "followers": {
+          "href": null,
+          "total": 23852484
+        },
+        "genres": ["canadian pop", "dance pop", "pop", "post-teen pop"],
+        "href": "https://api.spotify.com/v1/artists/1uNFoZAHBGtllmzznpCI3s",
+        "id": "1uNFoZAHBGtllmzznpCI3s",
+        "images": [
+          {
+            "height": 1000,
+            "url":
+              "https://i.scdn.co/image/5c3cf2ee3494e2da71dcf26303202ec491b26213",
+            "width": 1000
+          },
+          {
+            "height": 640,
+            "url":
+              "https://i.scdn.co/image/2e451efa87b706098553583cffac821b7ebac450",
+            "width": 640
+          },
+          {
+            "height": 200,
+            "url":
+              "https://i.scdn.co/image/ca283ddea2afc65c15d802d45ee3d3fd255ab4e2",
+            "width": 200
+          },
+          {
+            "height": 64,
+            "url":
+              "https://i.scdn.co/image/ce41eb4beaad8d07fd55a68aba16b27e341a2e4f",
+            "width": 64
+          }
+        ],
+        "name": "Justin Bieber",
+        "popularity": 84,
+        "type": "artist",
+        "uri": "spotify:artist:1uNFoZAHBGtllmzznpCI3s"
+      }
+    ],
+    "next": null,
+    "total": 10,
+    "cursors": {
+      "after": null
+    },
+    "limit": 50,
+    "href": "https://api.spotify.com/v1/me/following?type=artist&limit=50"
+  }
+}

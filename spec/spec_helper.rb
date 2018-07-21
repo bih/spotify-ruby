@@ -5,6 +5,7 @@ require "spotify"
 require "factory_bot"
 require "coveralls"
 require "webmock/rspec"
+require "rspec/collection_matchers"
 
 # Code coverage.
 Coveralls.wear!

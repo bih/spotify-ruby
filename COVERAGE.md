@@ -48,7 +48,7 @@ This covers all the Spotify API endpoints that are covered.
 | Endpoint                | Description                | Coverage Status |
 | ----------------------- | -------------------------- | --------------- |
 | GET /v1/users/{user_id} | Get a User's Profile       | ×               |
-| GET /v1/me              | Get Current User's Profile | ×               |
+| GET /v1/me              | Get Current User's Profile | [me/info.rb]    |
 
 ### Saved Content Endpoints
 
@@ -143,3 +143,5 @@ This covers all the Spotify API endpoints that are covered.
 [connect.rb]: /lib/spotify/sdk/connect.rb
 [connect/playback_state.rb]: /lib/spotify/sdk/connect/playback_state.rb
 [connect/device.rb]: /lib/spotify/sdk/connect/device.rb
+[me.rb]: /lib/spotify/sdk/me.rb
+[me/info.rb]: /lib/spotify/sdk/me/info.rb
