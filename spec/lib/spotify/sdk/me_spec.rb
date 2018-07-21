@@ -59,7 +59,7 @@ RSpec.describe Spotify::SDK::Me do
       artists = build_list(:artist, 50)
       artists_string = artists.map(&:id).join(",")
 
-      expected_response = read_fixture(fixture).each_with_index.map {|response, index|
+      expected_response = read_fixture("get/v1/me/following/contains/response").each_with_index.map {|response, index|
         {artists[index].id => response}
       }.reduce(:merge)
 
