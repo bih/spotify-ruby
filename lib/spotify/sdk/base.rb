@@ -49,21 +49,22 @@ module Spotify
       # @return [Hash,HTTParty::Response,TrueClass] response The response from the HTTP request.
       #
       # TODO: Address and fix cyclomatic & code complexity issues by Rubocop.
-      # rubocop:disable CyclomaticComplexity, AbcSize
-      def send_http_request(method, endpoint, opts={})
-        custom_opts = {
+      # rubocop:disable CyclomaticComplexity, PerceivedComplexity, AbcSize
+      def send_http_request(method, endpoint, override_opts={})
+        opts = {
           raw:        false,
           expect_nil: false
-        }.merge(opts[:http_options].presence || {})
+        }.merge(override_opts[:http_options].presence || {})
 
-        httparty = self.class.send(method, endpoint, @options.merge(opts))
-        response = httparty.parsed_response.try(:deep_symbolize_keys)
-        raise response[:error][:message] if response && response[:error].present?
-        return httparty if custom_opts[:raw] == true
-        response = custom_opts[:expect_nil] ? true : raise("No response returned") if response.nil?
+        httparty = self.class.send(method, endpoint, @options.merge(override_opts))
+        response = httparty.parsed_response
+        response = response.try(:deep_symbolize_keys) || response
+        raise response[:error][:message] if response.is_a?(Hash) && response[:error].present?
+        return httparty if opts[:raw] == true
+        response = opts[:expect_nil] ? true : raise("No response returned") if response.nil?
         response
       end
-      # rubocop:enable CyclomaticComplexity, AbcSize
+      # rubocop:enable CyclomaticComplexity, PerceivedComplexity, AbcSize
 
       def inspect # :nodoc:
         "#<%s:0x00%x>" % [self.class.name, (object_id << 1)]
