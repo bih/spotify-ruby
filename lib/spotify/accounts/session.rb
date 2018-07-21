@@ -10,6 +10,9 @@ module Spotify
         ##
         # Parse the response we collect from the authorization code.
         #
+        # @example
+        #   @session = Spotify::Accounts.from_authorization_code(@accounts, "authorization code here")
+        #
         # @param [Spotify::Accounts] accounts A valid instance of Spotify::Accounts.
         # @param [String] code The code provided in the Redirect URI from the Spotify Accounts API.
         # @response [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session
