@@ -36,6 +36,36 @@ module Spotify
       end
 
       ##
+      # Follow the artist.
+      # Requires the `user-follow-modify` scope.
+      # PUT /v1/me/following
+      #
+      # @example
+      #   @sdk.playback.item.artist.follow!
+      #
+      # @return [Spotify::SDK::Artist] self Return the artist object, for chaining methods.
+      #
+      def follow!
+        parent.send_http_request(:put, "/v1/me/following?type=artist&ids=%s" % id, http_options: {expect_nil: true})
+        self
+      end
+
+      ##
+      # Unfollow the artist.
+      # Requires the `user-follow-modify` scope.
+      # DELETE /v1/me/following
+      #
+      # @example
+      #   @sdk.playback.item.artist.unfollow!
+      #
+      # @return [Spotify::SDK::Artist] self Return the artist object, for chaining methods.
+      #
+      def unfollow!
+        parent.send_http_request(:delete, "/v1/me/following?type=artist&ids=%s" % id, http_options: {expect_nil: true})
+        self
+      end
+
+      ##
       # Display the artist's images. If not obtained, request them from the API.
       #
       # @example
