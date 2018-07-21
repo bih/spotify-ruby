@@ -89,7 +89,7 @@ This covers all the Spotify API endpoints that are covered.
 
 | Endpoint                                                           | Description                                    | Coverage Status |
 | ------------------------------------------------------------------ | ---------------------------------------------- | --------------- |
-| GET /v1/me/following                                               | Get Followed Artists                           | ×               |
+| GET /v1/me/following                                               | Get Followed Artists                           | [me.rb]         |
 | GET /v1/me/following/contains                                      | Check if Current User Follows Artists or Users | ×               |
 | PUT /v1/me/following                                               | Follow Artists or Users                        | ×               |
 | DELETE /v1/me/following                                            | Unfollow Artists or Users                      | ×               |
