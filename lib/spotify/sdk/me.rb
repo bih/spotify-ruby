@@ -23,6 +23,16 @@ module Spotify
       end
 
       ##
+      # Check if the current user is following N users.
+      #
+      def following?(list, type=:artist, override_opts={})
+        raise "Must contain an array" unless list.is_a?(Array)
+        raise "Must contain an array of String or Spotify::SDK::Artist" if any_of?(list, [String, Spotify::SDK::Artist])
+        raise "type must be either 'artist' or 'user'" unless %i[artist user].include?(type)
+        send_is_following_http_requests(list.map {|id| id.try(:id) || id }, type, override_opts)
+      end
+
+      ##
       # Get the current user's followed artists. Requires the `user-read-follow` scope.
       # GET /v1/me/following
       #
@@ -33,7 +43,7 @@ module Spotify
       # @return [Array] artists A list of followed artists, wrapped in Spotify::SDK::Artist
       #
       def following(override_opts={})
-        artists = send_multiple_following_http_requests("/v1/me/following?type=artist&limit=50", override_opts)
+        artists = send_following_http_requests("/v1/me/following?type=artist&limit=50", override_opts)
         artists.map do |artist|
           Spotify::SDK::Artist.new(artist, self)
         end
@@ -41,10 +51,31 @@ module Spotify
 
       private
 
-      def send_multiple_following_http_requests(http_path, override_opts) # :nodoc:
+      def any_of?(array, klasses)
+        (array.map(&:class) - klasses).any?
+      end
+
+      def send_is_following_http_requests(list, type, override_opts) # :nodoc:
+        max_ids = list.first(50)
+        remaining_ids = list - max_ids
+
+        ids = max_ids.map {|id| {id.strip => nil} }.inject(&:merge)
+        following = send_http_request(
+          :get,
+          "/v1/me/following/contains?type=%s&ids=%s" % [type, ids.keys.join(",")],
+          override_opts
+        )
+        ids.each_key {|id| ids[id] = following.shift }
+
+        if remaining_ids.any?
+          ids.merge(send_is_following_http_requests(remaining_ids, type, override_opts))
+        end || ids
+      end
+
+      def send_following_http_requests(http_path, override_opts) # :nodoc:
         request = send_http_request(:get, http_path, override_opts)[:artists]
         artists = request[:items]
-        artists << send_multiple_following_http_requests(request[:next][23..-1], override_opts) if request[:next]
+        artists << send_following_http_requests(request[:next][23..-1], override_opts) if request[:next]
         artists.flatten
       end
     end

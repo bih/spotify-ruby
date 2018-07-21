@@ -21,7 +21,8 @@ module Helpers
     dir = File.expand_path("../", __FILE__)
     path = "/support/fixtures/%s.json"
     raw_contents = File.read(dir + path % fixture_filename)
-    JSON.parse(raw_contents).deep_symbolize_keys
+    response = JSON.parse(raw_contents)
+    response.try(:deep_symbolize_keys) || response
   end
 
   ##
