@@ -39,6 +39,28 @@ RSpec.describe Spotify::SDK::Artist do
       end
     end
 
+    describe "#follow!" do
+      it "should make an api call" do
+        stub = stub_request(:put, "https://api.spotify.com/v1/me/following?type=artist&ids=%s" % raw_data[:id])
+               .with(headers: {Authorization: "Bearer access_token"})
+
+        subject.follow!
+
+        expect(stub).to have_been_requested.times(1)
+      end
+    end
+
+    describe "#unfollow!" do
+      it "should make an api call" do
+        stub = stub_request(:delete, "https://api.spotify.com/v1/me/following?type=artist&ids=%s" % raw_data[:id])
+               .with(headers: {Authorization: "Bearer access_token"})
+
+        subject.unfollow!
+
+        expect(stub).to have_been_requested.times(1)
+      end
+    end
+
     describe "#images" do
       let(:images) { read_fixture("get/v1/artist/full-object")[:images] }
       before(:each) do
