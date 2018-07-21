@@ -36,6 +36,50 @@ module Spotify
       end
 
       ##
+      # Helper method for setting the following status.
+      # Requires the `user-follow-modify` scope.
+      # If true, PUT /v1/me/following otherwise DELETE /v1/me/following
+      #
+      # @example
+      #   @sdk.playback.item.artist.following = true
+      #   @sdk.playback.item.artist.following = false
+      #
+      def following=(should_follow)
+        raise "#following= must be true or false" unless [true, false].include?(should_follow)
+        should_follow ? follow! : unfollow!
+      end
+
+      ##
+      # Follow the artist.
+      # Requires the `user-follow-modify` scope.
+      # PUT /v1/me/following
+      #
+      # @example
+      #   @sdk.playback.item.artist.follow!
+      #
+      # @return [Spotify::SDK::Artist] self Return the artist object, for chaining methods.
+      #
+      def follow!
+        parent.send_http_request(:put, "/v1/me/following?type=artist&ids=%s" % id, http_options: {expect_nil: true})
+        self
+      end
+
+      ##
+      # Unfollow the artist.
+      # Requires the `user-follow-modify` scope.
+      # DELETE /v1/me/following
+      #
+      # @example
+      #   @sdk.playback.item.artist.unfollow!
+      #
+      # @return [Spotify::SDK::Artist] self Return the artist object, for chaining methods.
+      #
+      def unfollow!
+        parent.send_http_request(:delete, "/v1/me/following?type=artist&ids=%s" % id, http_options: {expect_nil: true})
+        self
+      end
+
+      ##
       # Display the artist's images. If not obtained, request them from the API.
       #
       # @example
