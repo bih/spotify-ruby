@@ -36,6 +36,20 @@ module Spotify
       end
 
       ##
+      # Helper method for setting the following status.
+      # Requires the `user-follow-modify` scope.
+      # If true, PUT /v1/me/following otherwise DELETE /v1/me/following
+      #
+      # @example
+      #   @sdk.playback.item.artist.following = true
+      #   @sdk.playback.item.artist.following = false
+      #
+      def following=(should_follow)
+        raise "#following= must be true or false" unless [true, false].include?(should_follow)
+        should_follow ? follow! : unfollow!
+      end
+
+      ##
       # Follow the artist.
       # Requires the `user-follow-modify` scope.
       # PUT /v1/me/following

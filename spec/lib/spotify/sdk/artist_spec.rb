@@ -61,6 +61,32 @@ RSpec.describe Spotify::SDK::Artist do
       end
     end
 
+    describe "#following=" do
+      it "should raise an error if parameter is not a boolean" do
+        expect {
+          subject.following = "not a boolean"
+        }.to raise_error(/\#following= must be true or false/i)
+      end
+
+      it "should run #follow! if set to true" do
+        stub = stub_request(:put, "https://api.spotify.com/v1/me/following?type=artist&ids=%s" % raw_data[:id])
+               .with(headers: {Authorization: "Bearer access_token"})
+
+        subject.following = true
+
+        expect(stub).to have_been_requested.times(1)
+      end
+
+      it "should run #unfollow if set to false" do
+        stub = stub_request(:delete, "https://api.spotify.com/v1/me/following?type=artist&ids=%s" % raw_data[:id])
+               .with(headers: {Authorization: "Bearer access_token"})
+
+        subject.following = false
+
+        expect(stub).to have_been_requested.times(1)
+      end
+    end
+
     describe "#images" do
       let(:images) { read_fixture("get/v1/artist/full-object")[:images] }
       before(:each) do
