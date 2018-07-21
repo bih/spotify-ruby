@@ -41,6 +41,24 @@ FactoryBot.define do
     initialize_with { new(parent) }
   end
 
+  factory :artist, class: Spotify::SDK::Artist do
+    association :parent, factory: :base
+
+    id { [("a".."z"), ("A".."Z"), (0..9)].map(&:to_a).reduce(:+).sample(22).join }
+    external_urls { {spotify: "https://open.spotify.com/artist/#{id}"} }
+    followers { {href: nil, total: 123_456} }
+    genres %w[alternative rock grunge permanent wave post-grunge rock]
+    href { "https://api.spotify.com/v1/artists/#{id}" }
+    images { [{height: 1057, width: 1000, url: "https://i.scdn.co/images/#{Digest::MD5.hexdigest(id)}"}] }
+    name "Random Artist"
+    popularity { rand(100) }
+    type "artist"
+    uri { "spotify:uri:#{id}" }
+
+    skip_create
+    initialize_with { new(attributes, parent) }
+  end
+
   factory :album, class: Spotify::SDK::Album do
     association :parent, factory: :base
 
