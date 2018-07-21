@@ -87,15 +87,15 @@ This covers all the Spotify API endpoints that are covered.
 
 ### Follow Endpoints
 
-| Endpoint                                                           | Description                                    | Coverage Status |
-| ------------------------------------------------------------------ | ---------------------------------------------- | --------------- |
-| GET /v1/me/following                                               | Get Followed Artists                           | [me.rb]         |
-| GET /v1/me/following/contains                                      | Check if Current User Follows Artists or Users | [me.rb]         |
-| PUT /v1/me/following                                               | Follow Artists or Users                        | ×               |
-| DELETE /v1/me/following                                            | Unfollow Artists or Users                      | ×               |
-| GET /v1/users/{user_id}/playlists/{playlist_id}/followers/contains | Check if Users Follow a Playlist               | ×               |
-| PUT /v1/users/{user_id}/playlists/{playlist_id}/followers          | Follow a Playlist                              | ×               |
-| DELETE /v1/users/{user_id}/playlists/{playlist_id}/followers       | Unfollow a Playlist                            | ×               |
+| Endpoint                                                           | Description                                    | Coverage Status                                        |
+| ------------------------------------------------------------------ | ---------------------------------------------- | ------------------------------------------------------ |
+| GET /v1/me/following                                               | Get Followed Artists                           | [me.rb]                                                |
+| GET /v1/me/following/contains                                      | Check if Current User Follows Artists or Users | [me.rb]                                                |
+| PUT /v1/me/following                                               | Follow Artists or Users                        | [artist.rb] (following multiple users not supported)   |
+| DELETE /v1/me/following                                            | Unfollow Artists or Users                      | [artist.rb] (unfollowing multiple users not supported) |
+| GET /v1/users/{user_id}/playlists/{playlist_id}/followers/contains | Check if Users Follow a Playlist               | ×                                                      |
+| PUT /v1/users/{user_id}/playlists/{playlist_id}/followers          | Follow a Playlist                              | ×                                                      |
+| DELETE /v1/users/{user_id}/playlists/{playlist_id}/followers       | Unfollow a Playlist                            | ×                                                      |
 
 ### Playlists Endpoints
 
@@ -143,5 +143,6 @@ This covers all the Spotify API endpoints that are covered.
 [connect.rb]: /lib/spotify/sdk/connect.rb
 [connect/playback_state.rb]: /lib/spotify/sdk/connect/playback_state.rb
 [connect/device.rb]: /lib/spotify/sdk/connect/device.rb
+[artist.rb]: /lib/spotify/sdk/artist.rb
 [me.rb]: /lib/spotify/sdk/me.rb
 [me/info.rb]: /lib/spotify/sdk/me/info.rb

@@ -77,7 +77,7 @@ RSpec.describe Spotify::SDK::Artist do
         expect(stub).to have_been_requested.times(1)
       end
 
-      it "should run #unfollow if set to false" do
+      it "should run #unfollow! if set to false" do
         stub = stub_request(:delete, "https://api.spotify.com/v1/me/following?type=artist&ids=%s" % raw_data[:id])
                .with(headers: {Authorization: "Bearer access_token"})
 
