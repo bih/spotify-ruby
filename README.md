@@ -1,9 +1,11 @@
+<!-- prettier-ignore-start -->
 <img src="docs/assets/images/logo.png" width="400" />
 
-[![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][build status]
-[![Coverage Status](https://coveralls.io/repos/github/bih/spotify-ruby/badge.svg)][coverage status]
-[![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)][gem version]
-[![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)][code triagers badge]
+[![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][Build Status]
+[![Coverage Status](https://coveralls.io/repos/github/bih/spotify-ruby/badge.svg)][Coverage Status]
+[![Test Coverage](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/test_coverage)][Test Coverage]
+[![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)][Gem Version]
+[![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)][Code Triagers Badge]
 
 The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
 
@@ -254,19 +256,19 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 The gem is available as open source under the terms of the [MIT License].
 
-<!-- prettier-ignore-start -->
 [Spotify]: https://developer.spotify.com
 [Spotify Connect]: https://www.spotify.com/connect/
 [developer.spotify.com]: https://developer.spotify.com
 [Accounts API]: https://developer.spotify.com/documentation/general/guides/authorization-guide/
 [Authorization Scopes]: https://developer.spotify.com/documentation/general/guides/scopes/
 
+[Website]: https://bih.github.io/spotify-ruby
 [SDK Reference]: http://www.rubydoc.info/github/bih/spotify-ruby
 [Code of Conduct]: https://github.com/bih/spotify-ruby/blob/master/CODE_OF_CONDUCT.md
 [Contributor Covenant]: http://contributor-covenant.org
 
 [Build Status]: https://travis-ci.org/bih/spotify-ruby
-[Coverage Status]: https://coveralls.io/github/bih/spotify-ruby
+[Test Coverage]: https://codeclimate.com/github/bih/spotify-ruby/test_coverage
 [Gem Version]: https://badge.fury.io/rb/spotify-ruby
 [Code Triagers Badge]: https://www.codetriage.com/bih/spotify-ruby
 [MIT License]: http://opensource.org/licenses/MIT
