@@ -21,6 +21,17 @@ layout: compress
 								{% if page.description %}
 									<p class="hero-subheader__desc">{{ page.description }}</p>
 								{% endif %}
+								<p class="hero-subheader__reading_time">
+									{% assign words = page.content | number_of_words | plus: 250 %}
+
+									Reading time:
+									{% assign minutes = words | divided_by: 180 %}
+									{% if minutes > 1 %}
+										{{ minutes | append: " minutes" }}
+									{% else %}
+										less than one minute
+									{% endif %}
+								</p>
 								{% if page.page_nav.prev.content or page.page_nav.next.content %}
 									{% if page.page_nav.prev.content and page.page_nav.prev.url %}
 										<a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.prev.url }}" class="btn btn--dark btn--rounded btn--w-icon btn--w-icon-left">

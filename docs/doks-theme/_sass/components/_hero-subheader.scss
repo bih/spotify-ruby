@@ -41,8 +41,14 @@
   margin-top: 0;
 }
 
-/* ----- Title ----- */
+/* ----- Description ----- */
 .hero-subheader__desc {
+  margin-bottom: 0;
+}
+
+/* ----- Reading Time ----- */
+.hero-subheader__reading_time {
+  font-style: italic;
   margin-bottom: 1.875rem;
 }
 
