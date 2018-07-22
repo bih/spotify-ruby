@@ -21,7 +21,7 @@ module Spotify
       #   @user = Spotify::SDK::User.new({ username: "hi" }, @base)
       #   @user.username # => "hi"
       #
-      # @param [Hash] hash The response payload.
+      # @param [Hash] payload The response payload.
       # @param [Spotify::SDK] parent The SDK object for context.
       #
       def initialize(payload, parent)

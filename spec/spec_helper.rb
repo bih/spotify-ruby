@@ -2,13 +2,15 @@
 
 require "bundler/setup"
 require "spotify"
+
 require "factory_bot"
-require "coveralls"
 require "webmock/rspec"
 require "rspec/collection_matchers"
 
+require "simplecov"
+
 # Code coverage.
-Coveralls.wear!
+SimpleCov.start
 
 # Capture all API calls.
 WebMock.disable_net_connect!(allow_localhost: true)
