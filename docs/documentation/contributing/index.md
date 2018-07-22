@@ -17,6 +17,9 @@ page_nav:
   prev:
     content: Introduction
     url: https://github.com/bih/spotify-ruby#introduction
+  next:
+    content: API Reference
+    url: https://www.rubydoc.info/github/bih/spotify-ruby/master
 
 # Contributors
 contributors:
@@ -27,7 +30,7 @@ contributors:
 
 We're building a SDK to programmatically interact with [Spotify] using Ruby. It focuses on being as familiar and native to Ruby developers, from hobbyists to experts, and allowing them to be creative with music technology.
 
-Even more importantly, we're focusing on building software that isn't just expected to be abandoned; but rather help to experiment and define better standards for community software.
+Even more importantly, we're focusing on building software that isn't just expected to be abandoned; but rather help to experiment and define better standards for consistently maintained community software.
 
 [Read more about the standards we're aiming to achieve on GitHub](https://github.com/bih/spotify-ruby#introduction).
 
@@ -35,24 +38,25 @@ Even more importantly, we're focusing on building software that isn't just expec
 
 First and foremost, we'd like to set clear what is expected from you, us, and others:
 
-- **💖 Care and fight for opinions.** &mdash; It's not about the loudest person in the room. It's not even always about the majority. It's about doing the right thing; _all genuine voices are welcome with open arms_.
-- **👋 Help guide each other.** &mdash; Everything should consider empathy for each other, their time, and their programming experience. Contributing should be a fun, learning experience - and helping each other helps!
-- **❗️ Enforce our Code of Conduct.** From the maintainers side, we will make no compromises in enforcing our [Code of Conduct] and are committed to acting fast when necessary. A healthy community means our shared work lives longer.
+- **💖 Encourage perspectives.** &mdash; It's not about the loudest person in the room. It's not always about the majority. It's about surfacing the right thing to do and doing it - so we welcome all genuine voices with open arms.
+- **👋 Help guide each other.** &mdash; Everything should consider empathy for each other, their time, and their programming experience. Contributing should be a fun, learning experience!
+- **❗️ Enforce our Code of Conduct.** &mdash; Expect us to make no compromises in enforcing our [Code of Conduct] fast when called upon. A healthy community means a living community.
 
 # Getting Started
 
 There's multiple ways you can contribute, and we'll cover all of them:
 
 - [Website](#website)
+  - [Setting up Jekyll](#setting-up-jekyll)
   - [Folder Structure](#folder-structure)
-- [Website Documentation](#website-documentation)
-- [Source Documentation](#source-documentation)
 - [SDK](#sdk)
+  - [Versioning](#versioning)
   - [Configuration](#configuration)
   - [Conventions](#conventions)
   - [Adding a Component](#adding-a-component)
   - [Adding a Method](#adding-a-component)
   - [Testing](#testing)
+  - [Documentation](#documentation)
 
 ## Website
 
@@ -76,45 +80,127 @@ The last command creates a local server and reloads whenever you make changes. D
 
 More information and troubleshooting can be found in Jekyll's [Installation](https://jekyllrb.com/docs/installation/) guide.
 
-### CSS
-
-All of our CSS is written in [SASS] which is automatically compiled inside of [Jekyll]. All of the SASS files seem to have understandable naming conventions, so we won't cover them in detail.
-
-To see all of the stylesheets we have:
-
-```bash
-$ ls -l docs/**/*.scss
-```
-
 ### Folder Structure
 
-We write plain HTML in our website.
+In the `docs/` folder, see all the respective content:
 
-| HTML Contents   | Location                       |
-| --------------- | ------------------------------ |
-| HTML Components | [docs/theme/_includes]/\*.html |
-| HTML Layouts    | [docs/theme/_layouts]/\*.html  |
+| Type       | Description           | Location                       |
+| ---------- | --------------------- | ------------------------------ |
+| [Markdown] | Website Documentation | [docs/assets]/\*\*/\*          |
+| Images     | Content Assets        | [docs/assets]/\*\*/\*          |
+| Images     | Layout Assets         | [docs/theme/assets]/\*\*/\*    |
+| CSS        | [SASS] Stylesheets    | [docs/theme/_sass]/\*.scss     |
+| HTML       | HTML Components       | [docs/theme/_includes]/\*.html |
+| HTML       | HTML Layouts          | [docs/theme/_layouts]/\*.html  |
 
+[docs/assets]: https://github.com/bih/spotify-ruby/tree/master/docs/assets
+[docs/theme/assets]: https://github.com/bih/spotify-ruby/tree/master/docs/theme/assets
+[docs/theme/_sass]: https://github.com/bih/spotify-ruby/tree/master/docs/theme/_sass
 [docs/theme/_includes]: https://github.com/bih/spotify-ruby/tree/master/docs/theme/_includes
 [docs/theme/_layouts]: https://github.com/bih/spotify-ruby/tree/master/docs/theme/_layouts
 
-## Modifying Documentation
+## SDK
 
-All of the documentation we write is in [Markdown] (for the website, or our [GitHub README](https://github.com/bih/spotify-ruby/blob/master/README.md)) or [YARD] for our source documentation.
+This covers all of the code in `spotify-ruby`, excluding the `docs/` folder (which was covered in [Website](#website) above).
 
-All guides have links to edit them (see image below):
+### Versioning
+
+We follow the [Semantic Versioning] convention in our versioning. Here's a excerpt that will explain the convention better:
+
+```md
+Given a version number MAJOR.MINOR.PATCH, increment the:
+
+MAJOR version when you make incompatible API changes,
+MINOR version when you add functionality in a backwards-compatible manner, and
+PATCH version when you make backwards-compatible bug fixes.
+Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
+```
+
+### Configuration
+
+In our project, we have the core files in the root folder `/`:
+
+| Type            | File                   | Description                                                          |
+| --------------- | ---------------------- | -------------------------------------------------------------------- |
+| Local Config    | [.rspec]               | Our config for running our testing framework, [RSpec].               |
+| Local Config    | [.rubocop.yml]         | Our config for our Ruby static code analyzer tool, [Rubocop].        |
+| Local Config    | [.ruby-version]        | The [Ruby] version we're using to build `spotify-ruby`.              |
+| Local Config    | [.rvm-version]         | Our RVM-specific [Ruby] version we're using to build `spotify-ruby`. |
+| Local Config    | [Gemfile]              | Used for running `bundler install` during installation.              |
+| External Config | [.travis.yml]          | Our config for our continuous integration provider, [Travis CI].     |
+| External Config | [spotify-ruby.gemspec] | Used for configuring the `spotify-ruby` gem.                         |
+| Tooling         | [Rakefile]             | Used for running `rake` helper commands.                             |
+| Documentation   | [LICENSE]              | A distributed excerpt of our source code license.                    |
+| Documentation   | [CODE_OF_CONDUCT.md]   | Our official Code of Conduct policy.                                 |
+| Documentation   | [COVERAGE.md]          | Our SDK coverage status of all [Spotify] Developer APIs.             |
+
+[.travis.yml]: https://github.com/bih/spotify-ruby/blob/master/.travis.yml
+[.rspec]: https://github.com/bih/spotify-ruby/blob/master/.rspec
+[.rubocop.yml]: https://github.com/bih/spotify-ruby/blob/master/.rubocop.yml
+[.ruby-version]: https://github.com/bih/spotify-ruby/blob/master/.ruby-version
+[.rvm-version]: https://github.com/bih/spotify-ruby/blob/master/.rvm-version
+[spotify-ruby.gemspec]: https://github.com/bih/spotify-ruby/blob/master/spotify-ruby.gemspec
+[gemfile]: https://github.com/bih/spotify-ruby/blob/master/Gemfile
+[rakefile]: https://github.com/bih/spotify-ruby/blob/master/Rakefile
+[license]: https://github.com/bih/spotify-ruby/blob/master/LICENSE
+[code_of_conduct.md]: https://github.com/bih/spotify-ruby/blob/master/CODE_OF_CONDUCT.md
+[coverage.md]: https://github.com/bih/spotify-ruby/blob/master/coverage.md
+
+### Conventions
+
+### Adding a Component
+
+### Adding a Method
+
+### Testing
+
+### Documentation
+
+# Creating a Pull Request
+
+We'd love to see you suggest changes and make a pull request! In order to make a pull request, you'll need to [fork the bih/spotify-ruby repository][fork]. Then make the relevant changes and create a PR to `bih/spotify-ruby:master` on GitHub.
+
+**Protip:** First time making a pull request? Check out [this guide from GitHub](https://help.github.com/articles/creating-a-pull-request/)!
+
+We will then review your changes, and then approve/merge it for you.
+
+- If the change is with `docs/`, once merged [GitHub Pages] will automatically deploy your changes to [bih.github.io/spotify-ruby]. It can sometimes take up to 15 minutes to propagate.
+- If the change is with the SDK, we will publish the changes in the next MAJOR/MINOR release. Urgent changes will result in an expedited PATCH release, as per the [Semantic Versioning] convention.
+
+If we have reviewed it, we will most likely suggest changes for you. The feedback will need to be addressed by you or another community member. We may close PRs that may be inactive, unclear, or controversial.
+
+## Add Your Profile as a Contributor
+
+If you're contributing changes to any file in `docs/documentation/`, it is possible to mention yourself as an official contributor!
+
+It's possible to see at the top of this page, or in the screenshot below:
 ![](/documentation/contributing/edit.png)
 
-**Protip:** Don't forget to add your GitHub URL as a contributor in the YAML Front Matter (the configuration at the top of `.md` files):
+To add yourself, in the relevant `.md` file, at the top you should see:
 
 ```yaml
 contributors:
-  - https://github.com/[your github username here]
----
+  - https://github.com/bih
 ```
 
+All you need to do is to create a new line with your GitHub username:
+
+```yaml
+contributors:
+  - https://github.com/bih
+  - https://github.com/[your github username here]
+```
+
+That's all - we'll use your public GitHub avatar and give you some 💖!
+
+[bih.github.io/spotify-ruby]: https://bih.github.io/spotify-ruby/
+[fork]: https://github.com/bih/spotify-ruby/fork
+[semantic versioning]: https://semver.org
 [sass]: https://sass-lang.com/
 [yard]: https://yardoc.org
+[rspec]: http://rspec.info
+[rubocop]: https://github.com/rubocop-hq/rubocop
+[travis ci]: https://travis-ci.org
 [bih/spotify-ruby]: https://github.com/bih/spotify-ruby
 [spotify]: https://developer.spotify.com
 [markdown]: https://daringfireball.net/projects/markdown/syntax

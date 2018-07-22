@@ -1,5 +1,5 @@
 <!-- prettier-ignore-start -->
-<img src="docs/doks-theme/assets/images/logo.png" width="400" />
+<img src="docs/theme/assets/images/logo.png" width="400" />
 
 [![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][Build Status]
 [![Maintainability](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/maintainability)][Maintainability]
@@ -242,14 +242,22 @@ For local development, you can run `bin/console` for an interactive prompt for e
 
 ### Releasing a Change
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `lib/spotify/version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org].
+- To install this gem onto your local machine, run `bundle exec rake install`.
+- Ensure versions are in line with the [Semantic Versioning] convention.
+- To release a new version:
+  - Update the version number in `lib/spotify/version.rb`
+  - Run `bundle exec rake release` (which will create a git tag for the version)
+  - Push git commits and tags
+  - Push the `.gem` file to [rubygems.org].
 
 ### Changelog
 
 ```
-[2018-07-21] (0.2.1) Released the first version of the Spotify Ruby website.
-[2018-07-16] (0.2.0) Released first iteration of 0.2.0 with full documentation and test coverage.
-[2018-07-08] (0.1.0) Wrote first version of Changelog.
+[2018-07-21] (0.2.1) First major release.
+- Support for Connect and User API endpoints.
+- Transitioned to YARD for documentation.
+- Website built using Jekyll with Contributing guide.
+- Removed Coveralls in favour for CodeClimate
 ```
 
 ## License
@@ -266,6 +274,7 @@ The gem is available as open source under the terms of the [MIT License].
 [SDK Reference]: http://www.rubydoc.info/github/bih/spotify-ruby
 [Code of Conduct]: https://github.com/bih/spotify-ruby/blob/master/CODE_OF_CONDUCT.md
 [Contributor Covenant]: http://contributor-covenant.org
+[Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 
 [Build Status]: https://travis-ci.org/bih/spotify-ruby
 [Maintainability]: https://codeclimate.com/github/bih/spotify-ruby/maintainability
