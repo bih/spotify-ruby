@@ -1,0 +1,15 @@
+plugins:
+  grep:
+    enabled: true
+    config:
+      patterns:
+        no-set-methods:
+          pattern: def set_\w+
+          annotation: "Don't define methods that start with `set_`"
+          severity: minor
+          categories: Clarity
+          content: >
+            Any method that starts as a `set_` should either belong as a writer method
+            (i.e. `def username=`) or an atomic/irreversible action (`def username!`).
+          path_patterns:
+            - "**/*.rb"
