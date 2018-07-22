@@ -1,5 +1,5 @@
 <!-- prettier-ignore-start -->
-<img src="docs/assets/images/logo.png" width="400" />
+<img src="docs/doks-theme/assets/images/logo.png" width="400" />
 
 [![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][Build Status]
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/test_coverage)][Test Coverage]
