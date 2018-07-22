@@ -44,8 +44,7 @@ First and foremost, we'd like to set clear what is expected from you, us, and ot
 There's multiple ways you can contribute, and we'll cover all of them:
 
 - [Website](#website)
-  - [CSS](#css)
-  - [HTML](#html)
+  - [Folder Structure](#folder-structure)
 - [Website Documentation](#website-documentation)
 - [Source Documentation](#source-documentation)
 - [SDK](#sdk)
@@ -65,7 +64,7 @@ The source code is compiled using [Ruby] and [Jekyll]. It is kindly hosted for f
 
 You'll want to run these commands in your Terminal:
 
-```bash
+```sh
 $ git clone ssh://git@github.com/bih/spotify-ruby.git
 $ cd spotify-ruby/docs/
 $ gem install bundler
@@ -87,13 +86,17 @@ To see all of the stylesheets we have:
 $ ls -l docs/**/*.scss
 ```
 
-### HTML
+### Folder Structure
 
 We write plain HTML in our website.
 
-| HTML Contents | Location |
-| ------------- | -------- |
-| Layouts       | []       |
+| HTML Contents   | Location                       |
+| --------------- | ------------------------------ |
+| HTML Components | [docs/theme/_includes]/\*.html |
+| HTML Layouts    | [docs/theme/_layouts]/\*.html  |
+
+[docs/theme/_includes]: https://github.com/bih/spotify-ruby/tree/master/docs/theme/_includes
+[docs/theme/_layouts]: https://github.com/bih/spotify-ruby/tree/master/docs/theme/_layouts
 
 ## Modifying Documentation
 
