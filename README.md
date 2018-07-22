@@ -2,7 +2,6 @@
 <img src="docs/assets/images/logo.png" width="400" />
 
 [![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][Build Status]
-[![Coverage Status](https://coveralls.io/repos/github/bih/spotify-ruby/badge.svg)][Coverage Status]
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/test_coverage)][Test Coverage]
 [![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)][Gem Version]
 [![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)][Code Triagers Badge]
