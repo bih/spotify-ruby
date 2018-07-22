@@ -4,7 +4,13 @@
 
 /* ----- Headings ----- */
 .content {
-	> :first-child {
-		margin-top: 0;
-	}
+  > :first-child {
+    margin-top: 0;
+  }
+
+  mark {
+    background: #fffeca;
+    padding: 0.05em 0.1em;
+    box-shadow: #fffeca 0 0 5px;
+  }
 }

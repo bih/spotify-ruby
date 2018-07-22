@@ -4,63 +4,95 @@
 
 /* ----- General ----- */
 .hero-subheader {
-	color: $color-dark-green;
-	background-color: $color-theme-green;
-	padding: 3.75rem 0 (4.6875rem - 1.25rem) 0;
+  color: $color-dark-green;
+  background-color: $color-theme-green;
+  padding: 3.75rem 0 (4.6875rem - 1.25rem) 0;
 
-	@media (min-width: $screen-sm-min) {
-		padding: 9.375rem 0 (10.3125rem - 1.25rem) 0;
-	}
+  @media (min-width: $screen-sm-min) {
+    padding: 9.375rem 0 (10.3125rem - 1.25rem) 0;
+  }
 
-	.btn {
-		margin-right: .9375rem;
-	}
+  .btn {
+    margin-right: 0.9375rem;
+  }
 
-	.btn--github,
-	.btn--w-arrow-down {
-		@extend .btn--dark;
-	}
+  .btn--github,
+  .btn--w-arrow-down {
+    @extend .btn--dark;
+  }
 
-	.site-header + & {
-		padding: 9.375rem 0 (4.6875rem - 1.25rem) 0;
+  .site-header + & {
+    padding: 9.375rem 0 (4.6875rem - 1.25rem) 0;
 
-		@media (min-width: $screen-sm-min) {
-			padding: 15rem 0 (10.3125rem - 1.25rem) 0;
-		}
-	}
+    @media (min-width: $screen-sm-min) {
+      padding: 15rem 0 (10.3125rem - 1.25rem) 0;
+    }
+  }
 }
 
 .hero-subheader--before-out {
-	@media (min-width: $screen-sm-min) {
-		padding: 9.375rem 0 (15.3125rem - 1.25rem) 0;
-	}
+  @media (min-width: $screen-sm-min) {
+    padding: 9.375rem 0 (15.3125rem - 1.25rem) 0;
+  }
 }
 
 /* ----- Title ----- */
 .hero-subheader__title {
-	margin-top: 0;
+  margin-top: 0;
 }
 
 /* ----- Title ----- */
 .hero-subheader__desc {
-	margin-bottom: 1.875rem;
+  margin-bottom: 1.875rem;
+}
+
+/* ----- Contributors ----- */
+.hero-subheader__contributors > ul.contributors {
+  li::before {
+    content: '';
+    display: none;
+    position: relative;
+  }
+
+  li {
+    padding-left: 0;
+    padding-right: 0.875rem;
+    display: inline-block;
+  }
+
+  li > a > img {
+    border-radius: 50%;
+    width: 40px;
+  }
+
+  li.small > a > img {
+    width: 40px;
+  }
+
+  li.medium > a > img {
+    width: 60px;
+  }
+
+  li.large > a > img {
+    width: 80px;
+  }
 }
 
 /* ----- Author ----- */
 .hero-subheader__author {
-	border-left: 2px solid;
-	padding-left: 2.5rem;
+  border-left: 2px solid;
+  padding-left: 2.5rem;
 
-	.btn {
-		margin-bottom: 0;
-	}
+  .btn {
+    margin-bottom: 0;
+  }
 }
 
 .hero-subheader__author-title {
-	font-size: $font-size-h5;
+  font-size: $font-size-h5;
 }
 
 /* ----- More ----- */
 .hero-subheader__btn-more {
-	color: inherit;
+  color: inherit;
 }

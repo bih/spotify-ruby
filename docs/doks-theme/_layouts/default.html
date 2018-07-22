@@ -38,7 +38,45 @@ layout: compress
 							</div><!-- /.align-inner -->
 						</div><!-- /.align-container -->
 					</div><!-- /.col -->
-					{% if page.author.title and page.author.description and page.author.title_url %}
+					{% if page.contributors %}
+						<div class="col-md-4 col-md-offset-1 hidden-xs hidden-sm">
+							<div class="align-container" data-mh>
+								<div class="align-inner">
+									<div class="hero-subheader__contributors">
+										{% assign contributors = page.contributors | uniq %}
+										{% assign contributors_count = contributors | size %}
+
+										{% if contributors_count > 1 %}
+											{% assign contributors_word = "contributors" %}
+										{% else %}
+											{% assign contributors_word = "contributor" %}
+										{% endif %}
+
+
+										<h5>
+											{{ contributors_count }} {{ contributors_word }} to this page<br />
+											<small>Want to contribute? <a href="https://github.com/bih/spotify-ruby/blob/master/docs/{{ page.path }}">See this page's source</a></small>
+										</h5>
+
+										{% if contributors_count > 8 %}
+											{% assign contributors_class = "small" %}
+										{% elsif contributors_count > 3 %}
+											{% assign contributors_class = "medium" %}
+										{% else %}
+											{% assign contributors_class = "large" %}
+										{% endif %}
+
+										<ul class="contributors">
+											{% for contributor in contributors %}
+												{% assign username = contributor | slice: 19, 100 %}
+												<li class="{{ contributors_class }}"><a target="_blank" rel="nofollow" href="{{ contributor }}"><img src="https://avatars.githubusercontent.com/{{ username }}?size=150" title="{{ username }}" alt="GitHub user: {{ username }}" /></a></li>
+											{% endfor %}
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% elsif page.author.title and page.author.description and page.author.title_url %}
 						<div class="col-md-4 col-md-offset-1 hidden-xs hidden-sm">
 							<div class="align-container" data-mh>
 								<div class="align-inner">
