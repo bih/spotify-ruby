@@ -2,6 +2,7 @@
 <img src="docs/doks-theme/assets/images/logo.png" width="400" />
 
 [![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][Build Status]
+[![Maintainability](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/maintainability)][Maintainability]
 [![Test Coverage](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/test_coverage)][Test Coverage]
 [![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)][Gem Version]
 [![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)][Code Triagers Badge]
@@ -267,6 +268,7 @@ The gem is available as open source under the terms of the [MIT License].
 [Contributor Covenant]: http://contributor-covenant.org
 
 [Build Status]: https://travis-ci.org/bih/spotify-ruby
+[Maintainability]: https://codeclimate.com/github/bih/spotify-ruby/maintainability
 [Test Coverage]: https://codeclimate.com/github/bih/spotify-ruby/test_coverage
 [Gem Version]: https://badge.fury.io/rb/spotify-ruby
 [Code Triagers Badge]: https://www.codetriage.com/bih/spotify-ruby
