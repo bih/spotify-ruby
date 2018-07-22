@@ -18,7 +18,7 @@ doks:
                 image: assets/images/layout/logo-footer.png
             copyright: >
               Project by [Bilawal Hameed](https://github.com/bih).
-              Released under the [MIT License](https://github.com/bih/spotify-ruby#license).
+              Source code is released under the [MIT License](https://github.com/bih/spotify-ruby#license).
 
         social_list:
             - network_name: github
@@ -32,14 +32,14 @@ doks:
 
 # SASS settings
 sass:
-    sass_dir: ./doks-theme/_sass
+    sass_dir: ./theme/_sass
     style: :compressed
 
 # GitHub Pages settings
 github: [metadata]
 
 # Jekyll settings
-layouts_dir: ./doks-theme/_layouts
-includes_dir: ./doks-theme/_includes
+layouts_dir: ./theme/_layouts
+includes_dir: ./theme/_includes
 exclude: [ 'README.md', 'CHANGELOG.md' ]
 permalink: /:title/
