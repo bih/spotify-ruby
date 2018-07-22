@@ -50,7 +50,7 @@ layout: compress
 						</div><!-- /.align-container -->
 					</div><!-- /.col -->
 					{% if page.contributors %}
-						<div class="col-md-4 col-md-offset-1 hidden-xs hidden-sm">
+						<div class="col-md-4 col-md-offset-1">
 							<div class="align-container" data-mh>
 								<div class="align-inner">
 									<div class="hero-subheader__contributors">
@@ -63,8 +63,11 @@ layout: compress
 											{% assign contributors_word = "contributor" %}
 										{% endif %}
 
+										<h1 class="hidden-md hidden-lg hidden-xl">
+											{{ contributors_count }} {{ contributors_word }}
+										</h1>
 
-										<h5>
+										<h5 class="hidden-xs hidden-sm">
 											{{ contributors_count }} {{ contributors_word }} to this page<br />
 											<small>Want to contribute? <a href="https://github.com/bih/spotify-ruby/blob/master/docs/{{ page.path }}">See this page's source</a></small>
 										</h5>
