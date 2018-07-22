@@ -13,6 +13,11 @@
 # local console
 /bin/console_local
 
+# jekyll rendered site
+/docs/_site
+/docs/.sass-cache
+/docs/.jekyll-metadata
+
 # rspec failure tracking
 .rspec_status
 .coveralls.yml

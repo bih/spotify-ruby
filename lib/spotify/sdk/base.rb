@@ -45,7 +45,7 @@ module Spotify
       #
       # @param [Symbol] method The HTTP method you want to perform. Examples are :get, :post, :put, :delete
       # @param [String] endpoint The HTTP endpoint you'd like to call. Example: /v1/me
-      # @param [Hash] opts Any headers, HTTParty config or application-specific config (see `http_options`)
+      # @param [Hash] override_opts Any headers, HTTParty config or application-specific config (see `http_options`)
       # @return [Hash,HTTParty::Response,TrueClass] response The response from the HTTP request.
       #
       # TODO: Address and fix cyclomatic & code complexity issues by Rubocop.

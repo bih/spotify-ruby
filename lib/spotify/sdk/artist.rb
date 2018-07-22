@@ -17,7 +17,7 @@ module Spotify
       end
 
       ##
-      # Get full information for this artist by calling /v1/artists/{id}.
+      # Get full information for this artist by calling /v1/artists/:id
       #
       # @example
       #   artist = @sdk.connect.playback.artist

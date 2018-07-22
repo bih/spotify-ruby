@@ -15,7 +15,7 @@ module Spotify
         #
         # @param [Spotify::Accounts] accounts A valid instance of Spotify::Accounts.
         # @param [String] code The code provided in the Redirect URI from the Spotify Accounts API.
-        # @response [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session
+        # @return [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session
         # @see lib/spotify/accounts.rb
         #
         def from_authorization_code(accounts, code)
@@ -41,7 +41,7 @@ module Spotify
         #
         # @param [Spotify::Accounts] accounts A valid instance of Spotify::Accounts.
         # @param [String] refresh_token A valid refresh token. You'll want to store the refresh_token in your database.
-        # @response [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session
+        # @return [Spotify::Accounts::Session] access_token An instance of Spotify::Accounts::Session
         #
         def from_refresh_token(accounts, refresh_token)
           new(accounts, nil, nil, refresh_token, nil)
@@ -69,7 +69,7 @@ module Spotify
       # @example
       #   @access_token.scopes # => [:"user-read-private", :"user-top-read", ...]
       #
-      # @response [Array] scopes A symbolized list of scopes.
+      # @return [Array] scopes A symbolized list of scopes.
       #
       def scopes
         return [] if @scopes.nil?
@@ -84,7 +84,7 @@ module Spotify
       #   @access_token.contains_scope?(:"user-read-top")
       #
       # @param [String,Symbol] scope The name of the scope you'd like to check. For example, "user-read-private".
-      # @response [TrueClass,FalseClass] scope_included A true/false boolean if the scope is included.
+      # @return [TrueClass,FalseClass] scope_included A true/false boolean if the scope is included.
       #
       def contains_scope?(scope)
         scopes.include?(scope.downcase.to_sym)
@@ -96,7 +96,7 @@ module Spotify
       # @example
       #   @session.expires_at
       #
-      # @response [Time] time When the access token will expire.
+      # @return [Time] time When the access token will expire.
       #
       def expires_at
         return nil if @expires_in.nil?
@@ -109,7 +109,7 @@ module Spotify
       # @example
       #   @session.expired?
       #
-      # @response [TrueClass,FalseClass,NilClass] has_expired Has the access token expired?
+      # @return [TrueClass,FalseClass,NilClass] has_expired Has the access token expired?
       #
       def expired?
         return nil if expires_at.nil?
@@ -122,7 +122,7 @@ module Spotify
       # @example
       #   @session.refresh!
       #
-      # @response [TrueClass,FalseClass] success Have we been able to refresh the access token?
+      # @return [TrueClass,FalseClass] success Have we been able to refresh the access token?
       #
       # rubocop:disable AbcSize
       def refresh!
@@ -154,7 +154,7 @@ module Spotify
       # @example
       #   @session.to_json
       #
-      # @response [String] json The JSON output of the session instance.
+      # @return [String] json The JSON output of the session instance.
       #
       def to_json
         {

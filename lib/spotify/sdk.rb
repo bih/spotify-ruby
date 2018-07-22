@@ -43,7 +43,7 @@ module Spotify
     #   @sdk = Spotify::SDK.new("https://localhost:8080/#token=...&expires_in=...")
     #   @sdk = Spotify::SDK.new("token=...&expires_in=...")
     #
-    # @param [String, Hash, OAuth2::AccessToken] obj Any supported object which contains an access token. See examples.
+    # @param [String,Hash,OAuth2::AccessToken] session Any supported object which contains an access token. See examples.
     #
     def initialize(session)
       raise "Invalid Spotify::Accounts::Session object" unless session.instance_of?(Spotify::Accounts::Session)
@@ -74,7 +74,9 @@ module Spotify
       me:      Spotify::SDK::Me
     }.freeze
 
-    attr_reader(*SDK_COMPONENTS.keys)
+    SDK_COMPONENTS.each do |component|
+      attr_reader(component)
+    end
 
     private
 

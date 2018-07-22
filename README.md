@@ -1,33 +1,33 @@
-<img src="assets/logo.png" width="400" />
+<img src="docs/assets/images/logo.png" width="400" />
 
-[![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][Build Status]
-[![Coverage Status](https://coveralls.io/repos/github/bih/spotify-ruby/badge.svg)][Coverage Status]
-[![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)][Gem Version]
-[![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)][Code Triagers Badge]
+[![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][build status]
+[![Coverage Status](https://coveralls.io/repos/github/bih/spotify-ruby/badge.svg)][coverage status]
+[![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)][gem version]
+[![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)][code triagers badge]
 
 The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
 
-🎨 Website (coming soon) | 📖 [SDK Reference] | [Code of Conduct](#code-of-conduct) | [Contributor Covenant]
+🎨 [Website] | 📖 [SDK Reference] | [Code of Conduct](#code-of-conduct) | [Contributor Covenant]
 
 ## Contents
 
 - [Introduction](#introduction)
 - [Install](#install)
-  * [With Bundler](#with-bundler)
-  * [Manual Install](#manual-install)
+  - [With Bundler](#with-bundler)
+  - [Manual Install](#manual-install)
 - [Configuration](#configuration)
-  * [Your App Credentials](#your-app-credentials)
-  * [Authorization](#authorization)
-  * [Creating a Session](#creating-a-session)
-  * [Recreating a Session](#recreating-a-session)
+  - [Your App Credentials](#your-app-credentials)
+  - [Authorization](#authorization)
+  - [Creating a Session](#creating-a-session)
+  - [Recreating a Session](#recreating-a-session)
 - [Using the SDK](#using-the-sdk)
-  * [Spotify Connect](#spotify-connect)
+  - [Spotify Connect](#spotify-connect)
 - [Contributing](#contributing)
-  * [Community Guidelines](#community-guidelines)
-  * [Code of Conduct](#code-of-conduct)
-  * [Getting Started](#getting-started)
-  * [Releasing a Change](#releasing-a-change)
-  * [Changelog](#changelog)
+  - [Community Guidelines](#community-guidelines)
+  - [Code of Conduct](#code-of-conduct)
+  - [Getting Started](#getting-started)
+  - [Releasing a Change](#releasing-a-change)
+  - [Changelog](#changelog)
 - [License](#license)
 
 ## Introduction
@@ -40,9 +40,9 @@ Hey! I'm a Developer Advocate at [Spotify], and I wrote this Ruby SDK to explore
 
 - **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
 
-- **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software expecting it to be used in the next 5 years. Great tests help us & others understand and trust what we intended.
+- **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software that we and others [trust to do what it is intended to do](https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5). We care about [Semantic Versioning] for clear version changes.
 
-*Disclaimer: This SDK is NOT owned or supported by Spotify. It remains a personal project of mine. If you are a commercial partner of Spotify and wish to use this SDK, be aware you are using it at your own risk.*
+_Disclaimer: This SDK is NOT owned or supported by Spotify. It remains a personal project of mine. If you are a commercial partner of Spotify and wish to use this SDK, be aware you are using it at your own risk._
 
 ## Install
 
@@ -245,6 +245,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 ### Changelog
 
 ```
+[2018-07-21] (0.2.1) Released the first version of the Spotify Ruby website.
 [2018-07-16] (0.2.0) Released first iteration of 0.2.0 with full documentation and test coverage.
 [2018-07-08] (0.1.0) Wrote first version of Changelog.
 ```
@@ -253,6 +254,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 The gem is available as open source under the terms of the [MIT License].
 
+<!-- prettier-ignore-start -->
 [Spotify]: https://developer.spotify.com
 [Spotify Connect]: https://www.spotify.com/connect/
 [developer.spotify.com]: https://developer.spotify.com
@@ -269,3 +271,4 @@ The gem is available as open source under the terms of the [MIT License].
 [Code Triagers Badge]: https://www.codetriage.com/bih/spotify-ruby
 [MIT License]: http://opensource.org/licenses/MIT
 [rubygems.org]: https://rubygems.org
+<!-- prettier-ignore-end -->
