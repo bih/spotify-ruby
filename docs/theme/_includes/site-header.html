@@ -9,6 +9,11 @@
 {% endif %}
 
 {% if site.doks.header.logo.text or site.doks.header.logo.image or site.doks.header.nav %}
+	{% if site.doks.header.notice %}
+	<div class="site-header__notice" role="alert">
+		{{ site.doks.header.notice | markdownify }}
+	</div>
+	{% endif %}
 	<header class="site-header">
 		<div class="container">
 			<div class="row">

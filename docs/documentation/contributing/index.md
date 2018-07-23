@@ -34,13 +34,17 @@ Even more importantly, we're focusing on building software that isn't just expec
 
 [Read more about the standards we're aiming to achieve on GitHub](https://github.com/bih/spotify-ruby#introduction).
 
-# Expectations
+# Objectives
 
-First and foremost, we'd like to set clear what is expected from you, us, and others:
+As mentioned in our `README.md`, we have four objectives with this SDK:
 
-- **💖 Encourage perspectives.** &mdash; It's not about the loudest person in the room. It's not always about the majority. It's about surfacing the right thing to do and doing it - so we welcome all genuine voices with open arms.
-- **👋 Help guide each other.** &mdash; Everything should consider empathy for each other, their time, and their programming experience. Contributing should be a fun, learning experience!
-- **❗️ Enforce our Code of Conduct.** &mdash; Expect us to make no compromises in enforcing our [Code of Conduct] fast when called upon. A healthy community means a living community.
+- **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the start. From having an enforced [Code of Conduct] policy to building great documentation, tooling, and an empathetic feedback process. Designing for beginners is designing for longevity.
+
+- **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with minor changes. Our code should only depend on critical data, such as IDs.
+
+- **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
+
+- **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software that we and others [trust to do what it is intended to do](https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5). We care about [Semantic Versioning] for clear version changes.
 
 # Getting Started
 
@@ -52,9 +56,10 @@ There's multiple ways you can contribute, and we'll cover all of them:
 - [SDK](#sdk)
   - [Versioning](#versioning)
   - [Configuration](#configuration)
-  - [Conventions](#conventions)
+  - [SDK Folder Structure](#sdk-folder-structure)
   - [Adding a Component](#adding-a-component)
   - [Adding a Method](#adding-a-component)
+  - [Adding a Model](#adding-a-model)
   - [Testing](#testing)
   - [Documentation](#documentation)
 
@@ -116,6 +121,8 @@ PATCH version when you make backwards-compatible bug fixes.
 Additional labels for pre-release and build metadata are available as extensions to the MAJOR.MINOR.PATCH format.
 ```
 
+As a general rule of thumb, we always preference backwards compatibility as much as possible. It helps us achieve our [🌈 Delightful for Developers](https://github.com/bih/spotify-ruby#introduction) objective for this SDK.
+
 ### Configuration
 
 In our project, we have the core files in the root folder `/`:
@@ -146,11 +153,69 @@ In our project, we have the core files in the root folder `/`:
 [code_of_conduct.md]: https://github.com/bih/spotify-ruby/blob/master/CODE_OF_CONDUCT.md
 [coverage.md]: https://github.com/bih/spotify-ruby/blob/master/coverage.md
 
-### Conventions
+### SDK Folder Structure
+
+In the `lib/spotify/` and `spec/` folders, we have a specific folder structure that we'll explain:
+
+#### lib/spotify/
+
+| Type   | File                  | Description                                                                             |
+| ------ | --------------------- | --------------------------------------------------------------------------------------- |
+| [Ruby] | [version.rb]          | Stores the `Spotify::VERSION` constant. See [Versioning](#versioning) for more details. |
+| [Ruby] | [accounts.rb]         | The source file for `Spotify::Accounts` and authenticating with the SDK.                |
+| [Ruby] | [accounts/session.rb] | &#x21B3; A subclass of `Spotify::Accounts` that deals with session management.          |
+| [Ruby] | [sdk.rb]              | The source file for `Spotify::SDK` and interfacing with the Spotify Platform.           |
+| [Ruby] | [sdk/base.rb]         | &#x21B3; The core class for creating a [SDK Component](#adding-a-component).            |
+| [Ruby] | [sdk/model.rb]        | &#x21B3; The core class for creating a [SDK Model](#adding-a-model).                    |
+
+All other files in `lib/spotify/sdk/` are either [components](#adding-a-component) or [models](#adding-a-model). It is possible to identify what type of object they are by seeing where they inherit from.
+
+```ruby
+# frozen_string_literal: true
+
+module Spotify
+  class SDK
+    class Me < Base # This is a component.
+    end
+
+    class User < Model # This is a model.
+    end
+  end
+end
+```
+
+[version.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/version.rb
+[accounts.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/accounts.rb
+[accounts/session.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/accounts/session.rb
+[sdk.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/sdk.rb
+[sdk/base.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/sdk/base.rb
+[sdk/model.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/sdk/model.rb
+
+#### spec/
+
+| Type     | File                | Description                                                                                  |
+| -------- | ------------------- | -------------------------------------------------------------------------------------------- |
+| [Ruby]   | [spec_helper.rb]    | The core Ruby file which configures our [RSpec], [WebMock] and testing environment.          |
+| Mocks    | [factories.rb]      | The source of truth for generating "mock" Ruby objects for the SDK. Powered by [FactoryBot]. |
+| Fixtures | [support/fixtures/] | The folder containing sample [Spotify] API responses to be used with [WebMock].              |
+
+All files in the `spec/` with the `*_spec.rb` filename are [RSpec] tests. They depend on [WebMock] for mocking API responses and [FactoryBot] for mocking Ruby objects.
+
+To see a full list of all [RSpec] tests, run this in your Terminal:
+
+```sh
+$ ls -l spec/**/*_spec.rb
+```
+
+[spec_helper.rb]: https://github.com/bih/spotify-ruby/blob/master/spec/spec_helper.rb
+[factories.rb]: https://github.com/bih/spotify-ruby/blob/master/spec/factories.rb
+[support/fixtures/]: https://github.com/bih/spotify-ruby/blob/master/spec/support/fixtures/
 
 ### Adding a Component
 
 ### Adding a Method
+
+### Adding a Model
 
 ### Testing
 
@@ -198,7 +263,9 @@ That's all - we'll use your public GitHub avatar and give you some 💖!
 [semantic versioning]: https://semver.org
 [sass]: https://sass-lang.com/
 [yard]: https://yardoc.org
+[factorybot]: https://github.com/thoughtbot/factory_bot
 [rspec]: http://rspec.info
+[webmock]: https://github.com/bblimke/webmock
 [rubocop]: https://github.com/rubocop-hq/rubocop
 [travis ci]: https://travis-ci.org
 [bih/spotify-ruby]: https://github.com/bih/spotify-ruby

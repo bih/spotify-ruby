@@ -9,7 +9,7 @@
 
 The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
 
-🎨 [Website] | 📖 [SDK Reference] | [Code of Conduct](#code-of-conduct) | [Contributor Covenant]
+🎨 [Website] | 💖 [Contributing] | 📖 [SDK Reference] | 🔒 [Code of Conduct](#code-of-conduct)
 
 ## Contents
 
@@ -36,9 +36,9 @@ The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
 
 Hey! I'm a Developer Advocate at [Spotify], and I wrote this Ruby SDK to explore how to build a SDK that is TADA:
 
-- **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the beginning. Everything. That includes documentation, tooling, and the feedback we give. Designing for beginners is designing for longevity.
+- **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the start. From having an enforced [Code of Conduct] policy to building great documentation, tooling, and an empathetic feedback process. Designing for beginners is designing for longevity.
 
-- **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with major changes. We only depend on critical data, such as IDs.
+- **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with minor changes. Our code should only depend on critical data, such as IDs.
 
 - **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
 
@@ -271,6 +271,7 @@ The gem is available as open source under the terms of the [MIT License].
 [Authorization Scopes]: https://developer.spotify.com/documentation/general/guides/scopes/
 
 [Website]: https://bih.github.io/spotify-ruby
+[Contributing]: https://bih.github.io/spotify-ruby/documentation/contributing/
 [SDK Reference]: http://www.rubydoc.info/github/bih/spotify-ruby
 [Code of Conduct]: https://github.com/bih/spotify-ruby/blob/master/CODE_OF_CONDUCT.md
 [Contributor Covenant]: http://contributor-covenant.org
