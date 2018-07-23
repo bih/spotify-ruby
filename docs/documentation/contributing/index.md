@@ -58,7 +58,6 @@ There's multiple ways you can contribute, and we'll cover all of them:
   - [Configuration](#configuration)
   - [SDK Folder Structure](#sdk-folder-structure)
   - [Adding a Component](#adding-a-component)
-  - [Adding a Method](#adding-a-component)
   - [Adding a Model](#adding-a-model)
   - [Testing](#testing)
   - [Documentation](#documentation)
@@ -213,7 +212,119 @@ $ ls -l spec/**/*_spec.rb
 
 ### Adding a Component
 
-### Adding a Method
+In the `bin/` folder, we have provided a Rails-like generator that will generate the relevant files for you to add a new component:
+
+#### Generate
+
+For example, if you'd like to generate a component called `Friends` run the following command:
+
+```sh
+$ bin/generate_component friends
+```
+
+It will then generate the following files for you:
+
+```sh
+$ cat lib/spotify/sdk/friends.rb
+$ cat spec/lib/spotify/sdk/friends_spec.rb
+```
+
+#### Mounting
+
+Then you'll need to do two manual steps in `lib/spotify/sdk.rb`:
+
+- Include the component at the top:
+
+  ```ruby
+  # Components
+  require "spotify/sdk/friends"
+  ```
+
+- Then mount the component as `friends` in `Spotify::SDK::SDK_COMPONENTS`:
+  ```ruby
+  SDK_COMPONENTS = {
+    ...,
+    friends: Spotify::SDK::Friends
+  }.freeze
+  ```
+
+That's it! We have setup a component. You can go ahead and write some fun logic! 🙂
+
+#### Writing Logic
+
+In our component, we can create a method called `hi`:
+
+```ruby
+# frozen_string_literal: true
+
+module Spotify
+  class SDK
+    class Friend < Base
+      ##
+      # Hello world!
+      #
+      # @see https://bih.github.io/spotify-ruby/documentation/contributing/
+      #
+      # @param [Class] param_name Description
+      # @return [String] text Description
+      #
+      def hi
+        "Hello world!"
+      end
+    end
+  end
+end
+```
+
+The comments above are used by [YARD] to generate our [SDK Reference] on <https://rubydoc.info>.
+
+#### Debugging Logic
+
+As we've mounted our component as `friends` already, we can use the following code to test it in our console by running `bin/console`:
+
+```
+$ bin/console
+[1] pry(main)> @sdk = Spotify::SDK.new(@session)
+[2] pry(main)> @sdk.friends
+=> #<Spotify::SDK::Friends:0x007fd7d31784e8>
+[3] pry(main)> @sdk.friends.hi
+=> "Hello world"
+```
+
+#### Testing Logic
+
+In our generated `spec/lib/spotify/sdk/friends_spec.rb` file, we can write some [RSpec] tests:
+
+```ruby
+# frozen_string_literal: true
+
+require "spec_helper"
+
+RSpec.describe Spotify::SDK::Friends do
+  let(:session) { build(:session, access_token: "access_token") }
+  subject { Spotify::SDK.new(session).friends }
+
+  describe "#hi" do
+    it "returns 'Hello world'" do
+      expect(subject.hi).to eq "Hello world"
+    end
+  end
+end
+```
+
+And then you can execute tests by running `rake ci` in the root directory.
+
+#### Sample Implementation
+
+For an example of a good implementation, see the following files for `Spotify::SDK::Me` component:
+
+- Implementation: [lib/spotify/sdk/me.rb]
+- RSpec Tests: [spec/lib/spotify/sdk/me_spec.rb]
+- Fixture: [spec/support/fixtures/get/v1/me/object.json]
+
+[lib/spotify/sdk/me.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/sdk/me.rb
+[spec/lib/spotify/sdk/me_spec.rb]: https://github.com/bih/spotify-ruby/blob/master/spec/lib/spotify/sdk/me_spec.rb
+[spec/support/fixtures/get/v1/me/object.json]: https://github.com/bih/spotify-ruby/blob/master/spec/support/fixtures/get/v1/me/object.json
 
 ### Adding a Model
 
@@ -262,6 +373,7 @@ That's all - we'll use your public GitHub avatar and give you some 💖!
 [fork]: https://github.com/bih/spotify-ruby/fork
 [semantic versioning]: https://semver.org
 [sass]: https://sass-lang.com/
+[sdk reference]: https://www.rubydoc.info/github/bih/spotify-ruby/master
 [yard]: https://yardoc.org
 [factorybot]: https://github.com/thoughtbot/factory_bot
 [rspec]: http://rspec.info
