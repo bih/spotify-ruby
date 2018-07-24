@@ -38,13 +38,13 @@ Even more importantly, we're focusing on building software that isn't just expec
 
 As mentioned in our `README.md`, we have four objectives with this SDK:
 
-- **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the start. From having an enforced [Code of Conduct] policy to building great documentation, tooling, and an empathetic feedback process. Designing for beginners is designing for longevity.
+1.  **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the start. From having an enforced [Code of Conduct] policy to building great documentation, tooling, and an empathetic feedback process. Designing for beginners is designing for longevity.
 
-- **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with minor changes. Our code should only depend on critical data, such as IDs.
+1.  **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with minor changes. Our code should only depend on critical data, such as IDs.
 
-- **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
+1.  **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
 
-- **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software that we and others [trust to do what it is intended to do](https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5). We care about [Semantic Versioning] for clear version changes.
+1.  **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software that we and others [trust to do what it is intended to do](https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5). We care about [Semantic Versioning] for clear version changes.
 
 # Getting Started
 
@@ -60,7 +60,6 @@ There's multiple ways you can contribute, and we'll cover all of them:
   - [Adding a Component](#adding-a-component)
   - [Adding a Model](#adding-a-model)
   - [Testing](#testing)
-  - [Documentation](#documentation)
 
 ## Website
 
@@ -212,9 +211,11 @@ $ ls -l spec/**/*_spec.rb
 
 ### Adding a Component
 
+Components are subclasses of `Spotify::SDK` and typically represent a category of features for the [Spotify Platform]. For example, `Connect` represents a category of features - listing devices, controlling them, reading current playback, etc. Another example would be `Me` - listing my information, my top tracks, my saved tracks, etc.
+
 In the `bin/` folder, we have provided a Rails-like generator that will generate the relevant files for you to add a new component:
 
-#### Generate
+#### Generating Component
 
 For example, if you'd like to generate a component called `Friends` run the following command:
 
@@ -229,7 +230,7 @@ $ cat lib/spotify/sdk/friends.rb
 $ cat spec/lib/spotify/sdk/friends_spec.rb
 ```
 
-#### Mounting
+#### Mounting Component
 
 Then you'll need to do two manual steps in `lib/spotify/sdk.rb`:
 
@@ -250,7 +251,7 @@ Then you'll need to do two manual steps in `lib/spotify/sdk.rb`:
 
 That's it! We have setup a component. You can go ahead and write some fun logic! 🙂
 
-#### Writing Logic
+#### Writing Component Logic
 
 In our component, we can create a method called `hi`:
 
@@ -278,20 +279,25 @@ end
 
 The comments above are used by [YARD] to generate our [SDK Reference] on <https://rubydoc.info>.
 
-#### Debugging Logic
+#### Debugging Component Logic
 
 As we've mounted our component as `friends` already, we can use the following code to test it in our console by running `bin/console`:
 
-```
+```sh
 $ bin/console
-[1] pry(main)> @sdk = Spotify::SDK.new(@session)
-[2] pry(main)> @sdk.friends
+[1] pry(main)> @accounts = Spotify::Accounts.new(client_id: "[client id]", client_secret: "[client secret]", redirect_uri: "[redirect_uri]")
+=> #<Spotify::Accounts:0x007fb1ac8fba28>
+[2] pry(main)> @session = Spotify::Accounts::Session.from_refresh_token(@accounts, "[refresh token]")
+=> #<Spotify::Accounts::Session:0x007fb1ac8d9360>
+[3] pry(main)> @sdk = Spotify::SDK.new(@session)
+=> #<Spotify::SDK:0x007fb1abbafd10>
+[4] pry(main)> @sdk.friends
 => #<Spotify::SDK::Friends:0x007fd7d31784e8>
-[3] pry(main)> @sdk.friends.hi
+[5] pry(main)> @sdk.friends.hi
 => "Hello world"
 ```
 
-#### Testing Logic
+#### Testing Component Logic
 
 In our generated `spec/lib/spotify/sdk/friends_spec.rb` file, we can write some [RSpec] tests:
 
@@ -314,7 +320,7 @@ end
 
 And then you can execute tests by running `rake ci` in the root directory.
 
-#### Sample Implementation
+#### Sample Component Implementation
 
 For an example of a good implementation, see the following files for `Spotify::SDK::Me` component:
 
@@ -328,9 +334,186 @@ For an example of a good implementation, see the following files for `Spotify::S
 
 ### Adding a Model
 
+Models are typically classes that hold data. They often contain functions to manipulate or perform actions with that data. An example is a `Device` model, it would contain a method like `pause!` which will take the `id` and send a `PUT /v1/me/player/pause?device_id={id}` HTTP command.
+
+**Protip:** The models we write use Ruby's [OpenStruct] data structure; it is designed for flexible Hash objects. It fits in our [second objective](#objectives) of "being agnostic to minor changes"; in cases where Spotify may return `null` or contain additional fields, our codebase will not break.
+
+In our `bin/` folder, similarly to components, we have a Rails-like generator that will generate the relevant files for you to add a new model:
+
+#### Generating Model
+
+For example, if you'd like to generate a model called `Device` run the following command:
+
+```sh
+$ bin/generate_model device
+```
+
+It will then generate the following files for you:
+
+```sh
+$ cat lib/spotify/sdk/device.rb
+$ cat spec/lib/spotify/sdk/device_spec.rb
+$ cat spec/factories/device.rb
+```
+
+#### Mounting a Model
+
+Then you'll need to do one step in `lib/spotify/sdk.rb`:
+
+- Include the model at the top:
+  ```ruby
+  # Models
+  require "spotify/sdk/device"
+  ```
+
+#### Writing Model Logic
+
+In our model, we can create a method called `pause!`:
+
+```ruby
+# frozen_string_literal: true
+
+module Spotify
+  class SDK
+    class Device < Model
+      ##
+      # Pause this device.
+      #
+      # @see https://bih.github.io/spotify-ruby/documentation/contributing/
+      #
+      # @param [Class] param_name Description
+      # @return [String] text Description
+      #
+      def pause!
+        parent.send_http_request(:put, "/v1/me/player/play?device_id=#{id}", {
+          http_options: {
+            expect_nil: true # This API returns a blank response. This is OK.
+          }
+        })
+        self # Let's return itself, so we can support chaining methods.
+      end
+    end
+  end
+end
+```
+
+And then we can initialize the SDK with two parameters:
+
+- A `Hash` payload. For example `{ device_id: "id of device here" }`
+- An instance of a valid Component (see Friends above)
+
+You can see an example in [Debugging Model Logic](#debugging-model-logic) below.
+
+#### Debugging Model Logic
+
+With our new `Spotify::SDK::Device` model, we can now run this in `bin/console`:
+
+```sh
+$ bin/console
+[1] pry(main)> @accounts = Spotify::Accounts.new(client_id: "[client id]", client_secret: "[client secret]", redirect_uri: "[redirect_uri]")
+=> #<Spotify::Accounts:0x007fb1ac8fba28>
+[2] pry(main)> @session = Spotify::Accounts::Session.from_refresh_token(@accounts, "[refresh token]")
+=> #<Spotify::Accounts::Session:0x007fb1ac8d9360>
+[3] pry(main)> @sdk = Spotify::SDK.new(@session)
+=> #<Spotify::SDK:0x007fb1abbafd10>
+[4] pry(main)> @base = Spotify::SDK::Base.new(@sdk)
+=> #<Spotify::SDK::Base:0x007fb1ac11dd10>
+[5] pry(main)> @device = Spotify::SDK::Device.new({ id: 1234, is_active: true, is_private_session: false, is_restricted: false, name: "Device Name", type: "Smartphone", volume_percent: 24 }, @base)
+=> #<Spotify::SDK::Connect::Device id=1234, is_active=true, is_private_session=false, is_restricted=false, name="Device Name", type="Smartphone", volume_percent=24>
+[6] pry(main)> @device.pause!
+=> #<Spotify::SDK::Connect::Device id=1234, is_active=true, is_private_session=false, is_restricted=false, name="Device Name", type="Smartphone", volume_percent=24>
+```
+
+#### Testing Model Logic
+
+For models, we have a slightly different approach to testing them. As they handle API response data from [Spotify], we would need to mock what those responses look like to ensure the SDK is able to respond in the way we expect it to.
+
+Usually we'd need to add the following:
+
+- Mock Ruby model object: [FactoryBot]
+
+  - Typically adding this Ruby code to `spec/factories.rb`:
+
+    ```ruby
+    factory :device, class: Spotify::SDK::Device do
+      association :parent, factory: :base
+
+      skip_create
+      initialize_with { new(attributes, parent) }
+    end
+    ```
+
+- Mock API response: [Fixtures](https://stackoverflow.com/questions/12071344/what-are-fixtures-in-programming)
+  - Typically adding the expected JSON response for the model in `spec/support/fixtures/` with the criteria:
+  - Filename format convention: `spec/support/fixtures/{method_type}/{version}/{endpoint}/{custom_name}.json`
+  - Example: `spec/support/fixtures/v1/get/me/player/devices/active-list.json`
+
+And then similarly to Components, we'll need to add tests for the `Spotify::SDK::Device` object we created in `spec/lib/spotify/sdk/device_spec.rb`
+
+```ruby
+# frozen_string_literal: true
+
+require "spec_helper"
+
+RSpec.describe Spotify::SDK::Device do
+  let(:raw_data) { read_fixture("get/v1/me/player/devices/active-list") }
+  let(:session)  { build(:session, access_token: "access_token") }
+  let(:sdk_base) { Spotify::SDK::Base.new(Spotify::SDK.new(session)) }
+  subject        { Spotify::SDK::Device.new(raw_data, sdk_base) }
+
+  describe "#to_h" do
+    it "returns the correct value" do
+      expect(subject.to_h).to eq raw_data
+    end
+  end
+
+  describe "#pause!" do
+    it "should make an api call" do
+      stub = stub_request(:put, "https://api.spotify.com/v1/me/player/pause?device_id=#{raw_data[:id]}")
+             .with(headers: {Authorization: "Bearer access_token"})
+
+      subject.pause!
+      expect(stub).to have_been_requested
+    end
+
+    it "should return itself" do
+      expect(subject.pause!).to be subject
+    end
+  end
+end
+```
+
+And you can run all of the tests by running `rake ci` in the root directory.
+
+#### Sample Model Implementation
+
+For an example of a good implementation, see the following files for `Spotify::SDK::Connect::Device` model:
+
+- Implementation: [lib/spotify/sdk/connect/device.rb]
+- RSpec Tests: [spec/lib/spotify/sdk/connect/device_spec.rb]
+- Ruby Object Mock: [spec/factories.rb]
+- Spotify API Response Mocks / Fixtures:
+  - Response w/ active list: [spec/support/fixtures/get/v1/me/player/devices/active-list.json]
+  - Response w/ inactive list: [spec/support/fixtures/get/v1/me/player/devices/inactive-list.json]
+  - Response w/ empty list: [spec/support/fixtures/get/v1/me/player/devices/empty-list.json]
+
+[lib/spotify/sdk/connect/device.rb]: https://github.com/bih/spotify-ruby/blob/master/lib/spotify/sdk/connect/device.rb
+[spec/lib/spotify/sdk/connect/device_spec.rb]: https://github.com/bih/spotify-ruby/blob/master/spec/lib/spotify/sdk/connect/device_spec.rb
+[spec/factories.rb]: https://github.com/bih/spotify-ruby/blob/master/spec/factories.rb
+[spec/support/fixtures/get/v1/me/player/devices/active-list.json]: https://github.com/bih/spotify-ruby/blob/master/spec/support/fixtures/get/v1/me/player/devices/active-list.json
+[spec/support/fixtures/get/v1/me/player/devices/inactive-list.json]: https://github.com/bih/spotify-ruby/blob/master/spec/support/fixtures/get/v1/me/player/devices/inactive-list.json
+[spec/support/fixtures/get/v1/me/player/devices/empty-list.json]: https://github.com/bih/spotify-ruby/blob/master/spec/support/fixtures/get/v1/me/player/devices/empty-list.json
+
 ### Testing
 
-### Documentation
+On top of writing tests for Components and Models, we have additional tools & tests for quality assurance in other areas:
+
+| Type          | Tool        | Command        | Purpose                                                                               |
+| ------------- | ----------- | -------------- | ------------------------------------------------------------------------------------- |
+| Linter        | [Rubocop]   | `rake rubocop` | To lint Ruby syntax for anti-patterns, readability, and more.                         |
+| Test Coverage | [SimpleCov] | `rake spec`    | To calculate test coverage (how much of our code has tests).                          |
+| Documentation | [YARD]      | `rake yard`    | To generate API Reference documentation. _Note: it has been mentioned in this guide._ |
+| Debugger      | [Pry]       | `bin/console`  | Improved console-based debugging.                                                     |
 
 # Creating a Pull Request
 
@@ -377,11 +560,15 @@ That's all - we'll use your public GitHub avatar and give you some 💖!
 [yard]: https://yardoc.org
 [factorybot]: https://github.com/thoughtbot/factory_bot
 [rspec]: http://rspec.info
+[openstruct]: https://ruby-doc.org/stdlib-2.5.1/libdoc/ostruct/rdoc/OpenStruct.html
 [webmock]: https://github.com/bblimke/webmock
 [rubocop]: https://github.com/rubocop-hq/rubocop
+[simplecov]: https://github.com/colszowka/simplecov
 [travis ci]: https://travis-ci.org
 [bih/spotify-ruby]: https://github.com/bih/spotify-ruby
 [spotify]: https://developer.spotify.com
+[pry]: https://github.com/pry/pry
+[spotify platform]: https://developer.spotify.com
 [markdown]: https://daringfireball.net/projects/markdown/syntax
 [ruby]: https://ruby-lang.org
 [jekyll]: https://jekyllrb.com
