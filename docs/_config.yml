@@ -1,1 +1,45 @@
-theme: jekyll-theme-cayman
+# Theme settings
+doks:
+    baseurl: https://bih.github.io/spotify-ruby
+    header:
+        logo:
+            text:
+            image: assets/images/layout/logo.png
+        nav:
+            - item_name: View on GitHub
+              item_url: https://github.com/bih/spotify-ruby
+            - item_name: Contribute
+              item_url: /documentation/contributing/
+            - item_name: API Reference
+              item_url: https://www.rubydoc.info/github/bih/spotify-ruby/master
+    footer:
+        content:
+            logo:
+                image: assets/images/layout/logo-footer.png
+            copyright: >
+              Project by [Bilawal Hameed](https://github.com/bih).
+              Source code is released under the [MIT License](https://github.com/bih/spotify-ruby#license).
+
+        social_list:
+            - network_name: github
+              profile_url: 'https://github.com/bih/spotify-ruby'
+            - network_name: twitter
+              profile_url: 'https://twitter.com/bilawalhameed'
+            - network_name: stackoverflow
+              profile_url: 'https://stackoverflow.com/tags/spotify-ruby'
+    google_analytics:
+        tracking_code: UA-66353137-5
+
+# SASS settings
+sass:
+    sass_dir: ./theme/_sass
+    style: :compressed
+
+# GitHub Pages settings
+github: [metadata]
+
+# Jekyll settings
+layouts_dir: ./theme/_layouts
+includes_dir: ./theme/_includes
+exclude: [ 'README.md', 'CHANGELOG.md' ]
+permalink: /:title/

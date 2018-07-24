@@ -4,10 +4,13 @@ module Spotify
   ##
   # The definitive version of spotify-ruby.
   #
-  # You'll need to bump this for every change. The
-  # rule of thumb is to update it by one minor version (0.1.0 -> 0.1.1)
-  # if there is no breaking changes or new features. Anything
-  # else should constitute a major version bump (0.1.0 -> 1.0.0)
+  # We follow the Semantic Versioning convention.
+  # See https://semver.org/ for more information
   #
-  VERSION = "0.2.0"
+  # Summary:
+  # MAJOR version when you make incompatible API changes,
+  # MINOR version when you add functionality in a backwards-compatible manner, and
+  # PATCH version when you make backwards-compatible bug fixes.
+  #
+  VERSION = "0.2.1"
 end

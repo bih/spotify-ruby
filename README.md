@@ -1,48 +1,50 @@
-<img src="assets/logo.png" width="400" />
+<!-- prettier-ignore-start -->
+<img src="docs/theme/assets/images/logo.png" width="400" />
 
 [![Build Status](https://travis-ci.org/bih/spotify-ruby.svg?branch=master)][Build Status]
-[![Coverage Status](https://coveralls.io/repos/github/bih/spotify-ruby/badge.svg)][Coverage Status]
+[![Maintainability](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/maintainability)][Maintainability]
+[![Test Coverage](https://api.codeclimate.com/v1/badges/89410e6302b5562c658a/test_coverage)][Test Coverage]
 [![Gem Version](https://badge.fury.io/rb/spotify-ruby.svg)][Gem Version]
 [![Code Triagers Badge](https://www.codetriage.com/bih/spotify-ruby/badges/users.svg)][Code Triagers Badge]
 
 The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
 
-🎨 Website (coming soon) | 📖 [SDK Reference] | [Code of Conduct](#code-of-conduct) | [Contributor Covenant]
+🎨 [Website] | 💖 [Contributing] | 📖 [SDK Reference] | 🔒 [Code of Conduct](#code-of-conduct)
 
 ## Contents
 
 - [Introduction](#introduction)
 - [Install](#install)
-  * [With Bundler](#with-bundler)
-  * [Manual Install](#manual-install)
+  - [With Bundler](#with-bundler)
+  - [Manual Install](#manual-install)
 - [Configuration](#configuration)
-  * [Your App Credentials](#your-app-credentials)
-  * [Authorization](#authorization)
-  * [Creating a Session](#creating-a-session)
-  * [Recreating a Session](#recreating-a-session)
+  - [Your App Credentials](#your-app-credentials)
+  - [Authorization](#authorization)
+  - [Creating a Session](#creating-a-session)
+  - [Recreating a Session](#recreating-a-session)
 - [Using the SDK](#using-the-sdk)
-  * [Spotify Connect](#spotify-connect)
+  - [Spotify Connect](#spotify-connect)
 - [Contributing](#contributing)
-  * [Community Guidelines](#community-guidelines)
-  * [Code of Conduct](#code-of-conduct)
-  * [Getting Started](#getting-started)
-  * [Releasing a Change](#releasing-a-change)
-  * [Changelog](#changelog)
+  - [Community Guidelines](#community-guidelines)
+  - [Code of Conduct](#code-of-conduct)
+  - [Getting Started](#getting-started)
+  - [Releasing a Change](#releasing-a-change)
+  - [Changelog](#changelog)
 - [License](#license)
 
 ## Introduction
 
 Hey! I'm a Developer Advocate at [Spotify], and I wrote this Ruby SDK to explore how to build a SDK that is TADA:
 
-- **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the beginning. Everything. That includes documentation, tooling, and the feedback we give. Designing for beginners is designing for longevity.
+1. **🧒 Thoughtfully inclusive for beginners.** Everything we do should think about beginners from the start. From having an enforced [Code of Conduct] policy to building great documentation, tooling, and an empathetic feedback process. Designing for beginners is designing for longevity.
 
-- **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with major changes. We only depend on critical data, such as IDs.
+1. **☁️ Agnostic to minor changes.** APIs change all the time. We should be opinionated enough that our software should break with major changes, but flexible enough to work perfectly fine with minor changes. Our code should only depend on critical data, such as IDs.
 
-- **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
+1. **🌈 Delightful for developers.** Writing the SDK and using the SDK should be equally delightful. Granted, this is a challenging goal; but with solid information architecture, well-crafted opinions, clear and helpful error messages, and software that doesn't get in your way - we will create quite lovely software.
 
-- **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software expecting it to be used in the next 5 years. Great tests help us & others understand and trust what we intended.
+1. **✨ A maintained production-level.** It doesn't take experts to write production-level code; all it takes is considerate guidance from the community. We should write software that we and others [trust to do what it is intended to do](https://hackernoon.com/im-harvesting-credit-card-numbers-and-passwords-from-your-site-here-s-how-9a8cb347c5b5). We care about [Semantic Versioning] for clear version changes.
 
-*Disclaimer: This SDK is NOT owned or supported by Spotify. It remains a personal project of mine. If you are a commercial partner of Spotify and wish to use this SDK, be aware you are using it at your own risk.*
+_Disclaimer: This SDK is NOT owned or supported by Spotify. It remains a personal project of mine. If you are a commercial partner of Spotify and wish to use this SDK, be aware you are using it at your own risk._
 
 ## Install
 
@@ -240,13 +242,22 @@ For local development, you can run `bin/console` for an interactive prompt for e
 
 ### Releasing a Change
 
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `lib/spotify/version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org].
+- To install this gem onto your local machine, run `bundle exec rake install`.
+- Ensure versions are in line with the [Semantic Versioning] convention.
+- To release a new version:
+  - Update the version number in `lib/spotify/version.rb`
+  - Run `bundle exec rake release` (which will create a git tag for the version)
+  - Push git commits and tags
+  - Push the `.gem` file to [rubygems.org].
 
 ### Changelog
 
 ```
-[2018-07-16] (0.2.0) Released first iteration of 0.2.0 with full documentation and test coverage.
-[2018-07-08] (0.1.0) Wrote first version of Changelog.
+[2018-07-21] (0.2.1) First major release.
+- Support for Connect and User API endpoints.
+- Transitioned to YARD for documentation.
+- Website built using Jekyll with Contributing guide.
+- Removed Coveralls in favour for CodeClimate
 ```
 
 ## License
@@ -259,13 +270,18 @@ The gem is available as open source under the terms of the [MIT License].
 [Accounts API]: https://developer.spotify.com/documentation/general/guides/authorization-guide/
 [Authorization Scopes]: https://developer.spotify.com/documentation/general/guides/scopes/
 
+[Website]: https://bih.github.io/spotify-ruby
+[Contributing]: https://bih.github.io/spotify-ruby/documentation/contributing/
 [SDK Reference]: http://www.rubydoc.info/github/bih/spotify-ruby
 [Code of Conduct]: https://github.com/bih/spotify-ruby/blob/master/CODE_OF_CONDUCT.md
 [Contributor Covenant]: http://contributor-covenant.org
+[Semantic Versioning]: https://semver.org/spec/v2.0.0.html
 
 [Build Status]: https://travis-ci.org/bih/spotify-ruby
-[Coverage Status]: https://coveralls.io/github/bih/spotify-ruby
+[Maintainability]: https://codeclimate.com/github/bih/spotify-ruby/maintainability
+[Test Coverage]: https://codeclimate.com/github/bih/spotify-ruby/test_coverage
 [Gem Version]: https://badge.fury.io/rb/spotify-ruby
 [Code Triagers Badge]: https://www.codetriage.com/bih/spotify-ruby
 [MIT License]: http://opensource.org/licenses/MIT
 [rubygems.org]: https://rubygems.org
+<!-- prettier-ignore-end -->
