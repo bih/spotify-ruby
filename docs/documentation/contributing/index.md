@@ -17,9 +17,11 @@ page_nav:
   prev:
     content: Introduction
     url: https://github.com/bih/spotify-ruby#introduction
+    external_url: true
   next:
     content: API Reference
     url: https://www.rubydoc.info/github/bih/spotify-ruby/master
+    external_url: true
 
 # Contributors
 contributors:
