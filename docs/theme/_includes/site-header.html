@@ -2,7 +2,7 @@
 	<div class="offcanvas visible-xs">
 		<ul class="offcanvas__nav">
 			{% for item in site.doks.header.nav %}
-				<li><a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ item.item_url }}">{{ item.item_name }}</a></li>
+				<li><a href="{% if jekyll.environment == 'production' and item.external_url != true %}{{ site.doks.baseurl }}{% endif %}{{ item.item_url }}">{{ item.item_name }}</a></li>
 			{% endfor %}
 		</ul><!-- /.offcanvas__nav -->
 	</div><!-- /.offcanvas -->
@@ -28,7 +28,7 @@
 					{% if site.doks.header.nav %}
 						<ul class="site-header__nav hidden-xs">
 							{% for item in site.doks.header.nav %}
-								<li><a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ item.item_url }}">{{ item.item_name }}</a></li>
+								<li><a href="{% if jekyll.environment == 'production' and item.external_url != true %}{{ site.doks.baseurl }}{% endif %}{{ item.item_url }}">{{ item.item_name }}</a></li>
 							{% endfor %}
 						</ul><!-- /.site-header__nav -->
 						<button class="offcanvas-toggle visible-xs">
