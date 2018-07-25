@@ -8,10 +8,13 @@ doks:
         nav:
             - item_name: View on GitHub
               item_url: https://github.com/bih/spotify-ruby
+              external_url: true
             - item_name: Contribute
               item_url: /documentation/contributing/
+              external_url: false
             - item_name: API Reference
               item_url: https://www.rubydoc.info/github/bih/spotify-ruby/master
+              external_url: true
     footer:
         content:
             logo:
