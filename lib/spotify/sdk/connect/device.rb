@@ -144,7 +144,7 @@ module Spotify
 
         ##
         # Skip to previous track on device.
-        # PUT /v1/me/player/previous
+        # POST /v1/me/player/previous
         #
         # @example
         #   device = @sdk.connect.devices[0]
@@ -155,13 +155,13 @@ module Spotify
         # @return [Spotify::SDK::Connect::Device] self Return itself, so chained methods can be supported.
         #
         def previous!
-          parent.send_http_request(:put, "/v1/me/player/previous?device_id=%s" % id, http_options: {expect_nil: true})
+          parent.send_http_request(:post, "/v1/me/player/previous?device_id=%s" % id, http_options: {expect_nil: true})
           self
         end
 
         ##
         # Skip to next track on device.
-        # PUT /v1/me/player/next
+        # POST /v1/me/player/next
         #
         # @example
         #   device = @sdk.connect.devices[0]
@@ -172,7 +172,7 @@ module Spotify
         # @return [Spotify::SDK::Connect::Device] self Return itself, so chained methods can be supported.
         #
         def next!
-          parent.send_http_request(:put, "/v1/me/player/next?device_id=%s" % id, http_options: {expect_nil: true})
+          parent.send_http_request(:post, "/v1/me/player/next?device_id=%s" % id, http_options: {expect_nil: true})
           self
         end
 
