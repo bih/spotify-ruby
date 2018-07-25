@@ -217,6 +217,8 @@ With [Spotify Connect], you can take your music experience anywhere on over 300 
 
 ## Contributing
 
+On the website, we have [a full guide on contributing][contributing] for beginners.
+
 ### Community Guidelines
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/bih/spotify-ruby. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant] code of conduct.

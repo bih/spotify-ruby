@@ -34,13 +34,13 @@ layout: compress
 								</p>
 								{% if page.page_nav.prev.content or page.page_nav.next.content %}
 									{% if page.page_nav.prev.content and page.page_nav.prev.url %}
-										<a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.prev.url }}" class="btn btn--dark btn--rounded btn--w-icon btn--w-icon-left">
+										<a href="{% if jekyll.environment == 'production' and page.page_nav.prev.external_url != true %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.prev.url }}" class="btn btn--dark btn--rounded btn--w-icon btn--w-icon-left">
 											<i class="icon icon--arrow-left"></i>
 											{{ page.page_nav.prev.content }}
 										</a>
 									{% endif %}
 									{% if page.page_nav.next.content and page.page_nav.next.url %}
-										<a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.next.url }}" class="btn btn--dark btn--rounded btn--w-icon">
+										<a href="{% if jekyll.environment == 'production' and page.page_nav.next.external_url != true %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.next.url }}" class="btn btn--dark btn--rounded btn--w-icon">
 											<i class="icon icon--arrow-right"></i>
 											{{ page.page_nav.next.content }}
 										</a>
@@ -151,13 +151,13 @@ layout: compress
 						<div class="row">
 							<div class="col-xs-12">
 								{% if page.page_nav.prev.content and page.page_nav.prev.url %}
-									<a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.prev.url }}" class="page-nav__item page-nav__item--prev">
+									<a href="{% if jekyll.environment == 'production' and page.page_nav.prev.external_url != true %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.prev.url }}" class="page-nav__item page-nav__item--prev">
 										<i class="icon icon--arrow-left"></i>
 										{{ page.page_nav.prev.content }}
 									</a><!-- /.page-nav__item -->
 								{% endif %}
 								{% if page.page_nav.next.content and page.page_nav.next.url %}
-									<a href="{% if jekyll.environment == 'production' %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.next.url }}" class="page-nav__item page-nav__item--next">
+									<a href="{% if jekyll.environment == 'production' and page.page_nav.next.external_url != true %}{{ site.doks.baseurl }}{% endif %}{{ page.page_nav.next.url }}" class="page-nav__item page-nav__item--next">
 										{{ page.page_nav.next.content }}
 										<i class="icon icon--arrow-right"></i>
 									</a><!-- /.page-nav__item -->

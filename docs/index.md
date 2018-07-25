@@ -40,6 +40,7 @@ grid_navigation:
       excerpt: Want to contribute? We're excited to have you - even if you're new to code!
       cta: Get Contributing
       url: /documentation/contributing/
+      external_url: false
 
     - title: API Reference
       excerpt: See docs and code samples of the classes & methods of Spotify Ruby!

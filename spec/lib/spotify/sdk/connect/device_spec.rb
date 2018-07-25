@@ -114,7 +114,7 @@ RSpec.describe Spotify::SDK::Connect::Device do
 
   describe "#previous!" do
     it "should make an api call" do
-      stub = stub_request(:put, "https://api.spotify.com/v1/me/player/previous?device_id=#{raw_data[:id]}")
+      stub = stub_request(:post, "https://api.spotify.com/v1/me/player/previous?device_id=#{raw_data[:id]}")
              .with(headers: {Authorization: "Bearer access_token"})
 
       subject.previous!
@@ -124,7 +124,7 @@ RSpec.describe Spotify::SDK::Connect::Device do
 
   describe "#next!" do
     it "should make an api call" do
-      stub = stub_request(:put, "https://api.spotify.com/v1/me/player/next?device_id=#{raw_data[:id]}")
+      stub = stub_request(:post, "https://api.spotify.com/v1/me/player/next?device_id=#{raw_data[:id]}")
              .with(headers: {Authorization: "Bearer access_token"})
 
       subject.next!
