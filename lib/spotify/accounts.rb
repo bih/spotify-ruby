@@ -51,6 +51,9 @@ module Spotify
     #   @accounts.client_secret = "[client secret goes here]"
     #   @accounts.redirect_uri = "http://localhost"
     #
+    #   # with SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, and SPOTIFY_REDIRECT_URI in ENV:
+    #   @accounts = Spotify::Accounts.new
+    #
     # @param [Hash] config The configuration containing your Client ID, Client Secret, and your Redirect URL.
     #
     # @see https://developer.spotify.com/dashboard/
