@@ -6,6 +6,7 @@ require "spotify"
 require "factory_bot"
 require "webmock/rspec"
 require "rspec/collection_matchers"
+require "climate_control"
 
 require "simplecov"
 
