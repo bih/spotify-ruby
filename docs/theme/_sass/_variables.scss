@@ -1,8 +1,8 @@
-/**
- * Variables (_variables.scss)
- */
+//
+// Variables (_variables.scss)
+//
 
-/* ----- Colors ----- */
+// ----- Colors ----- 
 // General
 $color-white: #fff !default;
 $color-black: #000 !default;
@@ -45,12 +45,12 @@ $color-social-item: #bdbdbd !default;
 // Themes
 $color-theme-green: #2ebd59 !default;
 
-/* ----- Font families ----- */
+// ----- Font families ----- 
 $font-family-primary: 'Noto Sans', sans-serif !default;
 $font-family-secondary: 'Montserrat', sans-serif !default;
 $font-family-monospace: 'Source Code Pro', monospace !default;
 
-/* ----- Font sizes ----- */
+// ----- Font sizes ----- 
 // Base
 $font-size-base: 1em !default;
 
@@ -65,18 +65,18 @@ $font-size-h6: 1em !default;
 // Other
 $font-size-small: 0.75em !default;
 
-/* ----- Line heights ----- */
+// ----- Line heights ----- 
 // Base
 $line-height-base: 1.8em !default;
 
 // Headings
 $line-height-headings: 1.5em !default;
 
-/* ----- Z Indexes ----- */
+// ----- Z Indexes ----- 
 $z-index-offcanvas: 2 !default;
 $z-index-offcanvas-toggle: 3 !default;
 
-/* ----- Media queries breakpoints ----- */
+// ----- Media queries breakpoints ----- 
 // Mobile first
 $screen-xs-min: 480px !default; // Extra small screens, Phones
 $screen-sm-min: 768px !default; // Small screens, Tablets
@@ -88,7 +88,7 @@ $screen-xs-max: ($screen-sm-min - 1) !default;
 $screen-sm-max: ($screen-md-min - 1) !default;
 $screen-md-max: ($screen-lg-min - 1) !default;
 
-/* ----- Grid system ----- */
+// ----- Grid system ----- 
 // Columns
 $grid-columns: 12 !default;
 
