@@ -1,76 +1,76 @@
-/**
- * Buttons (objects/_buttons.scss)
- */
+//
+// Buttons (objects/_buttons.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .btn {
-	@include link-reset;
-	font-family: $font-family-secondary;
-	font-weight: 500;
-	display: inline-block;
-	margin: 0 0 1.25rem 0;
+  @include link-reset;
+  display: inline-block;
+  font-family: $font-family-secondary;
+  font-weight: 500;
+  margin: 0 0 1.25rem 0;
 }
 
-/* ----- Variations ----- */
+// ----- Variations ----- 
 .btn--full-width {
-	display: block;
-	width: 100%;
+  display: block;
+  width: 100%;
 }
 
 .btn--rounded {
-	border-radius: 3.125rem;
+  border-radius: 3.125rem;
 }
 
 .btn--dark {
-	color: $color-white;
-	background-color: $color-dark-green;
-	padding: .5625rem 1.5625rem;
-	transition: color .2s, background-color .2s;
+  background-color: $color-dark-green;
+  color: $color-white;
+  padding: 0.5625rem 1.5625rem;
+  transition: color 0.2s, background-color 0.2s;
 
-	@media (min-width: $screen-sm-min) {
-		padding: .8125rem 2.1875rem;
-	}
+  @media (min-width: $screen-sm-min) {
+    padding: 0.8125rem 2.1875rem;
+  }
 
-	&:hover,
-	&:focus,
-	&:active {
-		color: $color-dark-green;
-		background-color: $color-yellow;
-	}
+  &:hover,
+  &:focus,
+  &:active {
+    background-color: $color-yellow;
+    color: $color-dark-green;
+  }
 }
 
 .btn--w-icon {
-	.icon {
-		float: right;
-		font-size: 1.375rem;
-		margin-left: .75rem;
-		position: relative;
-		bottom: -.125rem;
-	}
+  .icon {
+    bottom: -0.125rem;
+    float: right;
+    font-size: 1.375rem;
+    margin-left: 0.75rem;
+    position: relative;
+  }
 }
 
 .btn--w-icon-left {
-	.icon {
-		float: left;
-		margin-left: 0;
-		margin-right: .75rem;
-	}
+  .icon {
+    float: left;
+    margin-left: 0;
+    margin-right: 0.75rem;
+  }
 }
 
 .btn--read-more {
-	text-transform: uppercase;
+  text-transform: uppercase;
 
-	.icon {
-		display: inline-block;
-		margin-left: .625rem;
-		transition: transform .2s;
-	}
+  .icon {
+    display: inline-block;
+    margin-left: 0.625rem;
+    transition: transform 0.2s;
+  }
 
-	&:hover,
-	&:focus,
-	&:active {
-		.icon {
-			@include translate(.3125rem, 0);
-		}
-	}
+  &:hover,
+  &:focus,
+  &:active {
+    .icon {
+      @include translate(0.3125rem, 0);
+    }
+  }
 }

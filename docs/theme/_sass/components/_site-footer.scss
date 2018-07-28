@@ -1,37 +1,37 @@
-/**
- * Site footer (components/_site-footer.scss)
- */
+//
+// Site footer (components/_site-footer.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .site-footer {
-	background-color: $color-footer-bg;
-	padding: 3.75rem 0 (3.75rem - 1.25rem) 0;
+  background-color: $color-footer-bg;
+  padding: 3.75rem 0 (3.75rem - 1.25rem) 0;
 
-	hr {
-		width: 5.625rem;
-	}
+  hr {
+    width: 5.625rem;
+  }
 }
 
-/* ----- Logo ----- */
+// ----- Logo ----- 
 .site-footer__logo {
-	@include link-reset;
-	display: inline-block;
-	color: $color-footer-copyright;
-	font-family: $font-family-secondary;
-	font-size: $font-size-h3;
-	font-weight: 700;
-	vertical-align: top;
-	margin: 0 0 1.25rem 0;
+  @include link-reset;
+  color: $color-footer-copyright;
+  display: inline-block;
+  font-family: $font-family-secondary;
+  font-size: $font-size-h3;
+  font-weight: 700;
+  margin: 0 0 1.25rem 0;
+  vertical-align: top;
 
-	img {
-		display: block;
-		width: 15.625rem;
-	}
+  img {
+    display: block;
+    width: 15.625rem;
+  }
 }
 
-/* ----- Copyright ----- */
+// ----- Copyright ----- 
 .site-footer__copyright {
-	color: $color-footer-copyright;
-	font-size: .875em;
-	line-height: $line-height-base;
+  color: $color-footer-copyright;
+  font-size: 0.875em;
+  line-height: $line-height-base;
 }

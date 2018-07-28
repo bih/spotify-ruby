@@ -1,51 +1,51 @@
-/**
- * Grid (objects/_grid.scss)
- */
+//
+// Grid (objects/_grid.scss)
+//
 
-/* ----- Container widths ----- */
+// ----- Container widths ----- 
 .container {
-	@include container-fixed;
+  @include container-fixed;
 
-	@media (min-width: $screen-sm-min) {
-		width: $container-sm;
-	}
+  @media (min-width: $screen-sm-min) {
+    width: $container-sm;
+  }
 
-	@media (min-width: $screen-md-min) {
-		width: $container-md;
-	}
+  @media (min-width: $screen-md-min) {
+    width: $container-md;
+  }
 
-	@media (min-width: $screen-lg-min) {
-		width: $container-lg;
-	}
+  @media (min-width: $screen-lg-min) {
+    width: $container-lg;
+  }
 }
 
-/* ----- Fluid container ----- */
+// ----- Fluid container ----- 
 .container-fluid {
-	@include container-fixed;
+  @include container-fixed;
 }
 
-/* ----- Row ----- */
+// ----- Row ----- 
 .row {
-	@include make-row;
+  @include make-row;
 }
 
-/* ----- Columns ----- */
+// ----- Columns ----- 
 @include make-grid-columns;
 
-/* ----- Extra small grid ----- */
+// ----- Extra small grid ----- 
 @include make-grid(xs);
 
-/* ----- Small grid ----- */
+// ----- Small grid ----- 
 @media (min-width: $screen-sm-min) {
-	@include make-grid(sm);
+  @include make-grid(sm);
 }
 
-/* ----- Medium grid ----- */
+// ----- Medium grid ----- 
 @media (min-width: $screen-md-min) {
-	@include make-grid(md);
+  @include make-grid(md);
 }
 
-/* ----- Large grid ----- */
+// ----- Large grid ----- 
 @media (min-width: $screen-lg-min) {
-	@include make-grid(lg);
+  @include make-grid(lg);
 }
