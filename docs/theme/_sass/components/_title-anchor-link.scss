@@ -4,32 +4,38 @@
 
 /* ----- General ----- */
 .title-anchor-link {
-	@include link-reset;
-	display: block;
-	position: absolute;
-	opacity: 0;
-	@include translate3d(-100%, 0, 0);
-	transition: opacity .2s;
-	padding-right: .625rem;
+  @include link-reset;
+  display: block;
+  opacity: 0;
+  padding-right: 0.625rem;
+  @include translate3d(-100%, 0, 0);
+  position: absolute;
+  transition: opacity 0.2s;
 }
 
-h1, .h1,
-h2, .h2,
-h3, .h3,
-h4, .h4,
-h5, .h5,
-h6, .h6 {
-	&:hover,
-	&:focus,
-	&:active {
-		.title-anchor-link {
-			opacity: .4;
+h1,
+.h1,
+h2,
+.h2,
+h3,
+.h3,
+h4,
+.h4,
+h5,
+.h5,
+h6,
+.h6 {
+  &:hover,
+  &:focus,
+  &:active {
+    .title-anchor-link {
+      opacity: 0.4;
 
-			&:hover,
-			&:focus,
-			&:active {
-				opacity: 1;
-			}
-		}
-	}
+      &:hover,
+      &:focus,
+      &:active {
+        opacity: 1;
+      }
+    }
+  }
 }

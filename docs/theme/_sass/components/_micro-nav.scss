@@ -4,37 +4,37 @@
 
 /* ----- General ----- */
 .micro-nav {
-	color: $color-white;
-	background-color: $color-dark-green;
-	padding: .9375rem 0;
-	text-align: center;
+  background-color: $color-dark-green;
+  color: $color-white;
+  padding: 0.9375rem 0;
+  text-align: center;
 
-	@media (min-width: $screen-sm-min) {
-		text-align: left;
-	}
+  @media (min-width: $screen-sm-min) {
+    text-align: left;
+  }
 }
 
 /* ----- Back ----- */
 .micro-nav__back {
-	@include link-reset;
-	display: inline-block;
-	font-weight: 500;
-	font-family: $font-family-secondary;
-	text-transform: uppercase;
+  @include link-reset;
+  display: inline-block;
+  font-family: $font-family-secondary;
+  font-weight: 500;
+  text-transform: uppercase;
 
-	&:hover,
-	&:focus,
-	&:active {
-		.icon {
-			@include translate(-.3125rem, 0);
-		}
-	}
+  &:hover,
+  &:focus,
+  &:active {
+    .icon {
+      @include translate(-0.3125rem, 0);
+    }
+  }
 
-	.icon {
-		display: inline-block;
-		margin-right: .5rem;
-		position: relative;
-		bottom: -.125rem;
-		transition: transform .2s;
-	}
+  .icon {
+    bottom: -0.125rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+    position: relative;
+    transition: transform 0.2s;
+  }
 }

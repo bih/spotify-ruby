@@ -4,22 +4,22 @@
 
 /* ----- General ----- */
 .error-404 {
-	background-color: $color-theme-green;
-	text-align: center;
+  background-color: $color-theme-green;
+  text-align: center;
 
-	.align-container {
-		height: 100vh;
-	}
+  .align-container {
+    height: 100vh;
+  }
 }
 
 /* ----- Title ----- */
 .error-404__title {
-	color: $color-dark-green;
-	font-weight: normal;
-	font-size: $font-size-h3;
-	margin-top: 0;
+  color: $color-dark-green;
+  font-size: $font-size-h3;
+  font-weight: normal;
+  margin-top: 0;
 
-	@media (min-width: $screen-sm-min) {
-		font-size: $font-size-h1;
-	}
+  @media (min-width: $screen-sm-min) {
+    font-size: $font-size-h1;
+  }
 }

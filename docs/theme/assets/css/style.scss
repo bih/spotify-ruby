@@ -3,17 +3,17 @@
 # only Main files contain this front matter, not partials.
 ---
 
-/**
- * Style (style.scss)
- */
+//
+// Style (style.scss)
+//
 
-/* ----- Charset ----- */
+// ----- Charset -----
 @charset 'utf-8';
 
-/* ----- Variables ----- */
+// ----- Variables -----
 @import 'variables';
 
-/* ----- Tools ----- */
+// ----- Tools -----
 @import 'tools/prefixer';
 @import 'tools/clearfix';
 @import 'tools/grid-framework';
@@ -22,17 +22,17 @@
 @import 'tools/lists';
 @import 'tools/responsive-visibility';
 
-/* ----- Base ----- */
+// ----- Base -----
 @import 'generic/normalize';
 @import 'generic/base';
 @import 'generic/code';
 @import 'generic/kbd';
 
-/* ----- Utilities ----- */
+// ----- Utilities -----
 @import 'utilities/alignment';
 @import 'utilities/visibility';
 
-/* ----- Objects ----- */
+// ----- Objects -----
 @import 'objects/buttons';
 @import 'objects/content';
 @import 'objects/error-404';
@@ -40,7 +40,7 @@
 @import 'objects/icons';
 @import 'objects/section';
 
-/* ----- Components ----- */
+// ----- Components -----
 @import 'components/callout';
 @import 'components/example';
 @import 'components/hero-subheader';
@@ -53,5 +53,6 @@
 @import 'components/social-list';
 @import 'components/title-anchor-link';
 
-/* ----- Themes ----- */
+
+// ----- Themes -----
 @import 'themes/green';

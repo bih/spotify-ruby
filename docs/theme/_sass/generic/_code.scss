@@ -5,23 +5,23 @@
 /* ----- General ----- */
 code,
 tt {
-  font-family: $font-family-monospace;
-  color: $color-code;
   background-color: $color-code-bg;
   border-radius: 0.1875rem;
+  color: $color-code;
+  font-family: $font-family-monospace;
   padding: 0.125rem 0.375rem 0.1875rem 0.375rem;
 }
 
 pre {
-  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   border-left: 8px solid $color-pre-border;
   margin: 0 0 1.25rem 0;
-  -webkit-overflow-scrolling: touch;
+  overflow: auto;
 
   code {
-    color: $color-pre;
     background-color: transparent;
     border-radius: 0;
+    color: $color-pre;
     padding: 0;
   }
 }
@@ -30,6 +30,7 @@ pre {
 .highlight .hll {
   background-color: #49483e;
 }
+
 pre.highlight {
   background: #212733;
   color: $color-pre;
@@ -39,8 +40,8 @@ pre.highlight {
   color: #75715e;
 } /* Comment */
 .highlight .err {
-  color: #960050;
   background-color: #1e0010;
+  color: #960050;
 } /* Error */
 .highlight .k {
   color: #66d9ef;
