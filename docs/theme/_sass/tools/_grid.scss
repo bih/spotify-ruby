@@ -1,24 +1,26 @@
-/**
- * Grid (tools/_grid.scss)
- */
+//
+// Grid (tools/_grid.scss)
+//
 
-/* ----- Centered container element ----- */
+// ----- Centered container element -----
 @mixin container-fixed($gutter: $grid-gutter-width) {
+  @include clearfix;
+
   margin-left: auto;
   margin-right: auto;
   padding-left: floor(($gutter / 2));
   padding-right: ceil(($gutter / 2));
-  @include clearfix;
 }
 
-/* ----- Creates a wrapper for a series of columns ----- */
+// ----- Creates a wrapper for a series of columns -----
 @mixin make-row($gutter: $grid-gutter-width) {
+  @include clearfix;
+
   margin-left: ceil(($gutter / -2));
   margin-right: floor(($gutter / -2));
-  @include clearfix;
 }
 
-/* ----- Generate the extra small columns ----- */
+// ----- Generate the extra small columns -----
 @mixin make-xs-column($columns, $gutter: $grid-gutter-width) {
   float: left;
   min-height: 1px;
@@ -40,7 +42,7 @@
   right: percentage(($columns / $grid-columns));
 }
 
-/* ----- Generate the small columns ----- */
+// ----- Generate the small columns -----
 @mixin make-sm-column($columns, $gutter: $grid-gutter-width) {
   min-height: 1px;
   padding-left: ($gutter / 2);
@@ -71,7 +73,7 @@
   }
 }
 
-/* ----- Generate the medium columns ----- */
+// ----- Generate the medium columns -----
 @mixin make-md-column($columns, $gutter: $grid-gutter-width) {
   min-height: 1px;
   padding-left: ($gutter / 2);
@@ -102,7 +104,7 @@
   }
 }
 
-/* ----- Generate the large columns ----- */
+// ----- Generate the large columns -----
 @mixin make-lg-column($columns, $gutter: $grid-gutter-width) {
   min-height: 1px;
   padding-left: ($gutter / 2);

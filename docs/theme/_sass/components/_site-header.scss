@@ -1,8 +1,8 @@
-/**
- * Site header (components/_site-header.scss)
- */
+//
+// Site header (components/_site-header.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .site-header {
   border-bottom: 1px solid rgba($color-dark-green, 0.15);
   height: 5.625rem;
@@ -10,7 +10,7 @@
   width: 100%;
 }
 
-/* ----- Notice ----- */
+// ----- Notice ----- 
 
 .site-header__notice {
   background: $color-yellow;
@@ -21,7 +21,7 @@
   }
 }
 
-/* ----- Navigation ----- */
+// ----- Navigation ----- 
 .site-header__logo {
   @include link-reset;
   color: $color-dark-green;
@@ -43,7 +43,7 @@
   }
 }
 
-/* ----- Navigation ----- */
+// ----- Navigation ----- 
 .site-header__nav {
   @include list-horizontal;
   @include clearfix;
@@ -76,7 +76,7 @@
   }
 }
 
-/* ----- Offcanvas ----- */
+// ----- Offcanvas ----- 
 .offcanvas {
   background-color: $color-white;
   bottom: 0;
@@ -99,7 +99,7 @@
   }
 }
 
-/* ----- Offcanvas navigation ----- */
+// ----- Offcanvas navigation ----- 
 .offcanvas__nav {
   -webkit-overflow-scrolling: touch;
   height: 100%;
@@ -127,7 +127,7 @@
   }
 }
 
-/* ----- Offcanvas toggle ----- */
+// ----- Offcanvas toggle ----- 
 .offcanvas-toggle {
   cursor: pointer;
   height: calc(5.625rem - 1px);

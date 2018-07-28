@@ -1,8 +1,8 @@
-/**
- * Social list (components/_social-list.scss)
- */
+//
+// Social list (components/_social-list.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .social-list {
   margin-bottom: 0;
 
@@ -21,7 +21,7 @@
   }
 }
 
-/* ----- Item ----- */
+// ----- Item ----- 
 .social-list__item {
   @include link-reset;
   color: $color-social-item;

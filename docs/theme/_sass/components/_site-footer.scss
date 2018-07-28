@@ -1,8 +1,8 @@
-/**
- * Site footer (components/_site-footer.scss)
- */
+//
+// Site footer (components/_site-footer.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .site-footer {
   background-color: $color-footer-bg;
   padding: 3.75rem 0 (3.75rem - 1.25rem) 0;
@@ -12,7 +12,7 @@
   }
 }
 
-/* ----- Logo ----- */
+// ----- Logo ----- 
 .site-footer__logo {
   @include link-reset;
   color: $color-footer-copyright;
@@ -29,7 +29,7 @@
   }
 }
 
-/* ----- Copyright ----- */
+// ----- Copyright ----- 
 .site-footer__copyright {
   color: $color-footer-copyright;
   font-size: 0.875em;

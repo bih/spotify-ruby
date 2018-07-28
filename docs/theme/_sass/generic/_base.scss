@@ -1,8 +1,8 @@
-/**
- * Base (generic/_base.scss)
- */
+//
+// Base (generic/_base.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 html {
   -moz-osx-font-smoothing: grayscale;
   @include box-sizing(border-box);
@@ -23,7 +23,7 @@ body {
   line-height: $line-height-base;
 }
 
-/* ----- Everything ----- */
+// ----- Everything ----- 
 * {
   &,
   &::before,
@@ -32,7 +32,7 @@ body {
   }
 }
 
-/* ----- Headings ----- */
+// ----- Headings ----- 
 h1,
 .h1,
 h2,
@@ -94,18 +94,18 @@ h6,
   font-size: $font-size-h6;
 }
 
-/* ----- Inline elements ----- */
+// ----- Inline elements ----- 
 small,
 .text-small {
   font-size: $font-size-small;
 }
 
-/* ----- Paragraphs ----- */
+// ----- Paragraphs ----- 
 p {
   margin: 0 0 1.25rem 0;
 }
 
-/* ----- Hyperlinks ----- */
+// ----- Hyperlinks ----- 
 a {
   border-bottom: 0.0625em solid;
   border-color: inherit;
@@ -114,21 +114,21 @@ a {
   text-decoration: none;
 }
 
-/* ----- Images ----- */
+// ----- Images ----- 
 img {
   height: auto;
   max-width: 100%;
   vertical-align: top;
 }
 
-/* ----- Horizontal rules ----- */
+// ----- Horizontal rules ----- 
 hr {
   border: 0;
   border-top: 1px solid $color-horizontal-rule;
   margin: 0 0 1.25rem 0;
 }
 
-/* ----- States ----- */
+// ----- States ----- 
 ::-moz-selection {
   background: rgba($color-yellow, 0.99);
   color: $color-dark-green;
@@ -139,7 +139,7 @@ hr {
   color: $color-dark-green;
 }
 
-/* ----- Quotes ----- */
+// ----- Quotes ----- 
 blockquote {
   margin: 0 0 1.25rem 0;
 }
@@ -148,7 +148,7 @@ q {
   color: $color-dark-green;
 }
 
-/* ----- Lists ----- */
+// ----- Lists ----- 
 ul {
   list-style-type: none;
   margin: 0 0 1.25rem 0;
@@ -168,7 +168,7 @@ ul {
   }
 }
 
-/* ----- Definition lists ----- */
+// ----- Definition lists ----- 
 dl {
   margin: 0 0 1.25rem 0;
 
@@ -182,13 +182,13 @@ dl {
   }
 }
 
-/* ----- Acronym and Emphasize tags ----- */
+// ----- Acronym and Emphasize tags ----- 
 acronym,
 em {
   font-style: italic;
 }
 
-/* ----- Tables ----- */
+// ----- Tables ----- 
 table {
   border-collapse: collapse;
   font-size: $font-size-base;
@@ -240,14 +240,14 @@ table {
   }
 }
 
-/* ----- Iframe ----- */
+// ----- Iframe ----- 
 iframe {
   border: 0;
   display: block;
   margin: 0 0 1.25rem 0;
 }
 
-/* ----- Button ----- */
+// ----- Button ----- 
 button {
   background-color: transparent;
   border: 0;

@@ -1,8 +1,8 @@
-/**
- * Micro nav (components/_micro-nav.scss)
- */
+//
+// Micro nav (components/_micro-nav.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .micro-nav {
   background-color: $color-dark-green;
   color: $color-white;
@@ -14,7 +14,7 @@
   }
 }
 
-/* ----- Back ----- */
+// ----- Back ----- 
 .micro-nav__back {
   @include link-reset;
   display: inline-block;

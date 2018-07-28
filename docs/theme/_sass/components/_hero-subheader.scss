@@ -1,8 +1,8 @@
-/**
- * Hero subheader (components/_hero-subheader.scss)
- */
+//
+// Hero subheader (components/_hero-subheader.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .hero-subheader {
   background-color: $color-theme-green;
   color: $color-dark-green;
@@ -36,24 +36,24 @@
   }
 }
 
-/* ----- Title ----- */
+// ----- Title ----- 
 .hero-subheader__title {
   margin-top: 0;
 }
 
-/* ----- Description ----- */
+// ----- Description ----- 
 .hero-subheader__desc {
   margin-bottom: 1.875rem;
 }
 
-/* ----- Reading Time ----- */
+// ----- Reading Time ----- 
 .hero-subheader__reading_time {
   font-style: italic;
   margin-bottom: 1.875rem;
   margin-top: -1.875rem;
 }
 
-/* ----- Contributors ----- */
+// ----- Contributors ----- 
 .hero-subheader__contributors > ul.contributors {
   li::before {
     content: '';
@@ -85,7 +85,7 @@
   }
 }
 
-/* ----- Author ----- */
+// ----- Author ----- 
 .hero-subheader__author {
   border-left: 2px solid;
   padding-left: 2.5rem;
@@ -99,7 +99,7 @@
   font-size: $font-size-h5;
 }
 
-/* ----- More ----- */
+// ----- More ----- 
 .hero-subheader__btn-more {
   color: inherit;
 }

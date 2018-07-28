@@ -1,8 +1,8 @@
-/**
- * Callout (components/_callout.scss)
- */
+//
+// Callout (components/_callout.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .callout {
   background-color: $color-callout;
   border: 2px solid darken($color-callout, 4%);
@@ -29,7 +29,7 @@
   }
 }
 
-/* ----- Variations ----- */
+// ----- Variations ----- 
 .callout {
   &--success {
     background-color: $color-callout-success;

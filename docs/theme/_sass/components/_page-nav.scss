@@ -1,8 +1,8 @@
-/**
- * Page nav (components/_page-nav.scss)
- */
+//
+// Page nav (components/_page-nav.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .page-nav {
   background-color: $color-theme-green;
   color: $color-dark-green;
@@ -13,7 +13,7 @@
   }
 }
 
-/* ----- Item ----- */
+// ----- Item ----- 
 .page-nav__item {
   @include link-reset;
   display: block;

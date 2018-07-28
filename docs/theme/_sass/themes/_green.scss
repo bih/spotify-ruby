@@ -1,16 +1,14 @@
-/**
- * Green (themes/_green.scss)
- */
+//
+// Green (themes/_green.scss)
+//
 
-/* ----- Hero subheader ----- */
 .green {
+  // ----- Hero subheader -----
   .hero-subheader {
     background-color: $color-theme-green;
   }
-}
 
-/* ----- Nav grid ----- */
-.green {
+  // ----- Nav grid -----
   .nav-grid__item {
     background-color: $color-theme-green;
 
@@ -20,24 +18,18 @@
       background-color: $color-theme-green;
     }
   }
-}
 
-/* ----- Section ----- */
-.green {
+  // ----- Section -----
   .section--darker-theme-color-bg {
     background-color: darken($color-theme-green, 3%);
   }
-}
 
-/* ----- Page nav ----- */
-.green {
+  // ----- Page nav -----
   .page-nav {
     background-color: $color-theme-green;
   }
-}
 
-/* ----- Error 404 ----- */
-.green {
+  // ----- Error 404 -----
   &.error-404 {
     background-color: $color-theme-green;
   }

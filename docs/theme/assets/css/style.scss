@@ -3,45 +3,28 @@
 # only Main files contain this front matter, not partials.
 ---
 
-//
-// Style (style.scss)
-//
-
-// ----- Charset -----
-@charset 'utf-8';
-
-// ----- Variables -----
-@import 'variables';
-
-// ----- Tools -----
-@import 'tools/prefixer';
+@charset 'utf-8'; // ----- Charset ----- // ----- Variables -----
+@import 'variables'; // ----- Variables -----
+@import 'tools/prefixer'; // ----- Tools -----
 @import 'tools/clearfix';
 @import 'tools/grid-framework';
 @import 'tools/grid';
 @import 'tools/hyperlinks';
 @import 'tools/lists';
 @import 'tools/responsive-visibility';
-
-// ----- Base -----
-@import 'generic/normalize';
+@import 'generic/normalize'; // ----- Base -----
 @import 'generic/base';
 @import 'generic/code';
 @import 'generic/kbd';
-
-// ----- Utilities -----
-@import 'utilities/alignment';
+@import 'utilities/alignment'; // ----- Utilities -----
 @import 'utilities/visibility';
-
-// ----- Objects -----
-@import 'objects/buttons';
+@import 'objects/buttons'; // ----- Objects -----
 @import 'objects/content';
 @import 'objects/error-404';
 @import 'objects/grid';
 @import 'objects/icons';
 @import 'objects/section';
-
-// ----- Components -----
-@import 'components/callout';
+@import 'components/callout'; // ----- Components -----
 @import 'components/example';
 @import 'components/hero-subheader';
 @import 'components/micro-nav';
@@ -52,7 +35,4 @@
 @import 'components/site-header';
 @import 'components/social-list';
 @import 'components/title-anchor-link';
-
-
-// ----- Themes -----
-@import 'themes/green';
+@import 'themes/green'; // ----- Themes -----

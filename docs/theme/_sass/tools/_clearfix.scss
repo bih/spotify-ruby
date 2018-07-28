@@ -1,8 +1,8 @@
-/**
- * Clearfix (tools/_clearfix.scss)
- */
+//
+// Clearfix (tools/_clearfix.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 @mixin clearfix {
   &::before,
   &::after {

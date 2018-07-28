@@ -1,15 +1,17 @@
-/**
- * Prefixer (tools/_prefixer.scss)
- */
+//
+// Prefixer (tools/_prefixer.scss)
+//
 
-/* ----- Box sizing ----- */
+// sass-lint:disable no-vendor-prefixes
+
+// ----- Box sizing -----
 @mixin box-sizing($value) {
   -moz-box-sizing: $value;
   -webkit-box-sizing: $value;
   box-sizing: $value;
 }
 
-/* ----- Transform ----- */
+// ----- Transform -----
 // Rotate
 @mixin rotate($deg) {
   -moz-transform: rotate(#{$deg}deg);
@@ -32,3 +34,5 @@
   -webkit-transform: translate3d($x, $y, $z);
   transform: translate3d($x, $y, $z);
 }
+
+// sass-lint:enable no-vendor-prefixes

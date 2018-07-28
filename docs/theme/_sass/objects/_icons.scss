@@ -1,8 +1,8 @@
-/**
- * Icons (objects/_icons.scss)
- */
+//
+// Icons (objects/_icons.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 @font-face {
   font-family: 'icons';
   font-style: normal;
@@ -22,7 +22,7 @@
   text-transform: none;
 }
 
-/* ----- List of icons ----- */
+// ----- List of icons ----- 
 .icon--behance {
   &::before {
     content: '\e900';

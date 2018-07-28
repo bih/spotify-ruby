@@ -1,19 +1,19 @@
-/**
- * Sections list (components/_sections-list.scss)
- */
+//
+// Sections list (components/_sections-list.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .sections-list {
   float: left;
   margin-top: 1.25rem;
 }
 
-/* ----- Wrapper ----- */
+// ----- Wrapper ----- 
 .sections-list-wrapper {
   width: 100%;
 }
 
-/* ----- Affix ----- */
+// ----- Affix ----- 
 .sections-list.affix {
   position: fixed;
   top: 0;
@@ -23,7 +23,7 @@
   position: absolute;
 }
 
-/* ----- List ----- */
+// ----- List ----- 
 .sections-list {
   ul {
     ul {

@@ -1,25 +1,28 @@
-/**
- * Responsive visibility (tools/_responsive-visibility.scss)
- */
+//
+// Responsive visibility (tools/_responsive-visibility.scss)
+//
 
-/* ----- Visibility ----- */
+// ----- Visibility -----
 @mixin responsive-visibility($parent) {
   #{$parent} {
     display: block;
   }
+
   table#{$parent} {
     display: table;
   }
+
   tr#{$parent} {
     display: table-row;
   }
+
   th#{$parent},
   td#{$parent} {
     display: table-cell;
   }
 }
 
-/* ----- Invisibility ----- */
+// ----- Invisibility -----
 @mixin responsive-invisibility($parent) {
   #{$parent} {
     display: none;

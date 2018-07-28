@@ -1,8 +1,8 @@
-/**
- * Buttons (objects/_buttons.scss)
- */
+//
+// Buttons (objects/_buttons.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .btn {
   @include link-reset;
   display: inline-block;
@@ -11,7 +11,7 @@
   margin: 0 0 1.25rem 0;
 }
 
-/* ----- Variations ----- */
+// ----- Variations ----- 
 .btn--full-width {
   display: block;
   width: 100%;

@@ -1,8 +1,8 @@
-/**
- * Section (objects/_section.scss)
- */
+//
+// Section (objects/_section.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .section {
   padding: 3.75rem 0 (3.75rem - 1.25rem) 0;
 
@@ -11,7 +11,7 @@
   }
 }
 
-/* ----- Variations ----- */
+// ----- Variations ----- 
 .section--darker-theme-color-bg {
   background-color: darken($color-theme-green, 3%);
 }

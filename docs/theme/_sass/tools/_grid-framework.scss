@@ -1,8 +1,8 @@
-/**
- * Grid framework (tools/_grid-framework.scss)
- */
+//
+// Grid framework (tools/_grid-framework.scss)
+//
 
-/* ----- Make grid columns ----- */
+// ----- Make grid columns ----- 
 @mixin make-grid-columns(
   $i: 1,
   $list: '.col-xs-#{$i}, .col-sm-#{$i}, .col-md-#{$i}, .col-lg-#{$i}'
@@ -19,7 +19,7 @@
   }
 }
 
-/* ----- Float grid columns ----- */
+// ----- Float grid columns ----- 
 @mixin float-grid-columns($class, $i: 1, $list: '.col-#{$class}-#{$i}') {
   @for $i from (1 + 1) through $grid-columns {
     $list: '#{$list}, .col-#{$class}-#{$i}';
@@ -30,7 +30,7 @@
   }
 }
 
-/* ----- Calc grid column ----- */
+// ----- Calc grid column ----- 
 @mixin calc-grid-column($index, $class, $type) {
   @if ($type == width) and ($index > 0) {
     .col-#{$class}-#{$index} {
@@ -69,14 +69,14 @@
   }
 }
 
-/* ----- Loop grid columns ----- */
+// ----- Loop grid columns ----- 
 @mixin loop-grid-columns($columns, $class, $type) {
   @for $i from 0 through $columns {
     @include calc-grid-column($i, $class, $type);
   }
 }
 
-/* ----- Make grid ----- */
+// ----- Make grid ----- 
 @mixin make-grid($class) {
   @include float-grid-columns($class);
   @include loop-grid-columns($grid-columns, $class, width);

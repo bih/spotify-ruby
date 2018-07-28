@@ -1,8 +1,8 @@
-/**
- * Nav grid (components/_nav-grid.scss)
- */
+//
+// Nav grid (components/_nav-grid.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .nav-grid {
   color: $color-dark-green;
   font-size: 0.9375em;
@@ -15,7 +15,7 @@
   }
 }
 
-/* ----- Item ----- */
+// ----- Item ----- 
 .nav-grid__item {
   @include link-reset;
   background-color: $color-theme-green;
@@ -43,7 +43,7 @@
   }
 }
 
-/* ----- Content ----- */
+// ----- Content ----- 
 .nav-grid__content {
   @include clearfix();
   padding: 1.25rem 1.875rem 0.625rem 1.875rem;
@@ -57,7 +57,7 @@
   }
 }
 
-/* ----- Title ----- */
+// ----- Title ----- 
 .nav-grid__title {
   border: 0;
   display: block;
@@ -67,7 +67,7 @@
   padding: 0;
 }
 
-/* ----- Read more ----- */
+// ----- Read more ----- 
 .nav-grid__btn {
   border-top: 2px solid rgba($color-dark-green, 0.2);
   font-family: $font-family-secondary;

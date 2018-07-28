@@ -1,8 +1,8 @@
-/**
- * Error 404 (objects/_error-404.scss)
- */
+//
+// Error 404 (objects/_error-404.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .error-404 {
   background-color: $color-theme-green;
   text-align: center;
@@ -12,7 +12,7 @@
   }
 }
 
-/* ----- Title ----- */
+// ----- Title ----- 
 .error-404__title {
   color: $color-dark-green;
   font-size: $font-size-h3;
