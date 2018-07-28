@@ -94,11 +94,10 @@ As mentioned above, you'll need to register your client ID. We recommend you tha
 To define your app credentials, you'll need to create an instance of `Spotify::Accounts`:
 
 ```ruby
-@accounts = Spotify::Accounts.new(
-  client_id: "spotify client ID",
-  client_secret: "spotify client secret",
-  redirect_uri: "redirect URI"
-)
+@accounts = Spotify::Accounts.new
+@accounts.client_id = "spotify client ID"
+@accounts.client_secret = "spotify client secret"
+@accounts.redirect_uri = "redirect URI"
 ```
 
 Alternatively, these credentials can be supplied as environment variables when running your application:
@@ -106,6 +105,14 @@ Alternatively, these credentials can be supplied as environment variables when r
 ```ruby
 @accounts = Spotify::Accounts.new # fetches configuration from ENV
 ```
+
+The respective environment variables you'll need to set are:
+
+| Environment Variable     | Description                               | Required?     |
+| ------------------------ | ----------------------------------------- | ------------- |
+| `SPOTIFY_CLIENT_ID`      | Your Spotify Client ID                    | **Yes**       |
+| `SPOTIFY_CLIENT_SECRET`  | Your Spotify Client Secret                | **Yes**       |
+| `SPOTIFY_REDIRECT_URI`   | Your Spotify Redirect URI (must be exact) | **Yes**       |
 
 ### Authorization
 
