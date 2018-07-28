@@ -35,6 +35,7 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "rake", "~> 12.1"
 
   # Testing
+  spec.add_development_dependency "climate_control", "~> 0.2"
   spec.add_development_dependency "factory_bot", "~> 1.0.0.alpha"
   spec.add_development_dependency "rspec", "~> 3.7"
   spec.add_development_dependency "rspec-collection_matchers", "~> 1.1", ">= 1.1.2"

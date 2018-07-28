@@ -51,14 +51,17 @@ module Spotify
     #   @accounts.client_secret = "[client secret goes here]"
     #   @accounts.redirect_uri = "http://localhost"
     #
+    #   # with SPOTIFY_CLIENT_ID, SPOTIFY_CLIENT_SECRET, and SPOTIFY_REDIRECT_URI in ENV:
+    #   @accounts = Spotify::Accounts.new
+    #
     # @param [Hash] config The configuration containing your Client ID, Client Secret, and your Redirect URL.
     #
     # @see https://developer.spotify.com/dashboard/
     #
     def initialize(config={})
-      @client_id = config.delete(:client_id)
-      @client_secret = config.delete(:client_secret)
-      @redirect_uri = config.delete(:redirect_uri)
+      @client_id = config.delete(:client_id) { ENV["SPOTIFY_CLIENT_ID"] }
+      @client_secret = config.delete(:client_secret) { ENV["SPOTIFY_CLIENT_SECRET"] }
+      @redirect_uri = config.delete(:redirect_uri) { ENV["SPOTIFY_REDIRECT_URI"] }
     end
 
     attr_accessor :client_id, :client_secret, :redirect_uri
