@@ -22,6 +22,63 @@ RSpec.describe Spotify::SDK::Me do
     end
   end
 
+  describe "#history" do
+    context "Single API call" do
+      let!(:stub) do
+        stub_spotify_api_request(fixture:  "get/v1/me/player/recently-played/single-response",
+                                 method:   :get,
+                                 endpoint: "/v1/me/player/recently-played")
+      end
+
+      it "should return 1 item if response returns 1 result" do
+        fixture_items   = read_fixture("get/v1/me/player/recently-played/single-response")[:items]
+        subject_history = subject.history
+
+        expect(subject_history).to have(fixture_items.size).items
+        expect(subject_history[0]).to be_kind_of(Spotify::SDK::Item)
+        expect(subject_history[0].to_h).to eq(fixture_items[0])
+      end
+
+      it "should only make one API request if 'next' in response is null" do
+        subject.history
+
+        expect(stub).to have_been_requested
+      end
+    end
+
+    context "Multiple API calls" do
+      let!(:stub1) do
+        stub_spotify_api_request(fixture:  "get/v1/me/player/recently-played/multiple-responses",
+                                 method:   :get,
+                                 endpoint: "/v1/me/player/recently-played")
+      end
+
+      let!(:stub2) do
+        stub_spotify_api_request(fixture:  "get/v1/me/player/recently-played/single-response",
+                                 method:   :get,
+                                 endpoint: "/v1/me/player/recently-played?before=1533009943998")
+      end
+
+      it "should make multiple API requests if 'next' in response is not null" do
+        subject.history
+
+        expect(stub1).to have_been_requested
+        expect(stub2).to have_been_requested
+      end
+
+
+      it "should return 6 items if response returns 6 results" do
+        fixture_items   = read_fixture("get/v1/me/player/recently-played/single-response")[:items]
+        subject_history = subject.history
+
+        expect(subject_history).to have(fixture_items.size).items
+        expect(subject_history[0]).to be_kind_of(Spotify::SDK::Item)
+        expect(subject_history[0].to_h).to eq(fixture_items[0])
+        expect(subject_history[-1].to_h).to eq(fixture_items[-1])
+      end
+    end
+  end
+
   describe "#following?" do
     it "should raise an error if no arguments are provided" do
       expect {
