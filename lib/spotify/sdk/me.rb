@@ -25,6 +25,18 @@ module Spotify
       ##
       # Check if the current user is following N users.
       #
+      # @example
+      #   artists = %w(3q7HBObVc0L8jNeTe5Gofh 0NbfKEOTQCcwd6o7wSDOHI 3TVXtAsR1Inumwj472S9r4)
+      #   @sdk.me.following?(artists, :artist) # => {"3q7HBObVc0L8jNeTe5Gofh" => false, "0NbfKEOTQCcwd6o7wSDOHI" => false, ...}
+      #
+      #   users = %w(3q7HBObVc0L8jNeTe5Gofh 0NbfKEOTQCcwd6o7wSDOHI 3TVXtAsR1Inumwj472S9r4)
+      #   @sdk.me.following?(users, :user) # => {"3q7HBObVc0L8jNeTe5Gofh" => false, "0NbfKEOTQCcwd6o7wSDOHI" => false, ...}
+      #
+      # @param [Array] list List of Spotify user/artist IDs. Cannot mix user and artist IDs in single request.
+      # @param [Symbol] type Either :user or :artist. Checks if follows respective type of account.
+      # @param [Hash] override_opts Custom options for HTTParty.
+      # @return [Hash] hash A hash containing a key with the ID, and a value that equals is_following (boolean).
+      #
       def following?(list, type=:artist, override_opts={})
         raise "Must contain an array" unless list.is_a?(Array)
         raise "Must contain an array of String or Spotify::SDK::Artist" if any_of?(list, [String, Spotify::SDK::Artist])
