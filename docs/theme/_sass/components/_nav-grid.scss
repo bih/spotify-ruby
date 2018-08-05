@@ -1,91 +1,91 @@
-/**
- * Nav grid (components/_nav-grid.scss)
- */
+//
+// Nav grid (components/_nav-grid.scss)
+//
 
-/* ----- General ----- */
+// ----- General ----- 
 .nav-grid {
-	font-size: .9375em;
-	line-height: 1.8em;
-	color: $color-dark-green;
+  color: $color-dark-green;
+  font-size: 0.9375em;
+  line-height: 1.8em;
 }
 
 .nav-grid--out {
-	@media (min-width: $screen-sm-min) {
-		margin-top: -11.25rem;
-	}
+  @media (min-width: $screen-sm-min) {
+    margin-top: -11.25rem;
+  }
 }
 
-/* ----- Item ----- */
+// ----- Item ----- 
 .nav-grid__item {
-	@include link-reset;
-	display: block;
-	background-color: $color-theme-green;
-	border: 2px solid rgba($color-dark-green, .2);
-	margin-bottom: .9375rem;
-	transition: background-color .2s, border .2s;
+  @include link-reset;
+  background-color: $color-theme-green;
+  border: 2px solid rgba($color-dark-green, 0.2);
+  display: block;
+  margin-bottom: 0.9375rem;
+  transition: background-color 0.2s, border 0.2s;
 
-	@media (min-width: $screen-sm-min) {
-		margin-bottom: 1.875rem;
-	}
+  @media (min-width: $screen-sm-min) {
+    margin-bottom: 1.875rem;
+  }
 
-	&:hover,
-	&:active,
-	&:focus {
-		border-color: $color-dark-green;
+  &:hover,
+  &:active,
+  &:focus {
+    border-color: $color-dark-green;
 
-		.nav-grid__btn {
-			border-color: $color-dark-green;
+    .nav-grid__btn {
+      border-color: $color-dark-green;
 
-			.icon {
-				@include translate(.625rem, 0);
-			}
-		}
-	}
+      .icon {
+        @include translate(0.625rem, 0);
+      }
+    }
+  }
 }
 
-/* ----- Content ----- */
+// ----- Content ----- 
 .nav-grid__content {
-	@include clearfix();
-	padding: 1.25rem 1.875rem .625rem 1.875rem;
+  @include clearfix();
+  padding: 1.25rem 1.875rem 0.625rem 1.875rem;
 
-	@media (min-width: $screen-md-min) {
-		padding: 1.875rem 2.5rem 1.25rem 2.5rem;
-	}
+  @media (min-width: $screen-md-min) {
+    padding: 1.875rem 2.5rem 1.25rem 2.5rem;
+  }
 
-	p {
-		margin-bottom: .625rem;
-	}
+  p {
+    margin-bottom: 0.625rem;
+  }
 }
 
-/* ----- Title ----- */
+// ----- Title ----- 
 .nav-grid__title {
-	display: block;
-	font-size: $font-size-h3;
-	font-weight: 500;
-	padding: 0;
-	margin-top: 0;
-	border: 0;
+  border: 0;
+  display: block;
+  font-size: $font-size-h3;
+  font-weight: 500;
+  margin-top: 0;
+  padding: 0;
 }
 
-/* ----- Read more ----- */
+// ----- Read more ----- 
 .nav-grid__btn {
-	font-family: $font-family-secondary;
-	font-weight: 500;
-	text-transform: uppercase;
-	border-top: 2px solid rgba($color-dark-green, .2);
-	padding: 1.25rem 1.875rem 0 1.875rem;
-	transition: border .2s;
+  border-top: 2px solid rgba($color-dark-green, 0.2);
+  font-family: $font-family-secondary;
+  font-weight: 500;
+  padding: 1.25rem 1.875rem 0 1.875rem;
+  text-transform: uppercase;
+  transition: border 0.2s;
 
-	@media (min-width: $screen-md-min) {
-		padding: 1.25rem 2.5rem 0 2.5rem;
-	}
+  @media (min-width: $screen-md-min) {
+    padding: 1.25rem 2.5rem 0 2.5rem;
+  }
 
-	.icon {
-		display: inline-block;
-		font-size: 1.25em;
-		margin-left: .5rem;
-		position: relative;
-		bottom: -.125rem;
-		transition: transform .2s;
-	}
+  .icon {
+    bottom: -0.125rem;
+    display: inline-block;
+    font-size: 1.25em;
+    margin-left: 0.5rem;
+    position: relative;
+    transition: transform 0.2s;
+  }
 }
