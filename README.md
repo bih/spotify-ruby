@@ -32,7 +32,6 @@ The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
   - [Code of Conduct](#code-of-conduct)
   - [Getting Started](#getting-started)
   - [Releasing a Change](#releasing-a-change)
-  - [Changelog](#changelog)
 - [License](#license)
 
 ## Introduction
@@ -346,16 +345,6 @@ For local development, you can run `bin/console` for an interactive prompt for e
   - Run `bundle exec rake release` (which will create a git tag for the version)
   - Push git commits and tags
   - Push the `.gem` file to [rubygems.org].
-
-### Changelog
-
-```
-[2018-07-21] (0.2.1) First major release.
-- Support for Connect and User API endpoints.
-- Transitioned to YARD for documentation.
-- Website built using Jekyll with Contributing guide.
-- Removed Coveralls in favour for CodeClimate
-```
 
 ## License
 
