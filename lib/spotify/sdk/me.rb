@@ -23,14 +23,40 @@ module Spotify
       end
 
       ##
+      # Check what tracks a user has recently played.
+      #
+      # @example
+      #   @sdk.me.history
+      #   @sdk.me.history(20)
+      #
+      # @param [Integer] limit How many results to request. Defaults to 10.
+      # @param [Hash] override_opts Custom options for HTTParty.
+      # @return [Array] response List of recently played tracked, in chronological order.
+      #
+      def history(n=10, override_opts={})
+        request = {
+          method:    :get,
+          http_path: "/v1/me/player/recently-played",
+          keys:      %i[items],
+          limit:     n
+        }
+
+        send_multiple_http_requests(request, override_opts).map do |item|
+          Spotify::SDK::Item.new(item, self)
+        end
+      end
+
+      ##
       # Check if the current user is following N users.
       #
       # @example
       #   artists = %w(3q7HBObVc0L8jNeTe5Gofh 0NbfKEOTQCcwd6o7wSDOHI 3TVXtAsR1Inumwj472S9r4)
-      #   @sdk.me.following?(artists, :artist) # => {"3q7HBObVc0L8jNeTe5Gofh" => false, "0NbfKEOTQCcwd6o7wSDOHI" => false, ...}
+      #   @sdk.me.following?(artists, :artist)
+      #     # => {"3q7HBObVc0L8jNeTe5Gofh" => false, "0NbfKEOTQCcwd6o7wSDOHI" => false, ...}
       #
       #   users = %w(3q7HBObVc0L8jNeTe5Gofh 0NbfKEOTQCcwd6o7wSDOHI 3TVXtAsR1Inumwj472S9r4)
-      #   @sdk.me.following?(users, :user) # => {"3q7HBObVc0L8jNeTe5Gofh" => false, "0NbfKEOTQCcwd6o7wSDOHI" => false, ...}
+      #   @sdk.me.following?(users, :user)
+      #     # => {"3q7HBObVc0L8jNeTe5Gofh" => false, "0NbfKEOTQCcwd6o7wSDOHI" => false, ...}
       #
       # @param [Array] list List of Spotify user/artist IDs. Cannot mix user and artist IDs in single request.
       # @param [Symbol] type Either :user or :artist. Checks if follows respective type of account.
@@ -51,22 +77,52 @@ module Spotify
       # @example
       #   @sdk.me.following
       #
+      # @param [Integer] n Number of results to return.
       # @param [Hash] override_opts Custom options for HTTParty.
       # @return [Array] artists A list of followed artists, wrapped in Spotify::SDK::Artist
       #
-      def following(override_opts={})
-        artists = send_following_http_requests("/v1/me/following?type=artist&limit=50", override_opts)
-        artists.map do |artist|
+      def following(n=50, override_opts={})
+        request = {
+          method:    :get,
+          # TODO: Spotify API bug - `limit={n}` returns n-1 artists.
+          # ^ Example: `limit=5` returns 4 artists.
+          # TODO: Support `type=users` as well as `type=artists`.
+          http_path: "/v1/me/following?type=artist&limit=#{[n, 50].min}",
+          keys:      %i[artists items],
+          limit:     n
+        }
+
+        send_multiple_http_requests(request, override_opts).map do |artist|
           Spotify::SDK::Artist.new(artist, self)
         end
       end
 
       private
 
-      def any_of?(array, klasses)
+      def any_of?(array, klasses) # :nodoc:
         (array.map(&:class) - klasses).any?
       end
 
+      def send_multiple_http_requests(opts, override_opts) # :nodoc:
+        response = send_http_request(opts[:method], opts[:http_path], override_opts)
+        responses, next_request = hash_deep_lookup(response, opts[:keys].dup)
+        if next_request && responses.size < opts[:limit]
+          responses += send_multiple_http_requests(opts.merge(http_path: next_request), override_opts)
+        end
+        responses.first(opts[:limit])
+      end
+
+      def hash_deep_lookup(response, keys) # :nodoc:
+        error_message = "Cannot find '%s' key in Spotify::SDK::Me#hash_deep_lookup"
+        while keys.any?
+          next_request ||= response[:next]
+          next_key = keys.shift
+          response = next_key ? response[next_key] : raise(error_message % next_key)
+        end
+        [response, next_request ? next_request[23..-1] : nil]
+      end
+
+      # TODO: Migrate this into the abstracted send_multiple_http_requests
       def send_is_following_http_requests(list, type, override_opts) # :nodoc:
         max_ids = list.first(50)
         remaining_ids = list - max_ids
@@ -82,13 +138,6 @@ module Spotify
         if remaining_ids.any?
           ids.merge(send_is_following_http_requests(remaining_ids, type, override_opts))
         end || ids
-      end
-
-      def send_following_http_requests(http_path, override_opts) # :nodoc:
-        request = send_http_request(:get, http_path, override_opts)[:artists]
-        artists = request[:items]
-        artists << send_following_http_requests(request[:next][23..-1], override_opts) if request[:next]
-        artists.flatten
       end
     end
   end

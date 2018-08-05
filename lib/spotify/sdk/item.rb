@@ -4,6 +4,18 @@ module Spotify
   class SDK
     class Item < Model
       ##
+      # Let's transform the item object into better for us.
+      # Before: { track: ..., played_at: ..., context: ... }
+      # After: { track_properties..., played_at: ..., context: ... }
+      #
+      # :nodoc:
+      def initialize(payload, parent)
+        track      = payload.delete(:track) || payload.delete(:item)
+        properties = payload.except(:parent, :device, :repeat_state, :shuffle_state)
+        super(track.merge(properties: properties), parent)
+      end
+
+      ##
       # Get the album for this item.
       #
       # @example

@@ -133,7 +133,7 @@ module Spotify
         #
         def item
           raise "Playback information is not available if user has a private session enabled" if device.private_session?
-          Spotify::SDK::Item.new(super, parent)
+          Spotify::SDK::Item.new(to_h, parent)
         end
       end
     end

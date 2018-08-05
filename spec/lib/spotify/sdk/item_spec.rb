@@ -3,12 +3,16 @@
 require "spec_helper"
 
 RSpec.describe Spotify::SDK::Item do
-  let(:raw_data) { read_fixture("get/v1/me/player/currently-playing/public-session")[:item] }
+  let(:raw_data) { read_fixture("get/v1/me/player/currently-playing/public-session") }
   subject { build(:item, raw_data) }
 
   describe "#to_h" do
     it "returns the correct value" do
-      expect(subject.to_h).to eq raw_data
+      item_data  = raw_data.dup
+      track      = item_data.delete(:track) || item_data.delete(:item)
+      properties = item_data.except(:parent, :device, :repeat_state, :shuffle_state)
+
+      expect(subject.to_h).to eq track.merge(properties: properties)
     end
   end
 
@@ -18,7 +22,7 @@ RSpec.describe Spotify::SDK::Item do
     end
 
     it "should contain the correct information" do
-      expect(subject.album.to_h).to eq raw_data[:album]
+      expect(subject.album.to_h).to eq raw_data[:item][:album]
     end
   end
 
