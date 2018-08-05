@@ -41,6 +41,13 @@ RSpec.describe Spotify::SDK::Item do
     end
   end
 
+  describe "#context" do
+    it "is an alias for #duration_ms" do
+      expect(subject.context).not_to be_nil
+      expect(subject.context).to eq subject.properties[:context]
+    end
+  end
+
   describe "#duration" do
     it "is an alias for #duration_ms" do
       expect(subject.duration).not_to be_nil

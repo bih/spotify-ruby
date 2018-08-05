@@ -54,6 +54,17 @@ module Spotify
       end
 
       ##
+      # Get the context.
+      #
+      # @example
+      #   @sdk.connect.playback.item.context
+      #   @sdk.me.history[0].context
+      #
+      # @return [Hash] context Information about the user's context.
+      #
+      alias_attribute :context, "properties.context"
+
+      ##
       # Get the duration.
       # Alias to self.duration_ms
       #
