@@ -97,6 +97,18 @@ RSpec.describe Spotify::Accounts do
     include_context "correctly stores client information"
   end
 
+  context "on initialization with environment variables" do
+    subject do
+      ClimateControl.modify(SPOTIFY_CLIENT_ID:     "client id",
+                            SPOTIFY_CLIENT_SECRET: "client secret",
+                            SPOTIFY_REDIRECT_URI:  "https://localhost") do
+        Spotify::Accounts.new
+      end
+    end
+
+    include_context "correctly stores client information"
+  end
+
   context "post initialization" do
     subject do
       accounts = Spotify::Accounts.new
