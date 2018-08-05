@@ -4,6 +4,18 @@ module Spotify
   class SDK
     class Item < Model
       ##
+      # Let's transform the item object into better for us.
+      # Before: { track: ..., played_at: ..., context: ... }
+      # After: { track_properties..., played_at: ..., context: ... }
+      #
+      # :nodoc:
+      def initialize(payload, parent)
+        track      = payload.delete(:track) || payload.delete(:item)
+        properties = payload.except(:parent, :device, :repeat_state, :shuffle_state)
+        super(track.merge(properties: properties), parent)
+      end
+
+      ##
       # Get the album for this item.
       #
       # @example
@@ -40,6 +52,17 @@ module Spotify
       def artist
         artists.first
       end
+
+      ##
+      # Get the context.
+      #
+      # @example
+      #   @sdk.connect.playback.item.context
+      #   @sdk.me.history[0].context
+      #
+      # @return [Hash] context Information about the user's context.
+      #
+      alias_attribute :context, "properties.context"
 
       ##
       # Get the duration.
