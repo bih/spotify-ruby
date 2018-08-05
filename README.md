@@ -23,7 +23,10 @@ The developer-friendly, opinionated Ruby SDK for [Spotify]. Works on Ruby 2.4+
   - [Creating a Session](#creating-a-session)
   - [Recreating a Session](#recreating-a-session)
 - [Using the SDK](#using-the-sdk)
-  - [Spotify Connect](#spotify-connect)
+  - [Spotify Connect API](#spotify-connect-api)
+  - [Me API](#me-api)
+  - [Listening History API](#listening-history-api)
+  - [Following API](#following-api)
 - [Contributing](#contributing)
   - [Community Guidelines](#community-guidelines)
   - [Code of Conduct](#code-of-conduct)
@@ -168,7 +171,7 @@ To create an instance of the Spotify SDK, you'll need the `@session` from above 
 @sdk = Spotify::SDK.new(@session)
 ```
 
-### Spotify Connect
+### Spotify Connect API
 
 With [Spotify Connect], you can take your music experience anywhere on over 300 devices. And you can read and control most devices programmatically through the SDK:
 
@@ -212,6 +215,98 @@ With [Spotify Connect], you can take your music experience anywhere on over 300 
 @sdk.connect.devices[0].shuffle = false
 @sdk.connect.devices[0].repeat_mode = :context
 ```
+
+#### Transfer playback\*
+
+This will transfer state, and start playback.
+
+```ruby
+@sdk.connect.devices[0].transfer_playback!
+```
+
+#### Transfer state\*
+
+This will transfer state, and pause playback.
+
+```ruby
+@sdk.connect.devices[0].transfer_state!
+```
+
+### Me API
+
+This allows you to perform specific actions on behalf of a user.
+
+#### My information\*
+
+```ruby
+@sdk.me.info
+@sdk.me.info.free? # => false
+@sdk.me.info.premium? # => true
+@sdk.me.info.birthdate # => 1980-01-01
+@sdk.me.info.display_name? # => true
+@sdk.me.info.display_name # => "ABC Smith"
+@sdk.me.info.images[0].url # => "https://profile-images.scdn.co/userprofile/default/..."
+@sdk.me.info.followers # => 4913313
+@sdk.me.info.spotify_uri # => "spotify:user:abcsmith"
+@sdk.me.info.spotify_url # => "https://open.spotify.com/user/abcsmith"
+```
+
+### Listening History API
+
+#### My recently played tracks (up to last 50)\*
+
+```ruby
+@sdk.me.history(10) # => [#<Spotify::SDK::Item...>, ...]
+@sdk.me.history(10).size # => 10
+@sdk.me.history(50) # => [#<Spotify::SDK::Item...>, ...]
+@sdk.me.history(50).size # => 50
+```
+
+### Following API
+
+#### Follow an artist\*
+
+```ruby
+@sdk.playback.item.artist.follow!
+```
+
+#### Unfollow an artist\*
+
+```ruby
+@sdk.playback.item.artist.unfollow!
+```
+
+#### Check if following Spotify artists?\*
+
+```ruby
+@sdk.me.following_artists?(%w(3TVXtAsR1Inumwj472S9r4 6LuN9FCkKOj5PcnpouEgny 69GGBxA162lTqCwzJG5jLp))
+# => {
+#   "3TVXtAsR1Inumwj472S9r4" => false,
+#   "6LuN9FCkKOj5PcnpouEgny" => true,
+#   "69GGBxA162lTqCwzJG5jLp" => false
+# }
+```
+
+#### Check if following Spotify users?\*
+
+```ruby
+@sdk.me.following_users?(%w(3TVXtAsR1Inumwj472S9r4 6LuN9FCkKOj5PcnpouEgny 69GGBxA162lTqCwzJG5jLp))
+# => {
+#   "3TVXtAsR1Inumwj472S9r4" => false,
+#   "6LuN9FCkKOj5PcnpouEgny" => true,
+#   "69GGBxA162lTqCwzJG5jLp" => false
+# }
+```
+
+#### See all followed artists\*
+
+```ruby
+@sdk.me.following(5) # => [#<Spotify::SDK::Artist...>, ...]
+@sdk.me.following(5).size # => 5
+@sdk.me.following(50) # => [#<Spotify::SDK::Artist...>, ...]
+@sdk.me.following(50).size # => 50
+```
+
 
 <small><i>\* Requires specific user permissions/scopes. See [Authorization Scopes] for more information.</i></small>
 

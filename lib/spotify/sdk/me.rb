@@ -70,6 +70,14 @@ module Spotify
         send_is_following_http_requests(list.map {|id| id.try(:id) || id }, type, override_opts)
       end
 
+      def following_artists?(list, override_opts={})
+        following?(list, :artist, override_opts)
+      end
+
+      def following_users?(list, override_opts={})
+        following?(list, :user, override_opts)
+      end
+
       ##
       # Get the current user's followed artists. Requires the `user-read-follow` scope.
       # GET /v1/me/following
