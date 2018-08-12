@@ -87,15 +87,15 @@ This covers all the Spotify API endpoints that are covered.
 
 ### Follow Endpoints
 
-| Endpoint                                                           | Description                                    | Coverage Status                                                        |
-| ------------------------------------------------------------------ | ---------------------------------------------- | ---------------------------------------------------------------------- |
-| GET /v1/me/following                                               | Get Followed Artists                           | [me.rb]                                                                |
-| GET /v1/me/following/contains                                      | Check if Current User Follows Artists or Users | [me.rb]                                                                |
-| PUT /v1/me/following                                               | Follow Artists or Users                        | [🔘 Partial Support][artist.rb] (Following multiple isn't supported)   |
-| DELETE /v1/me/following                                            | Unfollow Artists or Users                      | [🔘 Partial Support][artist.rb] (Unfollowing multiple isn't supported) |
-| GET /v1/users/{user_id}/playlists/{playlist_id}/followers/contains | Check if Users Follow a Playlist               | × Not Started                                                          |
-| PUT /v1/users/{user_id}/playlists/{playlist_id}/followers          | Follow a Playlist                              | × Not Started                                                          |
-| DELETE /v1/users/{user_id}/playlists/{playlist_id}/followers       | Unfollow a Playlist                            | × Not Started                                                          |
+| Endpoint                                                           | Description                                    | Coverage Status                                                      |
+| ------------------------------------------------------------------ | ---------------------------------------------- | -------------------------------------------------------------------- |
+| GET /v1/me/following                                               | Get Followed Artists                           | [me.rb]                                                              |
+| GET /v1/me/following/contains                                      | Check if Current User Follows Artists or Users | [me.rb]                                                              |
+| PUT /v1/me/following                                               | Follow Artists or Users                        | [🔘 Partial Support][artist.rb] (Following multiple not supported)   |
+| DELETE /v1/me/following                                            | Unfollow Artists or Users                      | [🔘 Partial Support][artist.rb] (Unfollowing multiple not supported) |
+| GET /v1/users/{user_id}/playlists/{playlist_id}/followers/contains | Check if Users Follow a Playlist               | × Not Started                                                        |
+| PUT /v1/users/{user_id}/playlists/{playlist_id}/followers          | Follow a Playlist                              | × Not Started                                                        |
+| DELETE /v1/users/{user_id}/playlists/{playlist_id}/followers       | Unfollow a Playlist                            | × Not Started                                                        |
 
 ### Playlists Endpoints
 
@@ -113,10 +113,10 @@ This covers all the Spotify API endpoints that are covered.
 
 ### History Endpoints
 
-| Endpoint                          | Description                                   | Coverage Status |
-| --------------------------------- | --------------------------------------------- | --------------- |
-| GET /v1/me/top/{type}             | Get User's Top Artists and Tracks             | × Not Started   |
-| GET /v1/me/player/recently-played | Get the Current User's Recently Played Tracks | × Not Started   |
+| Endpoint                          | Description                                   | Coverage Status         |
+| --------------------------------- | --------------------------------------------- | ----------------------- |
+| GET /v1/me/top/{type}             | Get User's Top Artists and Tracks             | × Not Started           |
+| GET /v1/me/player/recently-played | Get the Current User's Recently Played Tracks | [Full support ✔][me.rb] |
 
 ### Connect Endpoints
 

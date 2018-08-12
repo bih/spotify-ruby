@@ -131,7 +131,11 @@ RSpec.describe Spotify::SDK::Connect::PlaybackState do
       end
 
       it "sends the correct information" do
-        expect(subject.item.to_h).to eq raw_data[:item]
+        item_data  = raw_data.dup
+        track      = item_data.delete(:track) || item_data.delete(:item)
+        properties = item_data.except(:parent, :device, :repeat_state, :shuffle_state)
+
+        expect(subject.item.to_h).to eq track.merge(properties: properties)
       end
     end
   end
