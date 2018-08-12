@@ -1,4 +1,4 @@
-*Before you log an issue, please, make sure that
+*Before you log an issue, please, make sure
 that the problem you're reporting
 hasn't been reported (and potentially fixed) already.*
 
