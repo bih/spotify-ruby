@@ -55,33 +55,39 @@ RSpec.describe Spotify::SDK::Connect::Device do
   end
 
   describe "#play!" do
-    it "from context and an index, should make an api call" do
+    it "from context, an index, and playback_ms, should make an api call" do
       stub = stub_request(:put, "https://api.spotify.com/v1/me/player/play?device_id=#{raw_data[:id]}")
-             .with(body:    {context_uri: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr", offset: {position: 5}}.to_json,
+             .with(body:    {context_uri: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr", offset: {position: 5}, position_ms: 0}.to_json,
                    headers: {Authorization: "Bearer access_token"})
 
-      subject.play!(index: 5, context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr")
+      subject.play!(index: 5, context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr", position_ms: 0)
       expect(stub).to have_been_requested
     end
 
-    it "from a uri, should make an api call" do
+    it "from a uri and playback_ms, should make an api call" do
       stub = stub_request(:put, "https://api.spotify.com/v1/me/player/play?device_id=#{raw_data[:id]}")
-             .with(body:    {uris: ["spotify:track:5MqkZd7a7u7N7hKMqquL2U"]}.to_json,
+             .with(body:    {uris: ["spotify:track:5MqkZd7a7u7N7hKMqquL2U"], position_ms: 123}.to_json,
                    headers: {Authorization: "Bearer access_token"})
 
-      subject.play!(uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U")
+      subject.play!(uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U", position_ms: 123)
       expect(stub).to have_been_requested
     end
 
-    it "from a context and uri, should make an api call" do
+    it "from a context, uri, and playback_ms, should make an api call" do
       stub = stub_request(:put, "https://api.spotify.com/v1/me/player/play?device_id=#{raw_data[:id]}")
              .with(body:    {
                context_uri: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
-               offset:      {uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U"}
+               offset:      {uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U"},
+               position_ms: 456
              }.to_json,
                    headers: {Authorization: "Bearer access_token"})
 
-      subject.play!(uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U", context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr")
+      subject.play!(
+        uri:         "spotify:track:5MqkZd7a7u7N7hKMqquL2U",
+        context:     "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+        position_ms: 456
+      )
+
       expect(stub).to have_been_requested
     end
 
