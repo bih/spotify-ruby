@@ -76,37 +76,65 @@ module Spotify
         #
         #   # Play from a playlist, album from a specific index in that list.
         #   # For example, play the 9th item on X playlist.
-        #   device.play!(index: 5, context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr")
+        #   device.play!(
+        #     index: 5,
+        #     context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+        #     position_ms: 0
+        #   )
         #
         #   # Play any Spotify URI. Albums, artists, tracks, playlists, and more.
-        #   device.play!(uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U")
+        #   device.play!(
+        #     uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U",
+        #     position_ms: 0
+        #   )
         #
         #   # Similar to just uri, but you can define the context.
         #   # Useful for playing a track that is part of a playlist, and you want the next
         #   # songs to play from that particular context.
-        #   device.play!(uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U", context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr")
+        #   device.play!(
+        #     uri: "spotify:track:5MqkZd7a7u7N7hKMqquL2U",
+        #     context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+        #     position_ms: 0
+        #   )
+        #
+        #   # Play a track, and immediately seek to 60 seconds.
+        #   device.play!(
+        #     index: 5,
+        #     context: "spotify:album:5ht7ItJgpBH7W6vJ5BqpPr",
+        #     position_ms: 60 * 1000
+        #   )
         #
         # @see https://developer.spotify.com/console/put-play/
         #
         # @param [Hash] config The play config you'd like to set. See code examples.
         # @return [Spotify::SDK::Connect::Device] self Return itself, so chained methods can be supported.
         #
+        # rubocop:disable AbcSize
         def play!(config)
           payload = case config.keys
-                    when %i[index context]
-                      {context_uri: config[:context], offset: {position: config[:index]}}
-                    when %i[uri]
-                      {uris: [config[:uri]]}
-                    when %i[uri context]
-                      {context_uri: config[:context], offset: {uri: config[:uri]}}
+                    when %i[index context position_ms]
+                      {context_uri: config[:context],
+                       offset:      {position: config[:index]},
+                       position_ms: config[:position_ms]}
+                    when %i[uri position_ms]
+                      {uris:        [config[:uri]],
+                       position_ms: config[:position_ms]}
+                    when %i[uri context position_ms]
+                      {context_uri: config[:context],
+                       offset:      {uri: config[:uri]},
+                       position_ms: config[:position_ms]}
                     else
-                      raise "Unrecognized play instructions. See documentation for details."
+                      raise <<-ERROR.strip_heredoc.strip
+                        Unrecognized play instructions.
+                        See https://www.rubydoc.info/github/bih/spotify-ruby/Spotify/SDK/Connect/Device#play!-instance_method for details.
+                      ERROR
                     end
 
           parent.send_http_request(:put, "/v1/me/player/play?device_id=%s" % id, http_options: {expect_nil: true},
                                                                                  body:         payload.to_json)
           self
         end
+        # rubocop:enable AbcSize
 
         ##
         # Resume the currently playing track on device.
