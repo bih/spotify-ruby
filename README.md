@@ -216,7 +216,8 @@ With [Spotify Connect], you can take your music experience anywhere on over 300 
 
 ```ruby
 @sdk.connect.devices[0].play!({
-  uri: "spotify:track:0tgVpDi06FyKpA1z0VMD4v"
+  uri: "spotify:track:0tgVpDi06FyKpA1z0VMD4v",
+  position_ms: 0
 })
 
 @sdk.connect.devices[0].pause!
