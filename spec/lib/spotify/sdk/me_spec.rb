@@ -214,7 +214,6 @@ RSpec.describe Spotify::SDK::Me do
       expect(subject.following).to be_kind_of(Array).and have(18).items
       expect(subject.following[0]).to be_kind_of(Spotify::SDK::Artist)
     end
-    #
     it "should return an empty array if empty response" do
       stub_spotify_api_request(fixture:  "get/v1/me/following/empty-response",
                                method:   :get,

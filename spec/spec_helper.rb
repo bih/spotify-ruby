@@ -21,7 +21,7 @@ module Helpers
   # Read fixture.
   #
   def read_fixture(fixture_filename)
-    dir = File.expand_path("../", __FILE__)
+    dir = File.expand_path(__dir__)
     path = "/support/fixtures/%s.json"
     raw_contents = File.read(dir + path % fixture_filename)
     response = JSON.parse(raw_contents)
@@ -58,7 +58,7 @@ module Helpers
     end
 
     def fixture_path
-      File.expand_path("../", __FILE__) + "/support/fixtures/%s" % fixture_filename
+      File.expand_path(__dir__) + "/support/fixtures/%s" % fixture_filename
     end
   end
 end

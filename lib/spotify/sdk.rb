@@ -47,6 +47,7 @@ module Spotify
     #
     def initialize(session)
       raise "Invalid Spotify::Accounts::Session object" unless session.instance_of?(Spotify::Accounts::Session)
+
       @session = session
       mount_sdk_components
     end

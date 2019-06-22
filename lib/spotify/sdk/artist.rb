@@ -46,6 +46,7 @@ module Spotify
       #
       def following=(should_follow)
         raise "#following= must be true or false" unless [true, false].include?(should_follow)
+
         should_follow ? follow! : unfollow!
       end
 

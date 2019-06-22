@@ -94,6 +94,7 @@ module Spotify
         #
         def position_percentage(decimal_points=2)
           return nil if position.nil?
+
           ((position.to_f / item.duration.to_f) * 100).ceil(decimal_points)
         end
 
@@ -133,6 +134,7 @@ module Spotify
         #
         def item
           raise "Playback information is not available if user has a private session enabled" if device.private_session?
+
           Spotify::SDK::Item.new(to_h, parent)
         end
       end
