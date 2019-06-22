@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :accounts, class: Spotify::Accounts do
     client_id { Digest::SHA1.hexdigest([Time.now, rand].join) }
     client_secret { Digest::SHA1.hexdigest([Time.now, rand].join) }
-    redirect_uri "http://localhost/callback"
+    redirect_uri { "http://localhost/callback" }
 
     skip_create
 
@@ -18,9 +18,9 @@ FactoryBot.define do
   factory :session, class: Spotify::Accounts::Session do
     association :accounts, factory: :accounts
     access_token { SecureRandom.base64(100) }
-    expires_in 3600
+    expires_in { 3600 }
     refresh_token { SecureRandom.base64(100) }
-    scopes ["user-read-private"]
+    scopes { ["user-read-private"] }
 
     skip_create
 
@@ -47,12 +47,12 @@ FactoryBot.define do
     id { [("a".."z"), ("A".."Z"), (0..9)].map(&:to_a).reduce(:+).sample(22).join }
     external_urls { {spotify: "https://open.spotify.com/artist/#{id}"} }
     followers { {href: nil, total: 123_456} }
-    genres %w[alternative rock grunge permanent wave post-grunge rock]
+    genres { %w[alternative rock grunge permanent wave post-grunge rock] }
     href { "https://api.spotify.com/v1/artists/#{id}" }
     images { [{height: 1057, width: 1000, url: "https://i.scdn.co/images/#{Digest::MD5.hexdigest(id)}"}] }
-    name "Random Artist"
+    name { "Random Artist" }
     popularity { rand(100) }
-    type "artist"
+    type { "artist" }
     uri { "spotify:uri:#{id}" }
 
     skip_create
@@ -76,8 +76,8 @@ FactoryBot.define do
   factory :image, class: Spotify::SDK::Image do
     association :parent, factory: :base
     url { "https://i.scdn.co/image/%s" % Digest::SHA1.hexdigest([Time.now, rand].join) }
-    width 640
-    height 640
+    width { 640 }
+    height { 640 }
 
     skip_create
 
