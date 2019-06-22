@@ -98,7 +98,7 @@ module Spotify
           # TODO: Support `type=users` as well as `type=artists`.
           http_path: "/v1/me/following?type=artist&limit=#{[limit, 50].min}",
           keys:      %i[artists items],
-          limit:     n
+          limit:     limit
         }
 
         send_multiple_http_requests(request, override_opts).map do |artist|
@@ -144,7 +144,11 @@ module Spotify
         )
         ids.each_key {|id| ids[id] = following.shift }
 
-        ids.merge(send_is_following_http_requests(remaining_ids, type, override_opts)) if remaining_ids.any? || ids
+        # rubocop:disable Style/IfUnlessModifier
+        if remaining_ids.any?
+          ids.merge(send_is_following_http_requests(remaining_ids, type, override_opts))
+        end || ids
+        # rubocop:enable Style/IfUnlessModifier
       end
     end
   end
