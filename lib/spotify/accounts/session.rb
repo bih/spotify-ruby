@@ -29,6 +29,7 @@ module Spotify
           request = HTTParty.post("https://accounts.spotify.com/api/token", body: params)
           response = request.parsed_response.with_indifferent_access
           raise response[:error_description] if response[:error]
+
           new(accounts, response[:access_token], response[:expires_in], response[:refresh_token], response[:scope])
         end
 
@@ -73,6 +74,7 @@ module Spotify
       #
       def scopes
         return [] if @scopes.nil?
+
         @scopes.split(" ").map(&:to_sym)
       end
 
@@ -100,6 +102,7 @@ module Spotify
       #
       def expires_at
         return nil if @expires_in.nil?
+
         Time.at(@expires_at)
       end
 
@@ -113,6 +116,7 @@ module Spotify
       #
       def expired?
         return nil if expires_at.nil?
+
         Time.now > expires_at
       end
 
@@ -156,7 +160,7 @@ module Spotify
       #
       # @return [String] json The JSON output of the session instance.
       #
-      def to_json
+      def to_json(*_args)
         {
           access_token:  @access_token.presence,
           expires_at:    @expires_at.presence,

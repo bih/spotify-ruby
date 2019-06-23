@@ -224,6 +224,7 @@ module Spotify
         #
         def change_volume!(volume_percent)
           raise "Must be an integer" unless volume_percent.is_a?(Integer)
+
           endpoint = "/v1/me/player/volume?volume_percent=%i&device_id=%s" % [volume_percent, id]
           opts = {http_options: {expect_nil: true}}
           parent.send_http_request(:put, endpoint, opts)
@@ -247,6 +248,7 @@ module Spotify
         #
         def seek_ms!(position_ms)
           raise "Must be an integer" unless position_ms.is_a?(Integer)
+
           endpoint = "/v1/me/player/seek?position_ms=%i&device_id=%s" % [position_ms, id]
           opts = {http_options: {expect_nil: true}}
           parent.send_http_request(:put, endpoint, opts)
@@ -272,6 +274,7 @@ module Spotify
         #
         def repeat!(state)
           raise "Must be :track, :context, or :off" unless %i[track context off].include?(state)
+
           endpoint = "/v1/me/player/repeat?state=%s&device_id=%s" % [state, id]
           opts = {http_options: {expect_nil: true}}
           parent.send_http_request(:put, endpoint, opts)
@@ -295,6 +298,7 @@ module Spotify
         #
         def shuffle!(state)
           raise "Must be true or false" unless [true, false].include?(state)
+
           endpoint = "/v1/me/player/shuffle?state=%s&device_id=%s" % [state, id]
           opts = {http_options: {expect_nil: true}}
           parent.send_http_request(:put, endpoint, opts)

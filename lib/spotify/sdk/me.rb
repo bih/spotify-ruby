@@ -33,12 +33,12 @@ module Spotify
       # @param [Hash] override_opts Custom options for HTTParty.
       # @return [Array] response List of recently played tracked, in chronological order.
       #
-      def history(n=10, override_opts={})
+      def history(limit=10, override_opts={})
         request = {
           method:    :get,
           http_path: "/v1/me/player/recently-played",
           keys:      %i[items],
-          limit:     n
+          limit:     limit
         }
 
         send_multiple_http_requests(request, override_opts).map do |item|
@@ -67,6 +67,7 @@ module Spotify
         raise "Must contain an array" unless list.is_a?(Array)
         raise "Must contain an array of String or Spotify::SDK::Artist" if any_of?(list, [String, Spotify::SDK::Artist])
         raise "type must be either 'artist' or 'user'" unless %i[artist user].include?(type)
+
         send_is_following_http_requests(list.map {|id| id.try(:id) || id }, type, override_opts)
       end
 
@@ -89,15 +90,15 @@ module Spotify
       # @param [Hash] override_opts Custom options for HTTParty.
       # @return [Array] artists A list of followed artists, wrapped in Spotify::SDK::Artist
       #
-      def following(n=50, override_opts={})
+      def following(limit=50, override_opts={})
         request = {
           method:    :get,
           # TODO: Spotify API bug - `limit={n}` returns n-1 artists.
           # ^ Example: `limit=5` returns 4 artists.
           # TODO: Support `type=users` as well as `type=artists`.
-          http_path: "/v1/me/following?type=artist&limit=#{[n, 50].min}",
+          http_path: "/v1/me/following?type=artist&limit=#{[limit, 50].min}",
           keys:      %i[artists items],
-          limit:     n
+          limit:     limit
         }
 
         send_multiple_http_requests(request, override_opts).map do |artist|
@@ -143,9 +144,11 @@ module Spotify
         )
         ids.each_key {|id| ids[id] = following.shift }
 
+        # rubocop:disable Style/IfUnlessModifier
         if remaining_ids.any?
           ids.merge(send_is_following_http_requests(remaining_ids, type, override_opts))
         end || ids
+        # rubocop:enable Style/IfUnlessModifier
       end
     end
   end

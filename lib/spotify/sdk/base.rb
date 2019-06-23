@@ -61,6 +61,7 @@ module Spotify
         response = response.try(:deep_symbolize_keys) || response
         raise response[:error][:message] if response.is_a?(Hash) && response[:error].present?
         return httparty if opts[:raw] == true
+
         response = opts[:expect_nil] ? true : raise("No response returned") if response.nil?
         response
       end

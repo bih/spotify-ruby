@@ -155,3 +155,7 @@ Lint/Debugger:
 # Style preference
 Style/MethodDefParentheses:
   Enabled: false
+
+# Disable annotated tokens
+Style/FormatStringToken:
+  Enabled: false

@@ -38,7 +38,7 @@ module Spotify
         super.to_h.except(:parent)
       end
 
-      def to_json # :nodoc:
+      def to_json(*_args) # :nodoc:
         to_h.to_json
       end
 
