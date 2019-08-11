@@ -125,13 +125,13 @@ In order to use Spotify's APIs on a user's behalf, you'll need to use the Spotif
 ```ruby
 @accounts.authorize_url({
   scope: "user-read-private user-read-email user-top-read"
-}) # => "https://accounts.spotify.com/oauth/authorize?..."
+}) # => "https://accounts.spotify.com/authorize?..."
 ```
 
 **Recommended for exploration / local development:** Or, to request all data, you can execute:
 
 ```ruby
-@accounts.authorize_url # => "https://accounts.spotify.com/oauth/authorize?..."
+@accounts.authorize_url # => "https://accounts.spotify.com/authorize?..."
 ```
 
 ### Creating a Session

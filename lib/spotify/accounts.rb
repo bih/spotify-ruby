@@ -93,7 +93,7 @@ module Spotify
         response_type: "code",
         scope:         SCOPES.join(" ")
       }.merge(override_params)
-      "https://accounts.spotify.com/oauth/authorize?%s" % params.to_query
+      "https://accounts.spotify.com/authorize?%s" % params.to_query
     end
 
     ##

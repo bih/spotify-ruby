@@ -33,7 +33,7 @@ RSpec.describe Spotify::Accounts do
         let(:authorize_url) { subject.authorize_url }
 
         it "should include the correct base url" do
-          expect(subject.authorize_url).to start_with "https://accounts.spotify.com/oauth/authorize"
+          expect(subject.authorize_url).to start_with "https://accounts.spotify.com/authorize"
         end
 
         it "should contain client_id with correct value" do
