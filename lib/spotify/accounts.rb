@@ -115,7 +115,7 @@ module Spotify
     #
     def exchange_for_session(code)
       validate_credentials!
-      Spotify::Accounts::Session.from_authorization_code(code)
+      Spotify::Accounts::Session.from_authorization_code(self, code)
     end
 
     def inspect # :nodoc:
