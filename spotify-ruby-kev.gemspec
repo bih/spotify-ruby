@@ -5,10 +5,10 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require "spotify/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "spotify-ruby"
+  spec.name          = "spotify-ruby-kev"
   spec.version       = Spotify::VERSION
-  spec.authors       = ["Bilawal Hameed"]
-  spec.email         = ["bil@spotify.com"]
+  spec.authors       = ["Kevin Heffernan"]
+  spec.email         = ["kevin.heffernan97@gmail.com"]
 
   spec.summary       = "The developer-friendly, opinionated Ruby SDK for Spotify."
   spec.description   = [
@@ -16,7 +16,7 @@ Gem::Specification.new do |spec|
     "inside of your application.",
     "For more information, visit https://developer.spotify.com"
   ].join(" ")
-  spec.homepage      = "https://bih.github.io/spotify-ruby"
+  spec.homepage      = "https://github.com/kev737/spotify-ruby"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0").reject do |f|
@@ -51,6 +51,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "yard-api"
 
   # Runtime Dependencies
-  spec.add_runtime_dependency "activesupport", "~> 5.2.3"
+  spec.add_runtime_dependency "activesupport", "~> 6.0"
   spec.add_runtime_dependency "httparty", ">= 0.15.6", "< 0.18"
 end
