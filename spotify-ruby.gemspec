@@ -51,6 +51,6 @@ Gem::Specification.new do |spec|
   spec.add_development_dependency "yard-api"
 
   # Runtime Dependencies
-  spec.add_runtime_dependency "activesupport", "~> 5.2.3"
+  spec.add_runtime_dependency "activesupport", "~> 6.0"
   spec.add_runtime_dependency "httparty", ">= 0.15.6", "< 0.18"
 end
