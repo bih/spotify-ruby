@@ -135,7 +135,7 @@ In our project, we have the core files in the root folder `/`:
 | Local Config    | [.rvm-version]         | Our RVM-specific [Ruby] version we're using to build `spotify-ruby`. |
 | Local Config    | [Gemfile]              | Used for running `bundler install` during installation.              |
 | External Config | [.travis.yml]          | Our config for our continuous integration provider, [Travis CI].     |
-| External Config | [spotify-ruby.gemspec] | Used for configuring the `spotify-ruby` gem.                         |
+| External Config | [spotify-ruby-kev.gemspec] | Used for configuring the `spotify-ruby` gem.                         |
 | Tooling         | [Rakefile]             | Used for running `rake` helper commands.                             |
 | Documentation   | [LICENSE]              | A distributed excerpt of our source code license.                    |
 | Documentation   | [CODE_OF_CONDUCT.md]   | Our official Code of Conduct policy.                                 |
@@ -146,7 +146,7 @@ In our project, we have the core files in the root folder `/`:
 [.rubocop.yml]: https://github.com/bih/spotify-ruby/blob/master/.rubocop.yml
 [.ruby-version]: https://github.com/bih/spotify-ruby/blob/master/.ruby-version
 [.rvm-version]: https://github.com/bih/spotify-ruby/blob/master/.rvm-version
-[spotify-ruby.gemspec]: https://github.com/bih/spotify-ruby/blob/master/spotify-ruby.gemspec
+[spotify-ruby-kev.gemspec]: https://github.com/bih/spotify-ruby/blob/master/spotify-ruby-kev.gemspec
 [gemfile]: https://github.com/bih/spotify-ruby/blob/master/Gemfile
 [rakefile]: https://github.com/bih/spotify-ruby/blob/master/Rakefile
 [license]: https://github.com/bih/spotify-ruby/blob/master/LICENSE
