@@ -11,7 +11,7 @@ module Spotify
         # Parse the response we collect from the authorization code.
         #
         # @example
-        #   @session = Spotify::Accounts.from_authorization_code(@accounts, "authorization code here")
+        #   @session = Spotify::Accounts.from_authorization_code(accounts, "authorization code here")
         #
         # @param [Spotify::Accounts] accounts A valid instance of Spotify::Accounts.
         # @param [String] code The code provided in the Redirect URI from the Spotify Accounts API.
@@ -20,9 +20,9 @@ module Spotify
         #
         def from_authorization_code(accounts, code)
           params = {
-            client_id:     @accounts.instance_variable_get(:@client_id),
-            client_secret: @accounts.instance_variable_get(:@client_secret),
-            redirect_uri:  @accounts.instance_variable_get(:@redirect_uri),
+            client_id:     accounts.instance_variable_get(:@client_id),
+            client_secret: accounts.instance_variable_get(:@client_secret),
+            redirect_uri:  accounts.instance_variable_get(:@redirect_uri),
             grant_type:    "authorization_code",
             code:          code
           }
